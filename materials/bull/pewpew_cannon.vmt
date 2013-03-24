@@ -1,0 +1,7 @@
+"Vertexlitgeneric"
+{
+	"$basetexture" "bull/pewpew_cannon"
+	"$surfaceprop" "plastic"
+	"$model"	"1"
+
+}

@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "Effects/phaser"
+	"$model" "1"
+	"$additive" "1"
+	"$nocull" "1"
+}
+

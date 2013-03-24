@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+	"$translucent" 1
+//	"$nocull" 1
+	"$basetexture" "combatmodels/flarefinal2"
+	"$nodecal" 1
+}

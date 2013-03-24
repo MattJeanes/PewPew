@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$basetexture" "phaser/phaser2"
+	"$additive" 1
+	"$nolod" 1
+}
