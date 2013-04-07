@@ -1,3 +1,4 @@
+
 -- PewTool
 -- This is the tool used to spawn all PewPew weapons
 
@@ -136,6 +137,7 @@ if (SERVER) then
 	function TOOL:RightClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+
 		
 		-- Get the bullet
 		local bullet = pewpew:GetWeapon( self:GetBulletName() )
@@ -276,11 +278,11 @@ else
 				if (type(v) == "string") then
 					local wpn = folder:AddNode( string.gsub( v, "_", " " ) )
 					wpn.WeaponName = v
-					wpn.Icon:SetImage( "vgui/spawnmenu/File" )
+					wpn.Icon:SetImage( "icon16/page.png" )
 					wpn.IsWeapon = true
 				elseif (type(v) == "table") then	
 					local temp = parent:AddNode( string.gsub( k, "_", " " ) )
-					temp.Icon:SetImage("vgui/spawnmenu/Folder")
+					temp.Icon:SetImage("icon16/folder.png")
 					AddNode( parent, temp, v, k )
 				end
 			end

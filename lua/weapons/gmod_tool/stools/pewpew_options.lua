@@ -1,3 +1,4 @@
+
 -- Options tool
 -- This tool has admin options and a button to open the damage log
 
@@ -40,7 +41,6 @@ if (CLIENT) then
 			if (v[7] == true) then v[7] = "Yes" else v[7] = "No" end
 			table.insert( pewpew.DamageLog, 1, v )
 		end
-		print("table read")
 		UpdateLogMenu()
 	end)
 	

@@ -68,9 +68,10 @@ function BULLET:Fire()
 	undo.Finish()
 	
 	self:EmitSound( self.Bullet.FireSound[1] )
-	
-	WireLib.TriggerOutput( self.Entity, "Last Fired", ent or nil )
-	WireLib.TriggerOutput( self.Entity, "Last Fired EntID", ent:EntIndex() or 0 )
+	if WireLib then
+		WireLib.TriggerOutput( self.Entity, "Last Fired", ent or nil )
+		WireLib.TriggerOutput( self.Entity, "Last Fired EntID", ent:EntIndex() or 0 )
+	end
 end
 
 pewpew:AddWeapon( BULLET )

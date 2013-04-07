@@ -21,7 +21,7 @@ BULLET.Trail = nil
 -- Effects / Sounds
 BULLET.FireSound = {"weapons/explode1.wav","weapons/explode2.wav"}
 BULLET.ExplosionSound = nil
-BULLET.FireEffect = "Enersplosion"
+BULLET.FireEffect = "enersplosion"
 BULLET.ExplosionEffect = nil
 
 -- Movement

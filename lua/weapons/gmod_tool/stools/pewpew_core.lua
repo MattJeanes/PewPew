@@ -1,3 +1,4 @@
+
 -- Pew Core
 -- This tool spawns PewPew Cores
 
@@ -51,6 +52,7 @@ if (SERVER) then
 	function TOOL:LeftClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+		if (!WireLib) then ply:ChatPrint("Wiremod is not installed.") return end
 		if (!ply:CheckLimit("pewpew_cores")) then return end
 		local model = self:GetCoreModel()
 		if (!model) then return end
@@ -78,6 +80,7 @@ if (SERVER) then
 	function TOOL:RightClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+
 		if (!ply:CheckLimit("pewpew_cores")) then return end
 		local model = self:GetCoreModel()
 		if (!model) then return end
@@ -96,7 +99,7 @@ if (SERVER) then
 	
 	function TOOL:Reload( trace )
 		if (trace.Hit) then
-			if (trace.Entity and ValidEntity(trace.Entity)) then
+			if (trace.Entity and IsValid(trace.Entity)) then
 				self:GetOwner():ConCommand("pewpew_core_model " .. trace.Entity:GetModel())
 				self:GetOwner():ChatPrint("PewPew Core model set to: " .. trace.Entity:GetModel())
 			end

@@ -14,7 +14,7 @@ function ENT:Draw()
 		self.Bullet.CLCannonDraw(self)
 	else
 		self.Entity:DrawModel()
-		Wire_Render(self.Entity)
+		if WireLib then Wire_Render(self.Entity) end
 	end
 end
  

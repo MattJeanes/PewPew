@@ -1,9 +1,11 @@
 // Merged autoruns into one file, mainly because there are some things that need to be done shared that another Lua file with a small bit of code is messy - and not much is gained by splitting them.
-
 if SERVER then
 	-- PewPew Server Autorun
 	-- Initialize variables
 	pewpew = {}
+	
+	// sending files to client (not many because massive loading times)
+	resource.AddFile("materials/refract_ring.vmt")
 
 	-- Include files
 	include("pewpew_weaponhandler.lua")
@@ -23,9 +25,9 @@ if SERVER then
 			end
 		end
 	end
-	AddFiles( "PewPewPlugins/Server/", file.Find("PewPewPlugins/Server/*.lua", "LUA"), 3 )
-	AddFiles( "PewPewPlugins/Shared/", file.Find("PewPewPlugins/Shared/*.lua", "LUA"), 2 )
-	AddFiles( "PewPewPlugins/Client/", file.Find("PewPewPlugins/Client/*.lua", "LUA"), 1 )
+	AddFiles( "pewpewplugins/server/", file.Find("pewpewplugins/server/*.lua", "LUA"), 3 )
+	AddFiles( "pewpewplugins/shared/", file.Find("pewpewplugins/shared/*.lua", "LUA"), 2 )
+	AddFiles( "pewpewplugins/client/", file.Find("pewpewplugins/client/*.lua", "LUA"), 1 )
 
 	-- Add files
 	AddCSLuaFile("pewpew_weaponhandler.lua")
@@ -52,8 +54,8 @@ elseif CLIENT then
 			include(folder .. v)
 		end
 	end
-	AddFiles( "PewPewPlugins/Client/", file.Find("PewPewPlugins/Client/*.lua", "LUA") )
-	AddFiles( "PewPewPlugins/Shared/", file.Find("PewPewPlugins/Shared/*.lua", "LUA") )
+	AddFiles( "pewpewplugins/client/", file.Find("pewpewplugins/client/*.lua", "LUA") )
+	AddFiles( "pewpewplugins/shared/", file.Find("pewpewplugins/shared/*.lua", "LUA") )
 
 
 	-- Run functions

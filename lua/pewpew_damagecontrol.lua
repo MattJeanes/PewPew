@@ -227,19 +227,21 @@ end
 -- EMPDamage - (Electro Magnetic Pulse. Disables all wiring within the radius for the duration)
 pewpew.EMPAffected = {}
 
--- Override TriggerInput
-local OriginalFunc = WireLib.TriggerInput
-function WireLib.TriggerInput(ent, name, value, ...)
-	-- My addition
-	if (pewpew.EMPAffected[ent:EntIndex()] and pewpew.EMPAffected[ent:EntIndex()][1]) then  -- if it is affected
-		if (CurTime() < pewpew.EMPAffected[ent:EntIndex()][2]) then -- if the time isn't up yet
-			return
-		else -- if the time is up
-			pewpew.EMPAffected[ent:EntIndex()] = nil 
+if WireLib then
+	-- Override TriggerInput
+	local OriginalFunc = WireLib.TriggerInput
+	function WireLib.TriggerInput(ent, name, value, ...)
+		-- My addition
+		if (pewpew.EMPAffected[ent:EntIndex()] and pewpew.EMPAffected[ent:EntIndex()][1]) then  -- if it is affected
+			if (CurTime() < pewpew.EMPAffected[ent:EntIndex()][2]) then -- if the time isn't up yet
+				return
+			else -- if the time is up
+				pewpew.EMPAffected[ent:EntIndex()] = nil 
+			end
 		end
+		
+		OriginalFunc( ent, name, value, ... )
 	end
-	
-	OriginalFunc( ent, name, value, ... )
 end
 
 -- Add to EMPAffected

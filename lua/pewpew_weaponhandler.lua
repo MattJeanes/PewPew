@@ -6,7 +6,7 @@ function pewpew:LoadWeapons()
 	self.Weapons = {}
 	self.Categories = {}
 	
-	self:LoadDirectory( "PewPewBullets" )
+	self:LoadDirectory( "pewpewbullets" )
 end
 concommand.Add("PewPew_LoadBullets",function(ply,cmd,args) 
 	if (ply:IsSuperAdmin() or !ply:IsValid()) then
@@ -52,7 +52,7 @@ function pewpew:LoadDirectory( Dir ) -- Thanks to Jcw87 for fixing this function
 		end
 		CurrentCategoryTable = Temp2
 	else
-		CurrentCategory = "PewPewBullets"
+		CurrentCategory = "pewpewbullets"
 		CurrentCategoryTable = self.Categories
 	end
 	

@@ -19,32 +19,34 @@ function ENT:Initialize()
 	if (!self.Bullet) then return end
 	
 	-- Adjust wire inputs
-	if (self.Bullet.CustomInputs) then
-		self.Inputs = WireLib.CreateInputs( self.Entity, self.Bullet.CustomInputs )
-		self.InputsChanged = self.Bullet.Name
-	else
-		if (!self.InputsChanged) then
-			self.Inputs = WireLib.CreateInputs( self.Entity, { "Fire", "Reload" } )
-			self.InputsChanged = "default"
-		end
-	end
-	
-	-- Adjust wire outputs
-	if (self.Bullet.CustomOutputs) then
-		self.Outputs = WireLib.CreateOutputs( self.Entity, self.Bullet.CustomOutputs )
-		self.OutputsChanged = self.Bullet.Name
-	else
-		if (!self.OutputsChanged) then
-			if (self.Bullet.UseOldSystem) then
-				self.Outputs = WireLib.CreateOutputs( self.Entity, { "Can Fire", "Ammo", "Last Fired [ENTITY]", "Last Fired EntID", "Cannon [ENTITY]" } )
-			else
-				self.Outputs = WireLib.CreateOutputs( self.Entity, { "Can Fire", "Ammo", "Cannon [ENTITY]" } )
+	if WireLib then
+		if (self.Bullet.CustomInputs) then
+			self.Inputs = WireLib.CreateInputs( self.Entity, self.Bullet.CustomInputs )
+			self.InputsChanged = self.Bullet.Name
+		else
+			if (!self.InputsChanged) then
+				self.Inputs = WireLib.CreateInputs( self.Entity, { "Fire", "Reload" } )
+				self.InputsChanged = "default"
 			end
-			
-			self.OutputsChanged = "default"
-			WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo )
-			WireLib.TriggerOutput( self.Entity, "Can Fire", 1 )
-			WireLib.TriggerOutput( self.Entity, "Cannon", self.Entity )
+		end
+		
+		-- Adjust wire outputs
+		if (self.Bullet.CustomOutputs) then
+			self.Outputs = WireLib.CreateOutputs( self.Entity, self.Bullet.CustomOutputs )
+			self.OutputsChanged = self.Bullet.Name
+		else
+			if (!self.OutputsChanged) then
+				if (self.Bullet.UseOldSystem) then
+					self.Outputs = WireLib.CreateOutputs( self.Entity, { "Can Fire", "Ammo", "Last Fired [ENTITY]", "Last Fired EntID", "Cannon [ENTITY]" } )
+				else
+					self.Outputs = WireLib.CreateOutputs( self.Entity, { "Can Fire", "Ammo", "Cannon [ENTITY]" } )
+				end
+				
+				self.OutputsChanged = "default"
+				WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo )
+				WireLib.TriggerOutput( self.Entity, "Can Fire", 1 )
+				WireLib.TriggerOutput( self.Entity, "Cannon", self.Entity )
+			end
 		end
 	end
 	
@@ -158,9 +160,11 @@ function ENT:OldSystem_FireBullet()
 	-- Spawn
 	ent:Spawn()
 	ent:Activate()
-
-	WireLib.TriggerOutput( self.Entity, "Last Fired", ent )
-	WireLib.TriggerOutput( self.Entity, "Last Fired EntID", ent:EntIndex() or 0 )
+	
+	if WireLib then
+		WireLib.TriggerOutput( self.Entity, "Last Fired", ent )
+		WireLib.TriggerOutput( self.Entity, "Last Fired EntID", ent:EntIndex() or 0 )
+	end
 	
 	local Dir, Pos = pewpew:GetFireDirection( self.Direction, self, ent )
 		
@@ -190,7 +194,7 @@ function ENT:OldSystem_FireBullet()
 	
 	if (self.Bullet.Ammo and self.Bullet.Ammo > 0) then
 		self.Ammo = self.Ammo - 1
-		WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo )
+		if WireLib then WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo ) end
 	end
 	
 	return ent
@@ -235,7 +239,7 @@ function ENT:NewSystem_FireBullet()
 	
 	if (self.Bullet.Ammo and self.Bullet.Ammo > 0) then
 		self.Ammo = self.Ammo - 1
-		WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo )
+		if WireLib then WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo ) end
 	end
 end
 	
@@ -288,16 +292,16 @@ function ENT:Think()
 					end			
 				end
 				self.CanFire = false
-				WireLib.TriggerOutput( self.Entity, "Can Fire", 0)
+				if WireLib then WireLib.TriggerOutput( self.Entity, "Can Fire", 0) end
 				if (CurTime() - self.LastFired > self.Bullet.AmmoReloadtime) then -- check ammo reloadtime
 					self.Ammo = self.Bullet.Ammo
-					WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo )
+					if WireLib then WireLib.TriggerOutput( self.Entity, "Ammo", self.Ammo ) end
 					self.CanFire = true
 					if (self.Firing) then 
 						self.LastFired = CurTime()
 						self.CanFire = false
 						self:FireBullet()
-					else
+					elseif WireLib then
 						WireLib.TriggerOutput( self.Entity, "Can Fire", 1)
 					end
 				end
@@ -308,7 +312,7 @@ function ENT:Think()
 					self.LastFired = CurTime()
 					self.CanFire = false
 					self:FireBullet()
-				else
+				elseif WireLib then
 					WireLib.TriggerOutput( self.Entity, "Can Fire", 1)
 				end
 			end
@@ -355,7 +359,7 @@ function ENT:InputChange( name, value )
 		if (value != 0 and self.CanFire == true) then
 			self.LastFired = CurTime()
 			self.CanFire = false
-			WireLib.TriggerOutput(self.Entity, "Can Fire", 0)
+			if WireLib then WireLib.TriggerOutput(self.Entity, "Can Fire", 0) end
 			self:FireBullet()
 		end
 	elseif (name == "Reload") then
@@ -365,9 +369,11 @@ function ENT:InputChange( name, value )
 					if (self.Ammo and self.Ammo > 0) then
 						self.Ammo = 0
 						self.LastFired = CurTime() + self.Bullet.Reloadtime
-						self.CanFire = false					
-						WireLib.TriggerOutput( self.Entity, "Can Fire", 0)
-						WireLib.TriggerOutput( self.Entity, "Ammo", 0 )
+						self.CanFire = false		
+						if WireLib then
+							WireLib.TriggerOutput( self.Entity, "Can Fire", 0)
+							WireLib.TriggerOutput( self.Entity, "Ammo", 0 )
+						end
 					end
 				end
 			end

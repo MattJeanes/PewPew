@@ -113,7 +113,7 @@ function BULLET:CLThink(Index)
 
 	self.Pos = self.Pos + self.Vel * math.Clamp( self.Speed, 4, 70 ) / 2
 	self.Vel = self.Vel - Vector(0,0,self.WeaponData.Gravity / self.WeaponData.Speed)
-
+	
 	if (CurTime() > self.delay) then
 		local add = 2
 		if (self.delta > 100) then add = 4 end
@@ -136,6 +136,7 @@ function BULLET:CLThink(Index)
 	
 	local contents = util.PointContents( self.Pos )
 	local contents2 = util.PointContents( self.Pos + self.Vel * (pewpew.ServerTick or (1/66.667)) * (LagCompensation or 1) )
+	
 	if ((self.RemoveTimer and self.RemoveTimer < CurTime()) -- There's no way a bullet can fly for that long.
 		or contents == 1 -- It flew out of the map
 		or contents2 == 1) then -- It's going to fly out of the map in the next tick

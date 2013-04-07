@@ -89,11 +89,11 @@ local function CreateMenu()
 				if (type(v) == "string") then
 					local wpn = folder:AddNode( string.gsub( v, "_", " " ) )
 					wpn.WeaponName = v
-					wpn.Icon:SetImage( "vgui/spawnmenu/file" )
+					wpn.Icon:SetImage( "icon16/page.png" )
 					wpn.IsWeapon = true
 				elseif (type(v) == "table") then	
 					local temp = parent:AddNode( string.gsub( k, "_", " " ) )
-					temp.Icon:SetImage("vgui/spawnmenu/Folder")
+					temp.Icon:SetImage("icon16/folder.png")
 					AddNode( parent, temp, v, k )
 				end
 			end

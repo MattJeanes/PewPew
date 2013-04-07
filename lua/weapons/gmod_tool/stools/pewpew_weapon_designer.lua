@@ -1,3 +1,4 @@
+
 -- Weapon Designer
 -- With this tool you can make your own (basic) weapons
 if SERVER then util.AddNetworkString("PewPew_WeaponDesigner") end
@@ -67,6 +68,7 @@ if (SERVER) then
 	function TOOL:LeftClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+
 		
 		if (!pewpew:GetConVar( "WeaponDesigner" )) then 
 			ply:ChatPrint("[PewPew] The Weapon Designer is currently disabled.")
@@ -125,7 +127,7 @@ if (SERVER) then
 	
 	function TOOL:Reload( trace )
 		if (trace.Hit) then
-			if (trace.Entity and ValidEntity(trace.Entity) and !trace.Entity:IsPlayer()) then
+			if (trace.Entity and IsValid(trace.Entity) and !trace.Entity:IsPlayer()) then
 				self:GetOwner():ConCommand("pewpew_model " .. trace.Entity:GetModel())
 				self:GetOwner():ChatPrint("PewPew Cannon model set to: " .. trace.Entity:GetModel())
 			end
@@ -134,7 +136,7 @@ if (SERVER) then
 else
 	language.Add( "Tool.pewpew_weapon_designer.name", "PewPew Weapon Designer" )
 	language.Add( "Tool.pewpew_weapon_designer.desc", "Create your own PewPew weapons" )
-	language.Add( "Tool.pewpew_weapon_designer.0", "Primary: Spawn the PewPew weapon and weld it, Secondary: Open the Weapon Designer Menu, Reload: Change the model of the weapon." )
+	language.Add( "Tool.pewpew_weapon_designer.0", "Primary: Spawn the PewPew weapon and weld it, Reload: Change the model of the weapon." )
 	
 	local Menu = nil
 	

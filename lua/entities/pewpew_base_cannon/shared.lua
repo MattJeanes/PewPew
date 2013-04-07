@@ -1,5 +1,9 @@
 ENT.Type 			= "anim"  
-ENT.Base 			= "base_wire_entity"
+if WireLib then
+	ENT.Base 			= "base_wire_entity"
+else
+	ENT.Base			= "base_gmodentity"
+end
 if (CAF and CAF.GetAddon("Resource Distribution") and CAF.GetAddon("Life Support")) then
 	ENT.Base 		= "base_rd3_entity"
 end
@@ -10,4 +14,3 @@ ENT.Purpose			= ""
 ENT.Instructions	= ""  
 ENT.Spawnable			= false
 ENT.AdminSpawnable		= false
-

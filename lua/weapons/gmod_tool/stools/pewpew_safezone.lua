@@ -1,3 +1,4 @@
+
 -- Pew Safe Zone
 -- This tool spawns PewPew Safe Zones
 
@@ -41,6 +42,7 @@ if (SERVER) then
 	function TOOL:LeftClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+		if (!WireLib) then ply:ChatPrint("Wiremod is not installed.") return end
 		if (!ply:CheckLimit("pewpew_safezones")) then return end
 		local model = self:GetZoneModel()
 		if (!model) then return end
@@ -68,6 +70,7 @@ if (SERVER) then
 	function TOOL:RightClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
+
 		if (!ply:CheckLimit("pewpew_safezones")) then return end
 		local model = self:GetZoneModel()
 		if (!model) then return end
@@ -86,7 +89,7 @@ if (SERVER) then
 	
 	function TOOL:Reload( trace )
 		if (trace.Hit) then
-			if (trace.Entity and ValidEntity(trace.Entity)) then
+			if (trace.Entity and IsValid(trace.Entity)) then
 				self:GetOwner():ConCommand("pewpew_safezone_model " .. trace.Entity:GetModel())
 				self:GetOwner():ChatPrint("PewPew Safe Zone model set to: " .. trace.Entity:GetModel())
 			end
