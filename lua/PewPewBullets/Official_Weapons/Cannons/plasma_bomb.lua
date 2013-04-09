@@ -26,7 +26,7 @@ BULLET.Trail = { StartSize = 10,
 BULLET.FireSound = {"col32/bomb3.wav"}
 BULLET.ExplosionSound = {"weapons/explode1.wav","weapons/explode2.wav"}
 BULLET.FireEffect = "muzzleflash"
-BULLET.ExplosionEffect = "Enersplosion"
+BULLET.ExplosionEffect = "enersplosion"
 
 -- Movement
 BULLET.Speed = 160

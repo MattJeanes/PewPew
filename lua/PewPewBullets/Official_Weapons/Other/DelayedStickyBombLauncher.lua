@@ -65,7 +65,7 @@ function BULLET:Think()
 	if (not self.Propelled) then
 		local phys = self:GetPhysicsObject()
 		if (phys:IsValid()) then
-			phys:ApplyForceCenter(self:GetUp() * phys:GetMass() * self.Bullet.Speed)
+			phys:ApplyForceCenter((self:GetUp() * phys:GetMass() * self.Bullet.Speed)*((pewpew.ServerTick or (1/66))/(1/66)))
 		end
 		
 		self.Propelled = true

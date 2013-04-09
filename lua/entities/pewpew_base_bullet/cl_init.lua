@@ -2,7 +2,6 @@ include('shared.lua')
 
 function ENT:Initialize()
 	self.Bullet = pewpew:GetWeapon(self.Entity:GetNWString("BulletName"))
-	print(self.Entity:GetNWString("BulletName"))
 	if (self.Bullet) then
 		if (self.Bullet.CLInitialize) then
 			self.Bullet.CLInitialize(self)

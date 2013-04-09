@@ -158,7 +158,7 @@ function pewpew:DefaultBulletInitialize( Bullet )
 	--B.TraceDelay = CurTime() + (D.Speed) * (1/tk)
 	--B.TraceDelay = CurTime() + (D.Speed + (1/(D.Speed*tk)) * 0) / (1/tk) * tk
 	
-	Bullet.Vel = Bullet.Dir * D.Speed * Bullet.SpeedOffset * (1/tk)
+	Bullet.Vel = (Bullet.Dir * D.Speed * Bullet.SpeedOffset * (1/tk)) * (tk/(1/66))
 	
 	
 	-- Lifetime
