@@ -491,7 +491,7 @@ function ENT:DupeSpawn( ply, ent, info )
 				Ammo = 0,
 				AmmoReloadtime = 0,
 			}
-			function blt:Fire(self) 
+			function blt:Fire()
 				self.Owner:ChatPrint("[Pewpew] This server does not have a bullet named '" .. info.pewpewInfo.BulletName .. "'.\nIn order to fire, you must update this cannon with a valid bullet.")
 				self.Owner:ChatPrint("You may also leave it like this, and it might work on other servers (which have this bullet) after adv duplicating and uploading it to that server.")
 			end

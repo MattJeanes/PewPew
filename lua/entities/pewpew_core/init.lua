@@ -114,6 +114,7 @@ function ENT:RemoveAllProps()
 		
 		-- Random Explosions
 		timer.Create("PewPew_CoreDeathEffect_"..tostring(self)..CurTime(),math.Clamp(1/(nr/10),0.05,1),math.Clamp(nr*10,2,59),function(props,nr)
+			if not props or not type(props)=="table" then return end
 			local ent = table.Random( props )
 			if (ent and ent:IsValid()) then
 				ent:EmitSound("weapons/explode" .. math.random(3,5) .. ".wav")
