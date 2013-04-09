@@ -1,0 +1,10 @@
+{
+	"title"		:	"PewPew V2",
+	"type"		:	"weapon",
+	"tags"		:	[ "fun", "build" ],
+	"ignore"	:
+	[
+		"*.md",
+		"*.git*"
+	]
+}
