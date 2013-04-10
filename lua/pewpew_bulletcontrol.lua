@@ -82,6 +82,7 @@ if (CLIENT) then
 		local WpnName = net.ReadString()
 		local Weapon = pewpew:GetWeapon( WpnName )
 		if (!Weapon) then return end
+		if not Pos then return end
 		
 		if (#pewpew.Bullets < (GetConVarNumber("PewPew_MaxBullets") or 255)) then
 			local ent = ClientsideModel(Weapon.Model)
