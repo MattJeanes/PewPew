@@ -288,12 +288,12 @@ function pewpew:FireDamage( TargetEntity, DPS, Duration, DamageDealer )
 	
 	-- Start a timer
 	local timername = "pewpew_firedamage_"..TargetEntity:EntIndex()..CurTime()
-	timer.Create( timername, 0.1, Duration*10, function( TargetEntity, DPS, timername ) 
+	timer.Create(timername, 0.1, Duration*10, function() 
 		-- Damage
 		pewpew:DealDamageBase( TargetEntity, DPS/10, DamageDealer )
 		-- Auto remove timer if dead
 		if (!TargetEntity or !TargetEntity:IsValid()) then timer.Remove( timername ) end
-	end, TargetEntity, DPS, timername, DamageDealer )
+	end)
 end
 
 -- Defense Damage (Used to destroy PewPew bullets. Each PewPew Bullet has 100 health.)

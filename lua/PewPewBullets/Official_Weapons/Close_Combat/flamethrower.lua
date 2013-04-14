@@ -34,14 +34,8 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "FireDamage"
-BULLET.Damage = 80
-BULLET.Radius = 60
-BULLET.RangeDamageMul = 3
-BULLET.NumberOfSlices = nil
-BULLET.SliceDistance = nil
-BULLET.Duration = nil
-BULLET.PlayerDamage = 50
-BULLET.PlayerDamageRadius = 80
+BULLET.DPS = 20
+BULLET.Duration = 5
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1
@@ -75,9 +69,9 @@ function BULLET:Think(Index)
 	
 	//self.Entity:SetAngles( self.Dir:Angle() + Angle(90,0,0) )
 	
-	local contents = util.PointContents( self.Pos )
+	local hitsolid = bit.band(util.PointContents( self.Pos ), CONTENTS_SOLID) > 0
 	if ((self.RemoveTimer and self.RemoveTimer < CurTime()) -- There's no way a bullet can fly for that long.
-		or contents == 1) then -- It flew out of the map
+		or hitsolid) then -- It flew out of the map
 		local trace = pewpew:Trace( self.Pos - self.Vel * self.Speed, self.Vel * self.Speed )
 		pewpew:ExplodeBullet( Index, self, trace )
 	else			
@@ -134,12 +128,12 @@ function BULLET:CLThink(Index)
 		self.delay = CurTime() + math.Rand(0.01,0.04)
 	end
 	
-	local contents = util.PointContents( self.Pos )
-	local contents2 = util.PointContents( self.Pos + self.Vel * (pewpew.ServerTick or (1/66.667)) * (LagCompensation or 1) )
+	local hitsolid = bit.band(util.PointContents( self.Pos ), CONTENTS_SOLID) > 0
+	local hitsolid2 = bit.band(util.PointContents( self.Pos + self.Vel * (pewpew.ServerTick or (1/66.667)) * (LagCompensation or 1) ), CONTENTS_SOLID) > 0
 	
 	if ((self.RemoveTimer and self.RemoveTimer < CurTime()) -- There's no way a bullet can fly for that long.
-		or contents == 1 -- It flew out of the map
-		or contents2 == 1) then -- It's going to fly out of the map in the next tick
+		or hitsolid -- It flew out of the map
+		or hitsolid2) then -- It's going to fly out of the map in the next tick
 		pewpew:RemoveBullet( Index )
 	
 	elseif (self.Prop and self.Prop:IsValid()) then

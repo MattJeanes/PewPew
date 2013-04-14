@@ -462,7 +462,7 @@ function pewpew:DefaultExplodeBullet( Index, Bullet, trace )
 		elseif (damagetyp == "DefenseDamage") then
 			self:DefenseDamage( trace.Entity, D.Damage )
 		elseif (damagetype == "FireDamage") then
-			pewpew:FireDamage( trace.Entity, D.DPS, D.Duration, self, damagedealer )
+			pewpew:FireDamage( trace.Entity, D.DPS, D.Duration, damagedealer )
 		end
 	end
 	
