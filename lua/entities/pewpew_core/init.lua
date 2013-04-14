@@ -106,7 +106,6 @@ function ENT:RemoveAllProps()
 			if (phys and phys:IsValid()) then
 				phys:EnableMotion(true)
 				local mass = phys:GetMass()
-				phys:EnableGravity(false)
 				phys:ApplyForceOffset( VectorRand() * mass / 100, VectorRand() * mass / 100 )
 				phys:ApplyForceCenter( VectorRand() * mass / 500 )
 			end
