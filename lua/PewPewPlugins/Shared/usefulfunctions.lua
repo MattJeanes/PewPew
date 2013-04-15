@@ -25,7 +25,7 @@ function pewpew:GetFireDirection( Index, Ent, Bullet )
 	local boxsize = Ent:OBBMaxs()-Ent:OBBMins()
 	local bulletboxsize = Vector(0,0,30)
 	
-	if (Bullet) then
+	if (Bullet) and IsValid(Bullet) then
 		bulletboxsize = Bullet:OBBMaxs()-Bullet:OBBMins()
 	end
 	
