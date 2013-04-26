@@ -13,7 +13,7 @@ BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
 -- Appearance
-BULLET.Model = "models/props_c17/canister01a.mdl"
+BULLET.Model = "models/props_phx/torpedo.mdl"
 BULLET.Material = nil
 BULLET.Color = nil
 BULLET.Trail = nil
@@ -26,7 +26,7 @@ BULLET.ExplosionEffect = "big_splosion"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 40
+BULLET.Speed = 25
 BULLET.Gravity = 1.5
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
@@ -106,7 +106,7 @@ function BULLET:Think()
 		self.Delay = 0
 		self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
 	end
-	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(90,0,0) )
+	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(0,0,0) )
 	
 	-- Check if it hit something
 	local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
