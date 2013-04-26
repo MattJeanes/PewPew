@@ -106,7 +106,7 @@ function BULLET:Think()
 		self.Delay = 0
 		self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
 	end
-	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(0,0,0) )
+	self.Entity:SetAngles( self.FlightDirection:Angle() )
 	
 	-- Check if it hit something
 	local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
