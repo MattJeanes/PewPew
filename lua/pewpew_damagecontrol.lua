@@ -137,7 +137,7 @@ end
 -- Point Damage - (Deals damage to 1 single entity)
 function pewpew:PointDamage( TargetEntity, Damage, DamageDealer )
 	if (!self:GetConVar( "Damage" )) then return end
-	if (TargetEntity:IsPlayer()) then
+	if (TargetEntity:IsPlayer()) or (TargetEntity:IsNPC()) then
 		if (DamageDealer and DamageDealer:IsValid()) then
 			if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)) then
 				TargetEntity:TakeDamage( Damage, DamageDealer )
@@ -187,7 +187,7 @@ function pewpew:SliceDamage( StartPos, Direction, Damage, NumberOfSlices, MaxRan
 				return StartPos + Direction * MaxRange
 			else
 				if (self:CallHookBool("PewPew_ShouldDoSliceDamage",HitEnt,StartPos,Direction,Damage,NumberOfSlices,MaxRange,ReducedDamagePerSlice,DamageDealer)) then
-					if (HitEnt:IsPlayer()) then
+					if (HitEnt:IsPlayer()) or (HitEnt:IsNPC()) then
 						HitEnt:TakeDamage( Damage, DamageDealer ) -- deal damage to players
 					elseif (self:CheckValid( HitEnt )) then
 						self:DealDamageBase( HitEnt, Damage, DamageDealer ) -- Deal damage to entities
