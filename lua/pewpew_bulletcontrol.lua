@@ -154,8 +154,8 @@ function pewpew:DefaultBulletInitialize( Bullet )
 	local B = Bullet.BulletData
 	B.Exploded = false
 	local tk = self.ServerTick or (1/66.7)
-	B.TraceDelay = CurTime() + (D.Speed * Bullet.SpeedOffset) / (1/tk) * tk
-
+	local tk66=(1/66.7)
+	B.TraceDelay = CurTime() + ((D.Speed * Bullet.SpeedOffset) / (1/tk66) * tk66)
 	--B.TraceDelay = CurTime() + (D.Speed) * (1/tk)
 	--B.TraceDelay = CurTime() + (D.Speed + (1/(D.Speed*tk)) * 0) / (1/tk) * tk
 	
