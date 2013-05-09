@@ -1,4 +1,3 @@
--- Basic Laser
 
 local BULLET = {}
 
@@ -22,7 +21,7 @@ BULLET.OverheatSound = {"ambient/machines/thumper_shutdown1.wav"}
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 60
+BULLET.Damage = 50
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.05
@@ -85,7 +84,7 @@ function BULLET:CannonThink()
 	
 	if (self.Firing and not self.Overheated) then
 		self:FireBullet()
-		self.OverheatLevel = self.OverheatLevel + 1
+		self.OverheatLevel = self.OverheatLevel + 2
 		if (!self.ChargeSound:IsPlaying()) then
 			self.ChargeSound:Play()
 		end
