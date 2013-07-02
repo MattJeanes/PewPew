@@ -41,7 +41,7 @@ end
 
 -- Blast Damage (A normal explosion)  (The damage formula is " (1-(Distance/Radius)^RangeDamageMul))")
 function pewpew:BlastDamage( Position, Radius, Damage, RangeDamageMul, IgnoreEnt, DamageDealer )
-		if (!self:GetConVar( "Damage" )) then return end
+	if (!self:GetConVar( "Damage" )) then return end
 	if (!Radius or Radius <= 0) then return end
 	if (!Damage or Damage <= 0) then return end
 	local targets = ents.FindInSphere( Position, Radius )
@@ -78,18 +78,15 @@ function pewpew:BlastDamage( Position, Radius, Damage, RangeDamageMul, IgnoreEnt
 	tr.mask = MASK_SOLID
 	tr.filter = tooclose
 	
-	--local Mul = (3-(1-RangeDamageMul)*2)
-	local Mul = RangeDamageMul
-	
 	for _, ent in ipairs( DamagedProps ) do		
 		tr.endpos = ent:LocalToWorld( ent:OBBCenter() )
 		local trace = util.TraceLine( tr )
-		local Distance = Position:Distance( ent:GetPos() )
-		if ((!trace.Hit) or -- If the entity has a hole in its center (stargates?),
-			(trace.Hit and trace.Entity and trace.Entity == ent) or -- or if the trace hit the entity,
-			(Distance < Radius * (RangeDamageMul / 5))) then -- or if the entity is just really close to the center of the explosion
-			local Mul = 1-(Distance/Radius)^Mul
-			local Dmg = Damage * Mul
+		local Distance = Position:Distance( ent:NearestPoint( Position ) )
+		 if ((!trace.Hit) or -- If the entity has a hole in its center (stargates?),
+			(trace.Hit and trace.Entity and trace.Entity == ent) and -- or if the trace hit the entity,
+			(Distance < Radius)) then
+			local Mul = 1-(Distance/Radius)^RangeDamageMul
+			local Dmg = Damage*Mul
 			self:DealDamageBase( ent, Dmg, DamageDealer )
 		end
 	end

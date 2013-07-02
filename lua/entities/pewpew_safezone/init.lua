@@ -7,15 +7,32 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )
 	
-	self.Inputs = WireLib.CreateInputs( self.Entity, { "On", "Radius" } )
-	self.Outputs = WireLib.CreateOutputs( self.Entity, { "IsOn", "CurrentRadius" } )
+	if WireLib then
+		self.Inputs = WireLib.CreateInputs( self.Entity, { "On", "Radius" } )
+		self.Outputs = WireLib.CreateOutputs( self.Entity, { "IsOn", "CurrentRadius" } )
+	end
 	
-	pewpew:AddSafeZone( Vector(0,0,0), 1000, self.Entity )
+	self.Radius = self.Radius or 1000
+	pewpew:AddSafeZone( Vector(0,0,0), self.Radius, self.Entity )
 	self.On = true
-	WireLib.TriggerOutput( self.Entity, "IsOn", 1 )
-	self.Radius = 1000
-	WireLib.TriggerOutput( self.Entity, "CurrentRadius", 1000 )
+	if WireLib then
+		WireLib.TriggerOutput( self.Entity, "IsOn", 1 )
+		WireLib.TriggerOutput( self.Entity, "CurrentRadius", self.Radius )
+	end
 	self.ChangeDelay = 0
+end
+
+function ENT:SetRadius(radius)
+	radius=math.Clamp(tonumber(radius),50,2000)
+	if (self.Radius != radius) then
+		self.Radius = radius
+		pewpew:ModifySafeZone( self.Entity, Vector(0,0,0), self.Radius, self.Entity )
+		if WireLib then
+			WireLib.TriggerOutput( self.Entity, "CurrentRadius", self.Radius )
+		end
+		return true
+	end
+	return false
 end
 
 function ENT:TriggerInput( name, value )
@@ -29,7 +46,9 @@ function ENT:TriggerInput( name, value )
 				-- Turn on
 				pewpew:AddSafeZone( Vector(0,0,0), self.Radius, self.Entity )
 				self.On = true
-				WireLib.TriggerOutput( self.Entity, "IsOn", 1 )
+				if WireLib then
+					WireLib.TriggerOutput( self.Entity, "IsOn", 1 )
+				end
 				self.ChangeDelay = CurTime() + 5
 			end
 		else -- If value is 0
@@ -37,16 +56,15 @@ function ENT:TriggerInput( name, value )
 				-- Turn off
 				pewpew:RemoveSafeZone( self.Entity )
 				self.On = false
-				WireLib.TriggerOutput( self.Entity, "IsOn", 0 )
+				if WireLib then
+					WireLib.TriggerOutput( self.Entity, "IsOn", 0 )
+				end
 				self.ChangeDelay = CurTime() + 5
 			end
 		end
 	elseif (name == "Radius") then
-		value = math.Clamp(value,50,2000)
-		if (self.Radius != value) then -- If radius is not already equal to value
-			self.Radius = value
-			pewpew:ModifySafeZone( self.Entity, Vector(0,0,0), self.Radius, self.Entity )
-			WireLib.TriggerOutput( self.Entity, "CurrentRadius", self.Radius )
+		local success=self:SetRadius(value)
+		if success then
 			self.ChangeDelay = CurTime() + 5
 		end
 	end

@@ -61,6 +61,7 @@ local function OpenUseMenu( bulletname )
 			local label = vgui.Create("DLabel",pnl)
 			label:SetPos( 4, 4 )
 			label:SetText( value[1] )
+			label:SetColor(Color(0,0,0))
 			label:SizeToContents()
 			
 			local box = vgui.Create("DTextEntry",pnl)
@@ -68,6 +69,7 @@ local function OpenUseMenu( bulletname )
 			box:SetText( tostring(value[2] or "- none -") or "- none -" )
 			box:SetWidth( 592 )
 			box:SetMultiline( false )
+			//box:SetEditable( false ) -- cannot select text with this off
 			
 			pewpew_list:AddItem( pnl )
 		end

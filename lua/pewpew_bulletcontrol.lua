@@ -50,7 +50,9 @@ function pewpew:FireBullet( Pos, Dir, Owner, WeaponData, Cannon, FireDir )
 	
 	net.Start("PewPew_FireBullet")
 		net.WriteEntity(Cannon)
-		net.WriteVector(Dir)
+		net.WriteFloat(Dir.x)
+		net.WriteFloat(Dir.y)
+		net.WriteFloat(Dir.z)
 		net.WriteFloat(SpeedOffset)
 		net.WriteUInt(FireDir,8) -- FireDir is used to get the position on the client (better than sending the position as well)
 		net.WriteEntity(Owner)
@@ -70,7 +72,7 @@ if (CLIENT) then
 		local Cannon = net.ReadEntity()
 		
 		-- Pos/Dir
-		local Dir = net.ReadVector()
+		local Dir = Vector(net.ReadFloat(), net.ReadFloat(), net.ReadFloat())
 		local SpeedOffset = net.ReadFloat()
 		local FireDir = net.ReadUInt(8)
 		local temp, Pos = pewpew:GetFireDirection( FireDir, Cannon )

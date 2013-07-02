@@ -43,8 +43,8 @@ BULLET.PlayerDamage = 70
 
 -- Reload/Ammo
 BULLET.Reloadtime = 0.1
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Ammo = 50
+BULLET.AmmoReloadtime = 10
 
 BULLET.EnergyPerShot = 500
 

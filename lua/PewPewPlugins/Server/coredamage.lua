@@ -29,7 +29,9 @@ function pewpew:DamageCore( ent, Damage )
 	ent.pewpew.CoreHealth = ent.pewpew.CoreHealth - math.abs(Damage) * self:GetConVar("CoreDamageMul")
 	ent:SetNWInt("pewpewHealth",ent.pewpew.CoreHealth)
 	-- Wire Output
-	WireLib.TriggerOutput( ent, "Health", ent.pewpew.CoreHealth or 0 )
+	if WireLib then
+		WireLib.TriggerOutput( ent, "Health", ent.pewpew.CoreHealth or 0 )
+	end
 	self:CheckIfDeadCore( ent )
 	pewpew.tempdmg = pewpew.tempdmg + 1
 end

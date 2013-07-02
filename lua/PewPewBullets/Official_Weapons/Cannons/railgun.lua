@@ -25,7 +25,7 @@ BULLET.FireSound = {"arty/railgun.wav"}
 BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
-BULLET.Speed = 300
+BULLET.Speed = 400
 --BULLET.Gravity = 0.02
 BULLET.RecoilForce = 100
 BULLET.Spread = 0

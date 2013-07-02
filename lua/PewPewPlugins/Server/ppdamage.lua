@@ -25,7 +25,7 @@ function pewpew:PropProtDamage( TargetEntity, Damage, DamageDealer )
 				end
 			end
 		end
-		if (!Found) then print("PP DAMAGE FALSE") return false end
+		if (!Found) then return false end
 	end
 end
 hook.Add("PewPew_ShouldDamage","PewPew_PropProtectionDamage",pewpew.PropProtDamage)

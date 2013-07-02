@@ -75,6 +75,7 @@ else
 		You can also toggle the
 		health icons using Reload.]])
 		label:SizeToContents()
+		label:SetColor(Color(0,0,0))
 		
 		CPanel:AddItem(label)
 	end

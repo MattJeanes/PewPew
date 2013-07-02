@@ -7,7 +7,9 @@ function ENT:Initialize()
 	self.Entity:SetMoveType( MOVETYPE_VPHYSICS )
 	self.Entity:SetSolid( SOLID_VPHYSICS )      
 
-	self.Outputs = Wire_CreateOutputs( self.Entity, { "Health", "Total Health" })
+	if WireLib then
+		self.Outputs = Wire_CreateOutputs( self.Entity, { "Health", "Total Health", "Health Percent" })
+	end
 	
 	self.pewpew = {}
 	self.Props = {}
@@ -16,8 +18,11 @@ function ENT:Initialize()
 	self.pewpew.CoreMaxHealth = 1
 	self.Entity.Core = self
 	
-	WireLib.TriggerOutput( self.Entity, "Health", self.pewpew.CoreHealth or 0 )
-	WireLib.TriggerOutput( self.Entity, "Total Health", self.pewpew.CoreMaxHealth or 0 )
+	if WireLib then
+		WireLib.TriggerOutput( self.Entity, "Health", self.pewpew.CoreHealth or 0 )
+		WireLib.TriggerOutput( self.Entity, "Total Health", self.pewpew.CoreMaxHealth or 0 )
+		WireLib.TriggerOutput( self.Entity, "Health Percent", math.floor((self.pewpew.CoreHealth/self.pewpew.CoreMaxHealth)*100) or 0 )
+	end
 	
 	self.Entity:NextThink( CurTime() + 1 )
 	return true
@@ -87,9 +92,11 @@ function ENT:Think()
 		self.Entity:SetNWInt("pewpewHealth", self.pewpew.CoreHealth)
 	end
 	
-	-- Wire Output
-	WireLib.TriggerOutput( self.Entity, "Health", self.pewpew.CoreHealth or 0 )
-	WireLib.TriggerOutput( self.Entity, "Total Health", self.pewpew.CoreMaxHealth or 0 )
+	if WireLib then
+		WireLib.TriggerOutput( self.Entity, "Health", self.pewpew.CoreHealth or 0 )
+		WireLib.TriggerOutput( self.Entity, "Total Health", self.pewpew.CoreMaxHealth or 0 )
+		WireLib.TriggerOutput( self.Entity, "Health Percent", math.floor((self.pewpew.CoreHealth/self.pewpew.CoreMaxHealth)*100) or 0 )
+	end
 	
 	-- Run again in 5 seconds
 	self.Entity:NextThink( CurTime() + 5 )
@@ -100,14 +107,16 @@ function ENT:RemoveAllProps()
 	local nr = table.Count(self.Props)
 	if (nr>0) then
 		for _, ent in pairs( self.Props ) do
-			constraint.RemoveAll( ent )
-			ent:SetCollisionGroup( COLLISION_GROUP_NONE )
-			local phys = ent:GetPhysicsObject()
-			if (phys and phys:IsValid()) then
-				phys:EnableMotion(true)
-				local mass = phys:GetMass()
-				phys:ApplyForceOffset( VectorRand() * mass / 100, VectorRand() * mass / 100 )
-				phys:ApplyForceCenter( VectorRand() * mass / 500 )
+			if IsValid(ent) then
+				constraint.RemoveAll( ent )
+				ent:SetCollisionGroup( COLLISION_GROUP_NONE )
+				local phys = ent:GetPhysicsObject()
+				if (phys and phys:IsValid()) then
+					phys:EnableMotion(true)
+					local mass = phys:GetMass()
+					phys:ApplyForceOffset( VectorRand() * mass / 100, VectorRand() * mass / 100 )
+					phys:ApplyForceCenter( VectorRand() * mass / 500 )
+				end
 			end
 		end
 		
@@ -149,9 +158,11 @@ function ENT:RemoveAllProps()
 		
 		-- Remove them all
 		timer.Create("PewPew_CoreDeathEffect_Remove_"..tostring(self)..CurTime(),math.Clamp(nr,2,60),1,function(props)
-			for _, ent in pairs( props ) do
-				if (ent and ent:IsValid()) then
-					ent:Remove()
+			if props then
+				for _, ent in pairs( props ) do
+					if (ent and ent:IsValid()) then
+						ent:Remove()
+					end
 				end
 			end
 		end,self.Props)

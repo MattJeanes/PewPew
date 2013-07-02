@@ -52,7 +52,6 @@ if (SERVER) then
 	function TOOL:LeftClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
-		if (!WireLib) then ply:ChatPrint("Wiremod is not installed.") return end
 		if (!ply:CheckLimit("pewpew_cores")) then return end
 		local model = self:GetCoreModel()
 		if (!model) then return end

@@ -21,7 +21,7 @@ BULLET.OverheatSound = {"ambient/machines/thumper_shutdown1.wav"}
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 50
+BULLET.Damage = 25
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.05

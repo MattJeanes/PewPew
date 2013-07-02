@@ -7,7 +7,7 @@ BULLET.Version = 2
 
 -- General Information
 BULLET.Name = "120mm HE Cannon"
-BULLET.Author = "Chippu"
+BULLET.Author = "Chippy"
 BULLET.Description = "120mm High Explosive tank cannon."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
@@ -42,9 +42,9 @@ BULLET.PlayerDamage = 600
 BULLET.PlayerDamageRadius = 1000
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 8
-BULLET.Ammo = 25
-BULLET.AmmoReloadtime = 100
+BULLET.Reloadtime = 12
+BULLET.Ammo = 0
+BULLET.AmmoReloadtime = 0
 
 BULLET.EnergyPerShot = 14000
 

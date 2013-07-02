@@ -5,6 +5,7 @@
 TOOL.Category = "PewPew"
 TOOL.Name = "PewPew Safe Zone"
 TOOL.ClientConVar[ "model" ] = "models/Combine_Helicopter/helicopter_bomb01.mdl"
+TOOL.ClientConVar[ "size" ] = "1000"
 
 cleanup.Register("pewpew_safezones")
 
@@ -36,13 +37,13 @@ if (SERVER) then
 		ent:SetAngles( trace.HitNormal:Angle() + Angle(90,0,0) )
 		ent:Spawn()
 		ent:Activate()
+		ent:SetRadius(self:GetClientInfo("size"))
 		return ent
 	end
 	
 	function TOOL:LeftClick( trace )
 		if (!trace) then return end
 		local ply = self:GetOwner()
-		if (!WireLib) then ply:ChatPrint("Wiremod is not installed.") return end
 		if (!ply:CheckLimit("pewpew_safezones")) then return end
 		local model = self:GetZoneModel()
 		if (!model) then return end
@@ -133,6 +134,8 @@ else
 			Category = "PewPew",
 			Models = PewPewModels
 		})
+		
+		CPanel:AddControl( "Slider", { Label = "Radius", Command = "pewpew_safezone_size", Type = "Integer", Min = "50", Max = "2000" }  )
 	end
 
 	-- Ghost functions
