@@ -17,29 +17,6 @@ function pewpew:FireBullet( Pos, Dir, Owner, WeaponData, Cannon, FireDir )
 	-- Does any other addon have anything to say about this?
 	if (self:CallHookBool("PewPew_FireBullet",Pos,Dir,WeaponData,Cannon,Owner) == false) then return end
 	
-	/*
-	local players = {}
-	local send = false
-	for k,v in ipairs( player.GetAll() ) do
-		local n = v.PewPew_BulletBlock or -1
-		local amount = v:GetNWInt( "PewPew_BulletAmount", 0 )
-		if (amount < 255) then
-			if (n == -1) then
-				table.insert(players,v)
-				v:SetNWInt( "PewPew_BulletAmount", amount + 1 )
-				send = true
-			elseif (n > 0) then
-				if (CurTime() > (v.PewPew_LastBullet or 0) + n / 1000) then
-					table.insert(players,v)
-					v:SetNWInt( "PewPew_BulletAmount", amount + 1 )
-					send = true
-					v.PewPew_LastBullet = CurTime()
-				end
-			end
-		end
-	end
-	*/
-	
 	local n = WeaponData.Spread
 	local SpeedOffset = 1
 	if (n and n > 0) then

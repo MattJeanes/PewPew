@@ -90,7 +90,7 @@ if (CLIENT) then
 		slider:SetMinMax( 0, 255 )
 		slider:SetDecimals( 0 )
 		slider:SetConVar( "PewPew_MaxBullets" )
-		slider:SetValue( 255 ) -- PROBLEM: This does not set it to -1. It defaults to 0 anyway...
+		slider:SetValue(GetConVarNumber("PewPew_MaxBullets")) -- PROBLEM: This does not set it to -1. It defaults to 0 anyway...
 		
 		CPanel:AddItem( slider )
 
@@ -127,18 +127,22 @@ if (CLIENT) then
 	local weapondesigner = CreateClientConVar("pewpew_options_wpn_designer","0",false,false)
 	
 	local function Apply( ply, cmd, args )
-		RunConsoleCommand("pewpew_damage",dmg:GetString())
-		RunConsoleCommand("pewpew_firing",firing:GetString())
-		RunConsoleCommand("pewpew_numpads",numpads:GetString())
-		RunConsoleCommand("pewpew_energyusage",energy:GetString())
-		RunConsoleCommand("pewpew_coredamageonly",coreonly:GetString())
-		RunConsoleCommand("pewpew_damagemul",damagemul:GetString())
-		RunConsoleCommand("pewpew_coredamagemul",damagemulcores:GetString())
-		RunConsoleCommand("pewpew_repairtoolheal",repair:GetString())
-		RunConsoleCommand("pewpew_repairtoolhealcores",repaircores:GetString())
-		RunConsoleCommand("pewpew_damagelogsending",damagelog:GetString())
-		RunConsoleCommand("PewPew_PropProtDamage",ppdamage:GetString())
-		RunConsoleCommand("PewPew_WeaponDesigner",weapondesigner:GetString())
+		if LocalPlayer():IsAdmin() or LocalPlayer():IsSuperAdmin() then
+			net.Start("PewPew-SetOptions")
+				net.WriteString(dmg:GetString())
+				net.WriteString(firing:GetString())
+				net.WriteString(numpads:GetString())
+				net.WriteString(energy:GetString())
+				net.WriteString(coreonly:GetString())
+				net.WriteString(damagemul:GetString())
+				net.WriteString(damagemulcores:GetString())
+				net.WriteString(repair:GetString())
+				net.WriteString(repaircores:GetString())
+				net.WriteString(damagelog:GetString())
+				net.WriteString(ppdamage:GetString())
+				net.WriteString(weapondesigner:GetString())
+			net.SendToServer()
+		end
 	end
 	concommand.Add("pewpew_cl_applychanges", Apply)
 	

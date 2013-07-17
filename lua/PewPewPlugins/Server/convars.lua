@@ -2,6 +2,23 @@
 -- These functions manage convars
 ------------------------------------------------------------------------------------------------------------
 
+util.AddNetworkString("PewPew-SetOptions")
+
+net.Receive("PewPew-SetOptions", function()
+	RunConsoleCommand("pewpew_damage",net.ReadString())
+	RunConsoleCommand("pewpew_firing",net.ReadString())
+	RunConsoleCommand("pewpew_numpads",net.ReadString())
+	RunConsoleCommand("pewpew_energyusage",net.ReadString())
+	RunConsoleCommand("pewpew_coredamageonly",net.ReadString())
+	RunConsoleCommand("pewpew_damagemul",net.ReadString())
+	RunConsoleCommand("pewpew_coredamagemul",net.ReadString())
+	RunConsoleCommand("pewpew_repairtoolheal",net.ReadString())
+	RunConsoleCommand("pewpew_repairtoolhealcores",net.ReadString())
+	RunConsoleCommand("pewpew_damagelogsending",net.ReadString())
+	RunConsoleCommand("PewPew_PropProtDamage",net.ReadString())
+	RunConsoleCommand("PewPew_WeaponDesigner",net.ReadString())
+end)
+
 pewpew.ConVars = {}
 
 function pewpew:CreateConVar( ConVar, Type, Value, Callback )
@@ -63,20 +80,3 @@ end )
 pewpew:CreateConVar( "WeaponDesigner", "bool", false )
 pewpew:CreateConVar( "AlwaysUseOldSystem", "bool", false )
 pewpew:CreateConVar( "DamageLogSending", "bool", true )
-
-
--- Special command to block bullet spawning
-concommand.Add("PewPew_BlockClientSideBullets",function( ply, cmd, args )
-	if (!args or #args == 0) then
-		ply:PrintMessage( HUD_PRINTCONSOLE, "Command usage: -1 = All bullets visible (max 255 bullets), 0 = No bullets visible, Greater than 0 = Wait that many miliseconds before spawning the next bullet." )
-	else
-		local n = tonumber(args[1])
-		if (!n) then ply:PrintMessage( HUD_PRINTCONSOLE, "Command usage: -1 = All bullets visible (max 255 bullets), 0 = No bullets visible, Greater than 0 = Wait that many miliseconds before spawning the next bullet." ) return end
-		if (n == -1) then
-			ply.PewPew_BulletBlock = nil
-		else
-			ply.PewPew_BulletBlock = n
-		end
-		ply:PrintMessage( HUD_PRINTCONSOLE, "Bullet blocking set to: " .. n )
-	end
-end)
