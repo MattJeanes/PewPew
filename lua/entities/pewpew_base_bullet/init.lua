@@ -198,7 +198,8 @@ function ENT:DefaultThink()
 	-- Lifetime
 	if (self.Lifetime) then
 		if (CurTime() > self.Lifetime) then
-			if (self.Bullet.ExplodeAfterDeath) then
+			if (self.Bullet.ExplodeAfterDeath and not self.Exploded) then
+				self.Exploded = true
 				local trace = pewpew:Trace( self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self )
 				self:Explode( trace )
 			else
@@ -213,8 +214,8 @@ function ENT:DefaultThink()
 		if (!trace) then error("[PewPew] Invalid trace") return end
 			
 		if (trace.Hit and !self.Exploded) then	
-			self:Explode( trace )
 			self.Exploded = true
+			self:Explode( trace )
 		else			
 			-- Run more often!
 			self.Entity:NextThink( CurTime() )
