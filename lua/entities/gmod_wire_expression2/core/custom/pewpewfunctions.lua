@@ -213,7 +213,13 @@ e2function number pewBullets()
 	return #pewpew.Bullets
 end
 
-local BulletInfo = {
+local function getByUniqueID( id )
+	for i=1,#pewpew.Bullets do
+		if pewpew.Bullets[i].RemoveTimer == id then return i end
+	end
+end
+
+local BulletInfo = { -- Only strings or numbers
 	Name = "s",
 	Author = "s",
 	Description = "s",
@@ -238,18 +244,20 @@ local BulletInfo = {
 
 __e2setcost(10)
 
-e2function table pewBulletInfo( index )
+e2function table pewBulletInfo( id )
 	local t = {n={},ntypes={},s={},stypes={},size=0}
 	
-	if not pewpew.Bullets[index] then return t end
-	local WeaponData = pewpew.Bullets[index].WeaponData
+	local bullet = getByUniqueID( id )
+	if not bullet then return t end
+	local WeaponData = bullet.WeaponData
 	
 	local size = 0
 	for infokey,infotype in pairs( BulletInfo ) do
 		self.prf = self.prf + 0.1
 		if WeaponData[infokey] then
 			size = size + 1
-			t.s[infokey] = WeaponData[infokey]
+			local default = infotype == "n" and 0 or ""
+			t.s[infokey] = WeaponData[infokey] or default
 			t.stypes[infokey] = infotype
 		end
 	end
@@ -283,29 +291,28 @@ end
 
 __e2setcost(1)
 -- Positions & stuff
-e2function vector pewBulletPos( index )
-	if not pewpew.Bullets[index] then return {0,0,0} end
-	return pewpew.Bullets[index].Pos or {0,0,0}
+e2function vector pewBulletPos( id )
+	local bullet = getByUniqueID( id )
+	if not bullet then return {0,0,0} end
+	return bullet.Pos or {0,0,0}
 end
 
-e2function vector pewBulletVel( index )
-	if not pewpew.Bullets[index] then return {0,0,0} end
-	return pewpew.Bullets[index].Vel or {0,0,0}
+e2function vector pewBulletVel( id )
+	local bullet = getByUniqueID( id )
+	if not bullet then return {0,0,0} end
+	return bullet.Vel or {0,0,0}
 end
 
-e2function entity pewBulletOwner( index )
-	if not pewpew.Bullets[index] then return end
-	return pewpew.Bullets[index].Owner
+e2function entity pewBulletOwner( id )
+	local bullet = getByUniqueID( id )
+	if not bullet then return end
+	return bullet.Owner
 end
 
-e2function entity pewBulletCannon( index )
-	if not pewpew.Bullets[index] then return end
-	return pewpew.Bullets[index].Cannon
-end
-
-e2function number pewBulletUniqueID( index )
-	if not pewpew.Bullets[index] then return 0 end
-	return pewpew.Bullets[index].RemoveTimer -- This can double as a unique ID because it will never be the same for two bullets
+e2function entity pewBulletCannon( id )
+	local bullet = getByUniqueID( id )
+	if not bullet then return end
+	return bullet.Cannon
 end
 
 __e2setcost(5)
@@ -316,7 +323,7 @@ e2function array pewFindByOwner( entity owner )
 		self.prf = self.prf + 0.1
 		local bullet = pewpew.Bullets[i]
 		if bullet.Owner == owner then
-			r[#r+1] = i
+			r[#r+1] = bullet.RemoveTimer
 		end
 	end
 	
@@ -330,7 +337,7 @@ e2function array pewFindByCannon( entity cannon )
 		self.prf = self.prf + 0.1
 		local bullet = pewpew.Bullets[i]
 		if bullet.Cannon == cannon then
-			r[#r+1] = i
+			r[#r+1] = bullet.RemoveTimer
 		end
 	end
 	
@@ -345,7 +352,7 @@ e2function array pewFindInSphere( vector pos, radius )
 		self.prf = self.prf + 0.1
 		local bullet = pewpew.Bullets[i]
 		if bullet.Pos:Distance( pos ) <= radius then
-			r[#r+1] = i
+			r[#r+1] = buller.RemoveTimer
 		end
 	end
 	
@@ -373,7 +380,7 @@ e2function array pewFindInBox( vector minpos, vector maxpos )
 		self.prf = self.prf + 0.1
 		local bullet = pewpew.Bullets[i]
 		if inrange(bullet.Pos,minpos,maxpos) then
-			r[#r+1] = i
+			r[#r+1] = bullet.RemoveTimer
 		end
 	end
 	
