@@ -30,6 +30,8 @@ BULLET.Lifetime = {0,0}
 BULLET.ExplodeAfterDeath = false
 BULLET.EnergyPerShot = 600
 
+BULLET.Gravity = 0
+
 
 -- Fire (Is called before the cannon is about to fire)
 function BULLET:Fire()

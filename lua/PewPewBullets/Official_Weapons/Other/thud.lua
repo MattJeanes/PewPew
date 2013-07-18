@@ -23,6 +23,8 @@ BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = nil
 BULLET.EmptyMagSound = { "npc/turret_floor/click1.wav" }
 
+BULLET.Damage = 0
+
 -- Movement
 BULLET.Speed = 100
 --BULLET.Gravity = 0.15

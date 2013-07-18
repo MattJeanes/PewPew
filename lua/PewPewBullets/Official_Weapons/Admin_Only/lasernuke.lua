@@ -19,7 +19,7 @@ BULLET.FireEffect = "Deathbeam2"
 BULLET.ExplosionEffect = "breachsplode"
 
 -- Damage
-BULLET.DamageType = "BlastDamage" -- custom
+BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 100000
 BULLET.Radius = 7000
 BULLET.RangeDamageMul = 2.2
@@ -32,6 +32,8 @@ BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
 BULLET.EnergyPerShot = 11000000
+
+BULLET.Gravity = 0
 
 -- Custom Functions 
 -- (If you set the override var to true, the cannon/bullet will run these instead. Use these functions to do stuff which is not possible with the above variables)

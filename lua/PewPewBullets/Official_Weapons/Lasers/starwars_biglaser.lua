@@ -29,17 +29,10 @@ BULLET.Speed = 115
 BULLET.Gravity = 0
 BULLET.RecoilForce = 0
 BULLET.Spread = 0
-BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
 BULLET.Damage = 745
-BULLET.Radius = nil
-BULLET.RangeDamageMul = nil
-BULLET.NumberOfSlices = nil
-BULLET.SliceDistance = nil
-BULLET.PlayerDamage = nil
-BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 1

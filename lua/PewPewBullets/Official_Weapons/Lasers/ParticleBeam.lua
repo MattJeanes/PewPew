@@ -29,6 +29,8 @@ BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 BULLET.EnergyPerShot = 150
 
+BULLET.Gravity = 0
+
 function BULLET:Initialize()   
   self.Overheated = false
 end
