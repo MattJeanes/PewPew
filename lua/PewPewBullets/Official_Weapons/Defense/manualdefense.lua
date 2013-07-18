@@ -29,6 +29,8 @@ BULLET.AmmoReloadtime = 0
 BULLET.ExplodeAfterDeath = false
 BULLET.EnergyPerShot = 5000
 
+BULLET.Gravity = 0
+
 BULLET.CustomInputs = { "Fire", "Target [ENTITY]" }
 
 -- Custom Functions (Only for adv users)

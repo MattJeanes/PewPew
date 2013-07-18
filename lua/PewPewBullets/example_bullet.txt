@@ -1,4 +1,4 @@
--- Basic Cannon
+-- Example Cannon
 
 local BULLET = {}
 
@@ -30,7 +30,7 @@ BULLET.EmptyMagSound = {"sound1","sound2","sound3","and so on"} -- use as many s
 
 -- Movement
 BULLET.Speed = 50
-BULLET.Gravity = 0.2
+--BULLET.Gravity = 0.2 -- Gravity shouldn't be used if you're using the new system. Unless you are making a laser weapon, in which case gravity should be set to 0.
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
 

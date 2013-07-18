@@ -28,6 +28,8 @@ BULLET.AmmoReloadtime = 0
 BULLET.ExplodeAfterDeath = false
 BULLET.EnergyPerShot = 2000
 
+BULLET.Gravity = 0
+
 BULLET.CustomInputs = { "Fire" }
 BULLET.CustomOutputs = { }
 
