@@ -207,3 +207,177 @@ e2function void entity:pewFire( number fire )
 	if (this:GetClass() != "pewpew_base_cannon") then return end
 	this:InputChange( "Fire", fire )	
 end
+
+__e2setcost(1)
+e2function number pewBullets()
+	return #pewpew.Bullets
+end
+
+local BulletInfo = {
+	Name = "s",
+	Author = "s",
+	Description = "s",
+	Speed = "n",
+	Gravity = "n",
+	RecoilForce = "n",
+	Spread = "n",
+	DamageType = "s",
+	Damage = "n",
+	Radius = "n",
+	RangeDamageMul = "n",
+	NumberOfSlices = "n",
+	SliceDistance = "n",
+	Duration = "n",
+	PlayerDamage = "n",
+	PlayerDamageRadius = "n",
+	Reloadtime = "n",
+	Ammo = "n",
+	AmmoReloadtime = "n",
+	EnergyPerShot = "n",
+}
+
+__e2setcost(10)
+
+e2function table pewBulletInfo( index )
+	local t = {n={},ntypes={},s={},stypes={},size=0}
+	
+	if not pewpew.Bullets[index] then return t end
+	local WeaponData = pewpew.Bullets[index].WeaponData
+	
+	local size = 0
+	for infokey,infotype in pairs( BulletInfo ) do
+		self.prf = self.prf + 0.1
+		if WeaponData[infokey] then
+			size = size + 1
+			t.s[infokey] = WeaponData[infokey]
+			t.stypes[infokey] = infotype
+		end
+	end
+	
+	t.size = size
+	
+	return t
+end
+
+e2function table pewBulletInfo( string name )
+	local t = {n={},ntypes={},s={},stypes={},size=0}
+	
+	local WeaponData = pewpew:GetWeapon( name )
+	if not WeaponData then return t end
+	
+	local size = 0
+	for infokey,infotype in pairs( BulletInfo ) do
+		self.prf = self.prf + 0.1
+		if WeaponData[infokey] then
+			size = size + 1
+			t.s[infokey] = WeaponData[infokey]
+			t.stypes[infokey] = infotype
+		end
+	end
+	
+	t.size = size
+	
+	return t
+end
+
+
+__e2setcost(1)
+-- Positions & stuff
+e2function vector pewBulletPos( index )
+	if not pewpew.Bullets[index] then return {0,0,0} end
+	return pewpew.Bullets[index].Pos or {0,0,0}
+end
+
+e2function vector pewBulletVel( index )
+	if not pewpew.Bullets[index] then return {0,0,0} end
+	return pewpew.Bullets[index].Vel or {0,0,0}
+end
+
+e2function entity pewBulletOwner( index )
+	if not pewpew.Bullets[index] then return end
+	return pewpew.Bullets[index].Owner
+end
+
+e2function entity pewBulletCannon( index )
+	if not pewpew.Bullets[index] then return end
+	return pewpew.Bullets[index].Cannon
+end
+
+e2function number pewBulletUniqueID( index )
+	if not pewpew.Bullets[index] then return 0 end
+	return pewpew.Bullets[index].RemoveTimer -- This can double as a unique ID because it will never be the same for two bullets
+end
+
+__e2setcost(5)
+e2function array pewFindByOwner( entity owner )
+	if not IsValid( owner ) or not owner:IsPlayer() then return {} end
+	local r = {}
+	for i=1,#pewpew.Bullets do
+		self.prf = self.prf + 0.1
+		local bullet = pewpew.Bullets[i]
+		if bullet.Owner == owner then
+			r[#r+1] = i
+		end
+	end
+	
+	return r
+end
+
+e2function array pewFindByCannon( entity cannon )
+	if not IsValid( cannon ) or cannon:GetClass() ~= "pewpew_base_cannon" then return {} end
+	local r = {}
+	for i=1,#pewpew.Bullets do
+		self.prf = self.prf + 0.1
+		local bullet = pewpew.Bullets[i]
+		if bullet.Cannon == cannon then
+			r[#r+1] = i
+		end
+	end
+	
+	return r
+end
+
+
+e2function array pewFindInSphere( vector pos, radius )
+	local pos = Vector(pos[1],pos[2],pos[3])
+	local r = {}
+	for i=1,#pewpew.Bullets do
+		self.prf = self.prf + 0.1
+		local bullet = pewpew.Bullets[i]
+		if bullet.Pos:Distance( pos ) <= radius then
+			r[#r+1] = i
+		end
+	end
+	
+	return r
+end
+
+
+local function inrange( pos, minpos, maxpos )
+	if pos.x < minpos.x then return false end
+	if pos.y < minpos.y then return false end
+	if pos.z < minpos.z then return false end
+
+	if pos.x > maxpos.x then return false end
+	if pos.y > maxpos.y then return false end
+	if pos.z > maxpos.z then return false end
+	
+	return true
+end
+
+e2function array pewFindInBox( vector minpos, vector maxpos )
+	local minpos = Vector(minpos[1],minpos[2],minpos[3])
+	local maxpos = Vector(maxpos[1],maxpos[2],maxpos[3])
+	local r = {}
+	for i=1,#pewpew.Bullets do
+		self.prf = self.prf + 0.1
+		local bullet = pewpew.Bullets[i]
+		if inrange(bullet.Pos,minpos,maxpos) then
+			r[#r+1] = i
+		end
+	end
+	
+	return r
+end
+
+__e2setcost(nil)
