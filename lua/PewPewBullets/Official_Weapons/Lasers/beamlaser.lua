@@ -28,6 +28,8 @@ BULLET.AmmoReloadtime = 0
 
 BULLET.EnergyPerShot = 10
 
+BULLET.Gravity = 0
+
 -- Custom Functions 
 -- (If you set the override var to true, the cannon/bullet will run these instead. Use these functions to do stuff which is not possible with the above variables)
 

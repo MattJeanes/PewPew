@@ -26,17 +26,15 @@ BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
 BULLET.Speed = 35
-BULLET.Gravity = nil
+BULLET.Gravity = 0
 BULLET.RecoilForce = 60
-BULLET.Spread = nil
+BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 1800
 BULLET.Radius = 550
 BULLET.RangeDamageMul = 2.4
-BULLET.NumberOfSlices = nil
-BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 500
 BULLET.PlayerDamageRadius = 400
 

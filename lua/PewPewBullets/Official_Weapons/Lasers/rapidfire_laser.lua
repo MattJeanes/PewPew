@@ -31,6 +31,8 @@ BULLET.AmmoReloadtime = 0
 BULLET.ExplodeAfterDeath = false
 BULLET.EnergyPerShot = 200
 
+BULLET.Gravity = 0
+
 -- Fire (Is called before the cannon is about to fire)
 function BULLET:Fire()
 	-- Calculate initial position of bullet
