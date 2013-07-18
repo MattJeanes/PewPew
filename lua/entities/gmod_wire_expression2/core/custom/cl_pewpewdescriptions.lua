@@ -30,7 +30,6 @@ E2Helper.Descriptions["pewBulletPos"] = "Returns the position of the specified b
 E2Helper.Descriptions["pewBulletVel"] = "Returns the velocity of the specified bullet."
 E2Helper.Descriptions["pewBulletOwner"] = "Returns the owner of the specified bullet."
 E2Helper.Descriptions["pewBulletCannon"] = "Returns the cannon that fired the specified bullet."
-E2Helper.Descriptions["pewBulletUniqueID"] = "Returns a unique identifier for the specified bullet. This identifier is useful because when a bullet is deleted, another bullet is given its identifier. Using this identifier, you can tell when such a switch occurs."
 E2Helper.Descriptions["pewFindByOwner"] = "Returns an array of identifiers for all bullets owned by the specified player."
 E2Helper.Descriptions["pewFindByCannon"] = "Returns an array of identifiers for all bullets fired by the specified cannon."
 E2Helper.Descriptions["pewFindInSphere"] = "Returns an array of identifiers for all bullets located inside the specified sphere."
