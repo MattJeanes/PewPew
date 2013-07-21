@@ -215,7 +215,7 @@ end
 
 local function getByUniqueID( id )
 	for i=1,#pewpew.Bullets do
-		if pewpew.Bullets[i].RemoveTimer == id then return i end
+		if pewpew.Bullets[i].RemoveTimer == id then return pewpew.Bullets[i] end
 	end
 end
 
