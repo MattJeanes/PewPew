@@ -25,6 +25,18 @@ function pewpew:FireBullet( Pos, Dir, Owner, WeaponData, Cannon, FireDir )
 	
 	if not (Cannon and Dir and SpeedOffset and FireDir and Owner and WeaponData and WeaponData.Name) then return end
 	
+	local constrainedEnts = constraint.GetAllConstrainedEntities(Cannon)
+	local Filter = {}
+	
+	local DistanceCheck = WeaponData.Speed + Cannon:GetVelocity():Length()
+	
+	for _,v in pairs( constrainedEnts ) do
+		if v:GetPos():Distance(Cannon:GetPos()) < DistanceCheck then
+			Filter[#Filter+1] = v
+			if #Filter > 1000 then break end
+		end
+	end
+	
 	net.Start("PewPew_FireBullet")
 		net.WriteEntity(Cannon)
 		net.WriteFloat(Dir.x)
@@ -34,10 +46,11 @@ function pewpew:FireBullet( Pos, Dir, Owner, WeaponData, Cannon, FireDir )
 		net.WriteUInt(FireDir,8) -- FireDir is used to get the position on the client (better than sending the position as well)
 		net.WriteEntity(Owner)
 		net.WriteString(WeaponData.Name)
+		net.WriteTable(Filter)
 	net.Broadcast()
 	--print("bullet sent")
 	
-	local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, Cannon = Cannon, WeaponData = WeaponData, BulletData = {}, RemoveTimer = CurTime() + 60, SpeedOffset = SpeedOffset }
+	local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, Cannon = Cannon, WeaponData = WeaponData, BulletData = {}, RemoveTimer = CurTime() + 60, SpeedOffset = SpeedOffset, Filter = Filter }
 	table.insert( self.Bullets, NewBullet )
 	self:BulletInitialize( NewBullet )
 	
@@ -63,6 +76,9 @@ if (CLIENT) then
 		if (!Weapon) then return end
 		if not Pos then return end
 		
+		-- Filter
+		local Filter = net.ReadTable()
+		
 		if (#pewpew.Bullets < (GetConVarNumber("PewPew_MaxBullets") or 255)) then
 			local ent = ClientsideModel(Weapon.Model)
 			if (ent) then
@@ -70,7 +86,8 @@ if (CLIENT) then
 				ent:SetAngles(Dir:Angle() + Angle(90,0,0) + (Weapon.AngleOffset or Angle(0,0,0)) )
 				ent:Spawn()
 			end
-			local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, WeaponData = Weapon, BulletData = {}, Prop = ent, RemoveTimer = CurTime() + 30, SpeedOffset = SpeedOffset }
+			Filter[#Filter+1] = ent
+			local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, WeaponData = Weapon, BulletData = {}, Prop = ent, RemoveTimer = CurTime() + 30, SpeedOffset = SpeedOffset, Filter = Filter }
 			if (ent) then ent.PewPewTable = NewBullet end
 			table.insert( pewpew.Bullets, NewBullet )
 			pewpew:BulletInitialize( NewBullet )
@@ -134,7 +151,7 @@ function pewpew:DefaultBulletInitialize( Bullet )
 	B.Exploded = false
 	local tk = self.ServerTick or (1/66.7)
 	local tk66=(1/66.7)
-	B.TraceDelay = CurTime() + ((D.Speed * Bullet.SpeedOffset) / (1/tk66) * tk66)
+	--B.TraceDelay = CurTime() + ((D.Speed * Bullet.SpeedOffset) / (1/tk66) * tk66)
 	--B.TraceDelay = CurTime() + (D.Speed) * (1/tk)
 	--B.TraceDelay = CurTime() + (D.Speed + (1/(D.Speed*tk)) * 0) / (1/tk) * tk
 	
@@ -270,7 +287,7 @@ function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )
 		elseif (Bullet.Prop and Bullet.Prop:IsValid()) then
 			Bullet.Prop:SetPos( Bullet.Pos )
 			Bullet.Prop:SetAngles( Bullet.Vel:Angle() + Angle( 90,0,0 ) + (D.AngleOffset or Angle(0,0,0)) )
-			if (CurTime() > B.TraceDelay) then
+			--if (CurTime() > B.TraceDelay) then
 				local trace = pewpew:DefaultTraceBullet( Bullet )
 				
 				if (trace.Hit and !B.Exploded) then
@@ -278,7 +295,7 @@ function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )
 					if (D.CLExplode) then D.CLExplode( Bullet, trace ) end
 					self:RemoveBullet( Index )
 				end
-			end
+			--end
 		end
 	else
 		local contents = util.PointContents( Bullet.Pos )
@@ -286,14 +303,14 @@ function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )
 			or contents == 1) then -- It flew out of the map
 			self:ExplodeBullet( Index, Bullet, pewpew:DefaultTraceBullet( Bullet ) )
 		else			
-			if (CurTime() > B.TraceDelay) then
+			--if (CurTime() > B.TraceDelay) then
 				local trace = pewpew:DefaultTraceBullet( Bullet )
 				
 				if (trace.Hit and !B.Exploded) then
 					B.Exploded = true
 					self:ExplodeBullet( Index , Bullet, trace )
 				end
-			end
+			--end
 		end
 	end
 end
@@ -373,8 +390,7 @@ function pewpew:DefaultTraceBullet( Bullet )
 	
 	local Pos = Bullet.Pos - Bullet.Vel * (self.ServerTick or (1/66.667))
 	local Dir = Bullet.Vel * (self.ServerTick or (1/66.667))
-	local Filter
-	if (CLIENT) then Filter = Bullet.Prop end
+	local Filter = Bullet.Filter
 	return pewpew:Trace( Pos, Dir, Filter, Bullet )
 end
 
