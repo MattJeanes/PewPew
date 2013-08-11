@@ -423,26 +423,11 @@ function pewpew:DefaultExplodeBullet( Index, Bullet, trace )
 	
 	-- Damage
 	local damagetype = D.DamageType
-	local damaged = false
 	if (damagetype and type(damagetype) == "string") then
 		local damagedealer = Bullet.Cannon
 		if (not IsValid(damagedealer)) then damagedealer = Bullet.Owner end
-		if (damagetype == "BlastDamage") then
-			if (trace.Entity and trace.Entity:IsValid()) then
-				-- Stargate shield damage
-				if (trace.Entity:GetClass() == "shield") then
-					local a = { IsPlayer = function() return false end }
-					local b = {}
-					setmetatable(b,a)
-					trace.Entity:Hit(b,trace.HitPos,D.Damage*pewpew:GetConVar("StargateShield_DamageMul"),trace.HitNormal)
-					damaged = true
-				else
-					pewpew:PointDamage( trace.Entity, D.Damage, damagedealer )
-				end
-				self:BlastDamage( trace.HitPos, D.Radius, D.Damage, D.RangeDamageMul, trace.Entity, damagedealer )
-			else
-				self:BlastDamage( trace.HitPos, D.Radius, D.Damage, D.RangeDamageMul, damagedealer, damagedealer )
-			end
+		if (damagetype == "BlastDamage") then			
+			self:BlastDamage( trace.HitPos + trace.HitNormal * 3, D.Radius, D.Damage, D.RangeDamageMul, nil, damagedealer )
 			
 			-- Player Damage
 			if (D.PlayerDamageRadius and D.PlayerDamage and self:GetConVar( "Damage" )) then
@@ -462,8 +447,11 @@ function pewpew:DefaultExplodeBullet( Index, Bullet, trace )
 	end
 	
 	-- Stargate shield damage
-	if (trace.Entity and trace.Entity:IsValid() and trace.Entity:GetClass() == "shield" and !damaged) then
-		trace.Entity:Hit(nil,trace.HitPos,D.Damage*pewpew:GetConVar("StargateShield_DamageMul"),trace.HitNormal)
+	if (trace.Entity and trace.Entity:IsValid() and trace.Entity:GetClass() == "shield") then
+		local a = { IsPlayer = function() return false end }
+		local b = {}
+		setmetatable(b,a)
+		trace.Entity:Hit(b,trace.HitPos,D.Damage*pewpew:GetConVar("StargateShield_DamageMul"),trace.HitNormal)
 	end
 	
 	-- Remove the bullet
