@@ -46,48 +46,31 @@ function pewpew:BlastDamage( Position, Radius, Damage, RangeDamageMul, IgnoreEnt
 	if (!Damage or Damage <= 0) then return end
 	local targets = ents.FindInSphere( Position, Radius )
 	if (!targets or #targets == 0) then return end
-	local DamagedProps = {}
 	
 	-- Maybe an addon thinks there is no use to even start the loop?
 	if (self:CallHookBool("PewPew_InitBlastDamage",Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer) == false) then return end
 	
-	for _, ent in ipairs( targets ) do
-		if (self:CheckValid( ent )) then
-			if (IgnoreEnt) then
-				if (ent != IgnoreEnt) then
-					-- Do any other addons or scripts in this addon have anything to say about this?
-					if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)) then
-						DamagedProps[#DamagedProps+1] = ent
-						--table.insert( DamagedProps, ent )
-					end
-				end
-			else
-				if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)) then
-					DamagedProps[#DamagedProps+1] = ent
-					--table.insert( DamagedProps, ent )
-				end
-			end
-		end
-	end
-	
-	-- Entities that are too close for the trace to work correctly. (Inspired by GCombat)
-	local tooclose = ents.FindInSphere( Position, 5 )
-	
 	local tr = {}
 	tr.start = Position
 	tr.mask = MASK_SOLID
-	tr.filter = tooclose
+	--tr.filter = IgnoreEnt
 	
-	for _, ent in ipairs( DamagedProps ) do		
-		tr.endpos = ent:LocalToWorld( ent:OBBCenter() )
-		local trace = util.TraceLine( tr )
-		local Distance = Position:Distance( ent:NearestPoint( Position ) )
-		 if ((!trace.Hit) or -- If the entity has a hole in its center (stargates?),
-			(trace.Hit and trace.Entity and trace.Entity == ent) and -- or if the trace hit the entity,
-			(Distance < Radius)) then
-			local Mul = 1-(Distance/Radius)^RangeDamageMul
-			local Dmg = Damage*Mul
-			self:DealDamageBase( ent, Dmg, DamageDealer )
+	for _, ent in ipairs( targets ) do
+		if IgnoreEnt == nil or (IgnoreEnt ~= nil and ValidEntity(IgnoreEnt) and ent ~= IgnoreEnt) then
+			-- Do any other addons or scripts in this addon have anything to say about this?
+			if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)) then
+				tr.endpos = ent:LocalToWorld( ent:OBBCenter() )
+				local trace = util.TraceLine( tr )
+				local Distance = Position:Distance( ent:NearestPoint( Position ) )
+				
+				if ((!trace.Hit) or -- If the entity has a hole in its center (stargates?),
+					(trace.Hit and trace.Entity and trace.Entity == ent) and -- or if the trace hit the entity,
+					(Distance < Radius)) then
+					local Mul = 1-(Distance/Radius)^RangeDamageMul
+					local Dmg = Damage*Mul
+					self:DealDamageBase( ent, Dmg, DamageDealer )
+				end
+			end
 		end
 	end
 end
@@ -119,7 +102,7 @@ function pewpew:PlayerBlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
 		if (v:IsPlayer() and !v.PewPew_God) then
 			if (!pewpew:CallHookBool( "PewPew_ShouldDamage", v, Damage, Inflictor )) then
 				v:GodEnable()
-				table.insert( disablegod, v )
+				disablegod[#disablegod+1] = v
 			end
 		end
 	end
@@ -464,11 +447,17 @@ end
 function pewpew:CheckIfDead( ent )
 	if (!ent.pewpew) then ent.pewpew = {} end
 	if (ent.pewpew.Health <= 0) then
-		local effectdata = EffectData()
-		effectdata:SetOrigin( ent:LocalToWorld(ent:OBBCenter()) )
-		effectdata:SetScale( (ent:OBBMaxs() - ent:OBBMins()):Length() )
-		util.Effect( "pewpew_deatheffect", effectdata )
-		ent:Remove()
+		local pos = ent:LocalToWorld(ent:OBBCenter())
+		local size = (ent:OBBMaxs() - ent:OBBMins()):Length()
+		timer.Simple( 0, function()
+			local effectdata = EffectData()
+			effectdata:SetOrigin( pos )
+			effectdata:SetScale( size )
+			util.Effect( "pewpew_deatheffect", effectdata )
+			if IsValid( ent ) then
+				ent:Remove()
+			end
+		end)
 	end
 end
 
