@@ -352,7 +352,7 @@ e2function array pewFindInSphere( vector pos, radius )
 		self.prf = self.prf + 0.1
 		local bullet = pewpew.Bullets[i]
 		if bullet.Pos:Distance( pos ) <= radius then
-			r[#r+1] = buller.RemoveTimer
+			r[#r+1] = bullet.RemoveTimer
 		end
 	end
 	

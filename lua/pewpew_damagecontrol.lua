@@ -56,7 +56,7 @@ function pewpew:BlastDamage( Position, Radius, Damage, RangeDamageMul, IgnoreEnt
 	--tr.filter = IgnoreEnt
 	
 	for _, ent in ipairs( targets ) do
-		if IgnoreEnt == nil or (IgnoreEnt ~= nil and ValidEntity(IgnoreEnt) and ent ~= IgnoreEnt) then
+		if IgnoreEnt == nil or (IgnoreEnt ~= nil and IsValid(IgnoreEnt) and ent ~= IgnoreEnt) then
 			-- Do any other addons or scripts in this addon have anything to say about this?
 			if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)) then
 				tr.endpos = ent:LocalToWorld( ent:OBBCenter() )
@@ -276,8 +276,7 @@ function pewpew:FireDamage( TargetEntity, DPS, Duration, DamageDealer )
 	end)
 end
 
--- Defense Damage (Used to destroy PewPew bullets. Each PewPew Bullet has 100 health.)
-function pewpew:DefenseDamage( TargetEntity, Damage )
+function pewpew:DefenseDamageOldSystem( TargetEntity, Damage )
 	-- Check for errors
 	if (!TargetEntity or TargetEntity:GetClass() != "pewpew_base_bullet" or !Damage or Damage == 0 or !TargetEntity.Bullet) then return end
 
@@ -295,6 +294,33 @@ function pewpew:DefenseDamage( TargetEntity, Damage )
 			TargetEntity:Explode()
 		else
 			TargetEntity:Remove()
+		end
+	end
+end
+
+-- Defense Damage (Used to destroy PewPew bullets. Each PewPew Bullet has 100 health.)
+function pewpew:DefenseDamage( TargetEntity, Damage )
+	if type(TargetEntity) == "Entity" then return self:DefenseDamageOldSystem( TargetEntity, Damage ) end
+	
+	if (self:CallHookBool("PewPew_ShouldDoDefenseDamage",TargetEntity,Damage) == false) then return end
+	
+	-- Does it have health?
+	if (!TargetEntity.defenseDamageHealth) then TargetEntity.defenseDamageHealth = 100 end
+	
+	-- Damage
+	TargetEntity.defenseDamageHealth = TargetEntity.defenseDamageHealth - Damage
+	
+	-- Did it die?
+	if (TargetEntity.defenseDamageHealth <= 0) then
+		local Index = 0
+		for i=1,#pewpew.Bullets do
+			if pewpew.Bullets[i] == TargetEntity then Index = i break end
+		end
+	
+		if (TargetEntity.WeaponData.ExplodeAfterDeath == true) then
+			pewpew:ExplodeBullet( Index, TargetEntity, { HitPos = TargetEntity.Pos, HitNormal = -TargetEntity.Dir:GetNormalized() }, true )
+		else
+			pewpew:RemoveBullet( Index, true )
 		end
 	end
 end
