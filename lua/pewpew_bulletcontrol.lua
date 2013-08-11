@@ -50,8 +50,8 @@ function pewpew:FireBullet( Pos, Dir, Owner, WeaponData, Cannon, FireDir )
 	net.Broadcast()
 	--print("bullet sent")
 	
-	local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, Cannon = Cannon, WeaponData = WeaponData, BulletData = {}, RemoveTimer = CurTime() + 60, SpeedOffset = SpeedOffset, Filter = Filter }
-	table.insert( self.Bullets, NewBullet )
+	local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, Cannon = Cannon, WeaponData = WeaponData, RemoveTimer = CurTime() + 60, SpeedOffset = SpeedOffset, Filter = Filter }
+	self.Bullets[#self.Bullets+1] = NewBullet
 	self:BulletInitialize( NewBullet )
 	
 end
@@ -87,9 +87,9 @@ if (CLIENT) then
 				ent:Spawn()
 			end
 			Filter[#Filter+1] = ent
-			local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, WeaponData = Weapon, BulletData = {}, Prop = ent, RemoveTimer = CurTime() + 30, SpeedOffset = SpeedOffset, Filter = Filter }
+			local NewBullet = { Pos = Pos, Dir = Dir, Owner = Owner, WeaponData = Weapon, Prop = ent, RemoveTimer = CurTime() + 30, SpeedOffset = SpeedOffset, Filter = Filter }
 			if (ent) then ent.PewPewTable = NewBullet end
-			table.insert( pewpew.Bullets, NewBullet )
+			pewpew.Bullets[#pewpew.Bullets+1] = NewBullet
 			pewpew:BulletInitialize( NewBullet )
 			--print("bullet recieved")
 		end
@@ -99,8 +99,11 @@ end
 
 local RemoveBulletsTable = {}
 
-function pewpew:RemoveBullet( Index )
-	table.insert( RemoveBulletsTable, Index )
+function pewpew:RemoveBullet( Index, SendToClient )
+	if SERVER and SendToClient then
+		self:RemoveClientBullet( Index )
+	end
+	RemoveBulletsTable[#RemoveBulletsTable+1] = Index
 end
 
 if (SERVER) then
@@ -133,12 +136,12 @@ end
 if (SERVER) then
 	function pewpew:RemoveClientBullet( Index )
 		net.Start("PewPew_RemoveBullet")
-			net.WriteUInt( Index - 128, 8)
+			net.WriteUInt( Index, 8)
 		net.Broadcast()
 	end
 else
 	net.Receive( "PewPew_RemoveBullet", function()
-		local Index = net.ReadUInt(8) + 128
+		local Index = net.ReadUInt(8)
 		pewpew:RemoveBullet( Index )
 	end)
 end
@@ -147,25 +150,21 @@ end
 -- Initialize
 function pewpew:DefaultBulletInitialize( Bullet )
 	local D = Bullet.WeaponData
-	local B = Bullet.BulletData
-	B.Exploded = false
+	Bullet.Exploded = false
 	local tk = self.ServerTick or (1/66.7)
 	local tk66=(1/66.7)
-	--B.TraceDelay = CurTime() + ((D.Speed * Bullet.SpeedOffset) / (1/tk66) * tk66)
-	--B.TraceDelay = CurTime() + (D.Speed) * (1/tk)
-	--B.TraceDelay = CurTime() + (D.Speed + (1/(D.Speed*tk)) * 0) / (1/tk) * tk
 	
 	Bullet.Vel = (Bullet.Dir * D.Speed * Bullet.SpeedOffset * (1/tk)) * (tk/(1/66))
 	
 	
 	-- Lifetime
-	B.Lifetime = false
+	Bullet.Lifetime = false
 	if (D.Lifetime) then
 		if (D.Lifetime[1] > 0 and D.Lifetime[2] > 0) then
 			if (D.Lifetime[1] == D.Lifetime[2]) then
-				B.Lifetime = CurTime() + D.Lifetime[1]
+				Bullet.Lifetime = CurTime() + D.Lifetime[1]
 			else
-				B.Lifetime = CurTime() + math.Rand(D.Lifetime[1],D.Lifetime[2])
+				Bullet.Lifetime = CurTime() + math.Rand(D.Lifetime[1],D.Lifetime[2])
 			end
 		end
 	end
@@ -229,26 +228,6 @@ end
 
 function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )	
 	local D = Bullet.WeaponData
-	local B = Bullet.BulletData
-	
-	--[[ OLD CODE
-	-- Make it fly
-	Bullet.Pos = Bullet.Pos + Bullet.Dir * D.Speed * (LagCompensation or 1)
-	local grav = D.Gravity or 0
-
-	if (D.AffectedByNoGrav) then
-		if (CAF and CAF.GetAddon("Spacebuild")) then
-			if (false) then -- TODO: Gravity check
-				grav = grav
-			end
-		end
-	end
-	
-	if (grav and grav != 0) then -- Only pull if needed
-		Bullet.Dir = Bullet.Dir - Vector(0,0,grav / (D.Speed or 1)) * (LagCompensation or 1)
-		Bullet.Dir:Normalize()
-	end
-	]]
 	
 	local grav = 600
 	local tk = self.ServerTick or (1/66.667)
@@ -261,8 +240,8 @@ function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )
 	Bullet.Pos = Bullet.Pos + Bullet.Vel * tk * (LagCompensation or 1)
 	
 	-- Lifetime
-	if (B.Lifetime) then
-		if (CurTime() > B.Lifetime) then
+	if (Bullet.Lifetime) then
+		if (CurTime() > Bullet.Lifetime) then
 			if (CLIENT) then
 				self:RemoveBullet( Index )
 			else
@@ -287,30 +266,26 @@ function pewpew:DefaultBulletThink( Bullet, Index, LagCompensation )
 		elseif (Bullet.Prop and Bullet.Prop:IsValid()) then
 			Bullet.Prop:SetPos( Bullet.Pos )
 			Bullet.Prop:SetAngles( Bullet.Vel:Angle() + Angle( 90,0,0 ) + (D.AngleOffset or Angle(0,0,0)) )
-			--if (CurTime() > B.TraceDelay) then
-				local trace = pewpew:DefaultTraceBullet( Bullet )
-				
-				if (trace.Hit and !B.Exploded) then
-					B.Exploded = true
-					if (D.CLExplode) then D.CLExplode( Bullet, trace ) end
-					self:RemoveBullet( Index )
-				end
-			--end
+			local trace = pewpew:DefaultTraceBullet( Bullet )
+			
+			if (trace.Hit and !Bullet.Exploded) then
+				Bullet.Exploded = true
+				if (D.CLExplode) then D.CLExplode( Bullet, trace ) end
+				self:RemoveBullet( Index )
+			end
 		end
 	else
 		local contents = util.PointContents( Bullet.Pos )
 		if ((Bullet.RemoveTimer and Bullet.RemoveTimer < CurTime()) -- There's no way a bullet can fly for that long.
 			or contents == 1) then -- It flew out of the map
 			self:ExplodeBullet( Index, Bullet, pewpew:DefaultTraceBullet( Bullet ) )
-		else			
-			--if (CurTime() > B.TraceDelay) then
-				local trace = pewpew:DefaultTraceBullet( Bullet )
-				
-				if (trace.Hit and !B.Exploded) then
-					B.Exploded = true
-					self:ExplodeBullet( Index , Bullet, trace )
-				end
-			--end
+		else
+			local trace = pewpew:DefaultTraceBullet( Bullet )
+			
+			if (trace.Hit and !Bullet.Exploded) then
+				Bullet.Exploded = true
+				self:ExplodeBullet( Index , Bullet, trace )
+			end
 		end
 	end
 end
@@ -386,7 +361,6 @@ hook.Add("Tick","PewPew_BulletThink",function() pewpew:BulletThink() end)
 ------------------------------------------------------------------------------------------------------------
 function pewpew:DefaultTraceBullet( Bullet )
 	local D = Bullet.WeaponData
-	local B = Bullet.BulletData
 	
 	local Pos = Bullet.Pos - Bullet.Vel * (self.ServerTick or (1/66.667))
 	local Dir = Bullet.Vel * (self.ServerTick or (1/66.667))
@@ -398,9 +372,8 @@ end
 -- Explode
 ------------------------------------------------------------------------------------------------------------
 
-function pewpew:DefaultExplodeBullet( Index, Bullet, trace )
+function pewpew:DefaultExplodeBullet( Index, Bullet, trace, SendToClient )
 	local D = Bullet.WeaponData
-	local B = Bullet.BulletData
 	-- Effects
 	if (D.ExplosionEffect) then
 		local effectdata = EffectData()
@@ -455,16 +428,16 @@ function pewpew:DefaultExplodeBullet( Index, Bullet, trace )
 	end
 	
 	-- Remove the bullet
-	self:RemoveBullet( Index )
+	self:RemoveBullet( Index, SendToClient )
 end
 
-function pewpew:ExplodeBullet( Index, Bullet, trace )
+function pewpew:ExplodeBullet( Index, Bullet, trace, SendToClient )
 	if (!trace) then return end
 	
 	if (Bullet.WeaponData.Explode) then
 		-- Allows you to override the Explode function
 		Bullet.WeaponData.Explode( Bullet, Index, trace )
 	else
-		self:DefaultExplodeBullet( Index, Bullet, trace )
+		self:DefaultExplodeBullet( Index, Bullet, trace, SendToClient )
 	end
 end
