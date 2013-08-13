@@ -77,7 +77,7 @@ function BULLET:Initialize()
 	pewpew:DefaultBulletInitialize( self )
 	-- Lifetime
 	if (self.Cannon.Lifetime) then
-		self.BulletData.Lifetime = CurTime() + self.Cannon.Lifetime
+		self.Lifetime = CurTime() + self.Cannon.Lifetime
 	end
 end
 
