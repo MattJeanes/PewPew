@@ -168,4 +168,4 @@ if (CLIENT) then
 	end
 end
 
-pewpew:AddWeapon( BULLET )
+--pewpew:AddWeapon( BULLET )
