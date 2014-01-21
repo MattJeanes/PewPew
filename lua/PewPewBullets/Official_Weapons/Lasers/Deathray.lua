@@ -168,4 +168,4 @@ if (CLIENT) then
 	end
 end
 
---pewpew:AddWeapon( BULLET )
+//pewpew:AddWeapon( BULLET ) -- This currently causes server crashes so is disabled for now until it can be fixed properly.

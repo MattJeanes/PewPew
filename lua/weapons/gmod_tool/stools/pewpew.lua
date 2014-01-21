@@ -402,7 +402,7 @@ else
 		if (!ent or !ent:IsValid()) then return end
 		local trace = player:GetEyeTrace()
 		
-		if (!trace.Hit or (trace.Entity and trace.Entity:GetClass() == "pewpew_base_cannon") or trace.Entity:IsPlayer()) then
+		if (!trace.Hit or (IsValid(trace.Entity) and trace.Entity:GetClass() == "pewpew_base_cannon") or trace.Entity:IsPlayer()) then
 			ent:SetNoDraw( true )
 			return
 		end

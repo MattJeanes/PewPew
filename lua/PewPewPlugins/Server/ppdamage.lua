@@ -6,7 +6,7 @@ function pewpew:PropProtDamage( TargetEntity, Damage, DamageDealer )
 	if (!CPPI) then return end
 	if (self:GetConVar("PropProtDamage")) then
 		local TargetEntityOwner = TargetEntity:CPPIGetOwner()
-		if not IsValid(TargetEntityOwner) then return false end
+		if (not TargetEntityOwner) or (not IsValid(TargetEntityOwner)) then return false end
 		local Friends = TargetEntityOwner:CPPIGetFriends()
 		local WeaponOwner
 		if (type(DamageDealer) == "Player") then 

@@ -9,6 +9,10 @@ function EFFECT:Init( data )
 	self.EndPos 	= data:GetOrigin()
 	self.Ent	 	= data:GetEntity()
 	
+	self.Size = 50
+	// Die when it reaches its target
+	self.DieTime = CurTime() + 0.3
+	
 	if (!self.Ent:IsValid()) then return false end
 	
 	self.Dir 		= self.EndPos - self.StartPos
@@ -16,10 +20,6 @@ function EFFECT:Init( data )
 	self.LocalEndPos = self.Ent:WorldToLocal(self.EndPos)
 	
 	self.Entity:SetRenderBoundsWS( self.StartPos, self.EndPos )
-	
-	self.Size = 50
-	// Die when it reaches its target
-	self.DieTime = CurTime() + 0.3
 end
 
 /*---------------------------------------------------------
