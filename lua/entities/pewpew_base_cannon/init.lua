@@ -546,8 +546,8 @@ if (CAF and CAF.GetAddon("Resource Distribution") and CAF.GetAddon("Life Support
 		RD.ApplyDupeInfo(Ent, CreatedEntities)
 		if WireLib and (Ent.EntityMods) and (Ent.EntityMods.WireDupeInfo) then
 			local info = Ent.EntityMods.WireDupeInfo
-			WireLib.ApplyDupeInfo(Player, Ent, info, function(id) return CreatedEntities[id] end)
 			self:DupeSpawn( Player, Ent, info )
+			WireLib.ApplyDupeInfo(Player, Ent, info, function(id) return CreatedEntities[id] end)
 		end
 	end
 end
