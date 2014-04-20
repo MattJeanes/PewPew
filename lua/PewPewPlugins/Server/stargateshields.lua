@@ -1,6 +1,7 @@
 pewpew:CreateConVar("StargateShield_DamageMul","float",0.25)
 
 local function check( ent, dlr )
+	if not IsValid(ent) then return false end
 	local shields = ents.FindByClass("shield")
 	for k,v in pairs( shields ) do
 		if ((not v:GetNWBool("depleted", false)) and (not v:GetNWBool("containment",false))) then

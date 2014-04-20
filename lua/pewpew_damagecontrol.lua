@@ -92,6 +92,9 @@ end
 -- Helper function. Should be used in place of util.BlastDamage in all pewpew weapons
 function pewpew:PlayerBlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
 	
+	-- Check inflictor/attacker
+	if not IsValid(Inflictor) or not IsValid(Attacker) then return end
+	
 	-- Check safe zone
 	if (self:FindSafeZone( Pos )) then return end
 	
