@@ -265,12 +265,12 @@ else
 		CPanel:AddItem(panel)
 		panel:SetSize(285,500)
 		
+		
 		----------------------------------------------------------------------------------------------------
 		-- Tree
 		----------------------------------------------------------------------------------------------------
 		local tree = vgui.Create("DTree",panel)
-		tree:SetSize(panel:GetSize())
-		tree:SetPadding( 5 )
+		tree:Dock(FILL)
 		
 		local function AddNode( parent, folder, curtbl, curcat )
 			parent = folder
@@ -319,8 +319,6 @@ else
 		list1:SetSpacing( 1 )
 		list1:EnableHorizontal( false ) 
 		list1:EnableVerticalScrollbar( true )
-		list1:SetSize(panel:GetSize())
-		
 		list1:SetVisible( false )
 		
 		local categories = {}
@@ -376,11 +374,8 @@ else
 			end
 		end
 		
-		local old = panel.SetSize
-		function panel:SetSize( w, h )
-			old( self, w, h )
-			tree:SetSize( w, h )
-			list1:SetSize( w, h )
+		function panel:PerformLayout()
+			list1:SetSize(tree:GetSize())
 		end
 		
 		local label = vgui.Create("DLabel")
