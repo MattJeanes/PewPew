@@ -1,3 +1,4 @@
+--[[ Disabled due to conflicts. TODO: Fix properly
 pewpew:CreateConVar("StargateShield_DamageMul","float",0.25)
 
 local function check( ent, dlr )
@@ -58,3 +59,4 @@ function pewpew:BlockDamage( TargetEntity )
 	return check(TargetEntity)
 end
 hook.Add("PewPew_ShouldDamage","PewPew_StargateShield_BaseDamage",pewpew.BlockDamage)
+]]--
