@@ -54,7 +54,6 @@ function EFFECT:Init( data )
 			particle:SetRoll( math.Rand( 20, 80 ) )
 			particle:SetRollDelta( math.random( -1, 1 ) )
 			particle:SetColor(20, math.random(20,60), math.random(100,255))
-			particle:VelocityDecay( true )
 			end
 	
 	end
@@ -75,7 +74,6 @@ function EFFECT:Init( data )
 			particle:SetRoll( math.Rand( 20, 80 ) )
 			particle:SetRollDelta( math.random( -1, 1 ) )
 			particle:SetColor(100, math.random(100,128), math.random(230,255))
-			particle:VelocityDecay( true )
 			end
 	
 	end
@@ -127,7 +125,6 @@ function EFFECT:Think( )
 					particle:SetRoll( math.Rand( 20, 80 ) )
 					particle:SetRollDelta( math.random( -1, 1 ) )
 					particle:SetColor(20, math.random(20,60), math.random(100,255))
-					particle:VelocityDecay( true )
 			
 			end
 		end

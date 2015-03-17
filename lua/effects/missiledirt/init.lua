@@ -54,7 +54,6 @@ local startpos = self.Position
 				particle1:SetRoll( 0 )			
 				particle1:SetRollDelta( 0 ) 			
 				particle1:SetColor( 45, 45, 45) 			
-				particle1:VelocityDecay( true )
 			end			  
 		end
 
@@ -71,7 +70,6 @@ local startpos = self.Position
 				particle2:SetRoll( 0 )			
 				particle2:SetRollDelta( 0 ) 			
 				particle2:SetColor( 125, 85, 35) 			
-				particle2:VelocityDecay( true )
 			end			  
 		end
  		 
