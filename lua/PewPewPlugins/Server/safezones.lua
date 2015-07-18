@@ -117,60 +117,39 @@ hook.Add("PewPew_ShouldCannonFire", "PewPew_SafeZone_ShouldCannonFire",ShouldCan
 
 -- Block damage from being dealt if the damage dealer is inside a safe zone
 local function BlockInitBlastDamage(pewpew,a,b,c,d,e,DamageDealer)
-	local res=check(DamageDealer)
-	if not res then
-		return false
-	end
+	return check(DamageDealer)
 end
 hook.Add("PewPew_InitBlastDamage","PewPew_SafeZone_InitBlastDamage",BlockInitBlastDamage)
 
 -- Block damage from being dealt if the damaged prop is inside a safe zone
 local function BlockBlastDamage( pewpew, ent )
-	local res=check(ent)
-	if not res then
-		return false
-	end
+	return check(ent)
 end
 hook.Add("PewPew_ShouldDoBlastDamage","PewPew_SafeZone_BlastDamage",BlockBlastDamage)
 
 -- Block slice damage from being dealt if the damage dealer is inside a safe zone
 local function BlockInitSliceDamage( pewpew, a,b,c,d,e,f,DamageDealer )
-	local res=check(DamageDealer)
-	if not res then
-		return false
-	end
+	return check(DamageDealer)
 end
 hook.Add("PewPew_InitSliceDamage","PewPew_SafeZone_SliceDamage",BlockInitSliceDamage)
 
 -- Block emp damage from being dealt if the damaged prop is inside a safe zone
 local function BlockEMPDamage( pewpew, ent,a,b,DamageDealer )
-	local res=check(ent,DamageDealer)
-	if not res then
-		return false
-	end
+	return check(ent,DamageDealer)
 end
 hook.Add("PewPew_ShouldDoEMPDamage","PewPew_SafeZone_EMPDamage",BlockEMPDamage)
 
 local function BlockPointDamage( pewpew, TargetEntity,Damage,DamageDealer )
-	local res=check(TargetEntity,DamageDealer)
-	if not res then
-		return false
-	end
+	return check(TargetEntity,DamageDealer)
 end
 hook.Add("PewPew_ShouldDoPointDamage","PewPew_SafeZone_PointDamage",BlockPointDamage)
 
 local function BlockFireDamage( pewpew, TargetEntity,a,b,DamageDealer )
-	local res=check(TargetEntity,DamageDealer)
-	if not res then
-		return false
-	end
+	return check(TargetEntity,DamageDealer)
 end
 hook.Add( "PewPew_ShouldDoFireDamage","PewPew_SafeZone_FireDamage",BlockFireDamage)
 
 local function BlockDamage( pewpew, TargetEntity, Damage, DamageDealer )
-	local res=check(TargetEntity,DamageDealer)
-	if not res then
-		return false
-	end
+	return check(TargetEntity,DamageDealer)
 end
 hook.Add("PewPew_ShouldDamage","PewPew_SafeZone_BaseDamage",BlockDamage)

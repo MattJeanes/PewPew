@@ -58,7 +58,7 @@ function pewpew:BlastDamage( Position, Radius, Damage, RangeDamageMul, IgnoreEnt
 	for _, ent in ipairs( targets ) do
 		if IgnoreEnt == nil or (IgnoreEnt ~= nil and IsValid(IgnoreEnt) and ent ~= IgnoreEnt) then
 			-- Do any other addons or scripts in this addon have anything to say about this?
-			if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)~=false) then
+			if (self:CallHookBool("PewPew_ShouldDoBlastDamage",ent,Position,Radius,Damage,RangeDamageMul,IgnoreEnt,DamageDealer)) then
 				tr.endpos = ent:LocalToWorld( ent:OBBCenter() )
 				local trace = util.TraceLine( tr )
 				local Distance = Position:Distance( ent:NearestPoint( Position ) )
@@ -103,7 +103,7 @@ function pewpew:PlayerBlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
 	local plys = ents.FindInSphere(Pos, Radius)
 	for k,v in pairs( plys ) do
 		if (v:IsPlayer() and !v.PewPew_God) then
-			if (pewpew:CallHookBool( "PewPew_ShouldDamage", v, Damage, Inflictor )==false) then
+			if (!pewpew:CallHookBool( "PewPew_ShouldDamage", v, Damage, Inflictor )) then
 				v:GodEnable()
 				disablegod[#disablegod+1] = v
 			end
@@ -122,12 +122,12 @@ function pewpew:PointDamage( TargetEntity, Damage, DamageDealer )
 	if (!self:GetConVar( "Damage" )) then return end
 	if (TargetEntity:IsPlayer()) or (TargetEntity:IsNPC()) then
 		if (DamageDealer and DamageDealer:IsValid()) then
-			if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)~=false) then
+			if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)) then
 				TargetEntity:TakeDamage( Damage, DamageDealer )
 			end
 		end
 	else
-		if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)~=false) then
+		if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)) then
 			self:DealDamageBase( TargetEntity, Damage, DamageDealer )
 		end
 	end
@@ -169,7 +169,7 @@ function pewpew:SliceDamage( StartPos, Direction, Damage, NumberOfSlices, MaxRan
 			if (StartPos:Distance(HitPos) > MaxRange) then -- check distance
 				return StartPos + Direction * MaxRange
 			else
-				if (self:CallHookBool("PewPew_ShouldDoSliceDamage",HitEnt,StartPos,Direction,Damage,NumberOfSlices,MaxRange,ReducedDamagePerSlice,DamageDealer)~=false) then
+				if (self:CallHookBool("PewPew_ShouldDoSliceDamage",HitEnt,StartPos,Direction,Damage,NumberOfSlices,MaxRange,ReducedDamagePerSlice,DamageDealer)) then
 					if (HitEnt:IsPlayer()) or (HitEnt:IsNPC()) then
 						HitEnt:TakeDamage( Damage, DamageDealer ) -- deal damage to players
 					elseif (self:CheckValid( HitEnt )) then
@@ -240,7 +240,7 @@ function pewpew:EMPDamage( Position, Radius, Duration, DamageDealer )
 	-- Loop through all found entities
 	for _, ent in pairs(ents) do
 		if (ent.TriggerInput) then
-			if (self:CallHookBool("PewPew_ShouldDoEMPDamage",ent,Position,Radius,Duration,DamageDealer)~=false) then
+			if (self:CallHookBool("PewPew_ShouldDoEMPDamage",ent,Position,Radius,Duration,DamageDealer)) then
 				if (!self.EMPAffected[ent:EntIndex()]) then self.EMPAffected[ent:EntIndex()] = {} end
 				if (self.EMPAffected[ent:EntIndex()][1]) then -- if it is already affected
 					self.EMPAffected[ent:EntIndex()][2] = CurTime() + Duration -- edit the duration
