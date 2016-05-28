@@ -389,7 +389,7 @@ end
 
 __e2setcost(20)
 
-pewpew:CreateConVar("AllowE2Create", "bool", false)
+pewpew:CreateConVar("AllowE2Create", "bool", true)
 
 local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	
