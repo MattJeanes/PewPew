@@ -389,14 +389,17 @@ end
 
 __e2setcost(20)
 
-local function create(ply, bullet, model, pos, ang, dir, fire, reload)
-	local Bullet = pewpew:GetWeapon(bullet)
+pewpew:CreateConVar("AllowE2Create", "bool", false)
 
-	if not bullet then return end
+local function create(ply, bullet, model, pos, ang, dir, fire, reload)
+	
+	if not pewpew:GetConVar("AllowE2Create") then return end
 	if not ply:CheckLimit("pewpew") then return end
+	if not util.IsValidProp(model) then return end
+	local Bullet = pewpew:GetWeapon(bullet)
+	if not bullet then return end
 	if Bullet.AdminOnly and not ply:IsAdmin() then return end
 	if Bullet.SuperAdminOnly and not ply:IsSuperAdmin() then return end
-	if not util.IsValidProp(model) then return end
 
 	local ent = ents.Create("pewpew_base_cannon")
 	if not IsValid(ent) then return end
@@ -414,7 +417,7 @@ local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 		Dir = 4
 	elseif dir == "forward" then
 		Dir = 5
-	elseif dir == "backward" then
+	elseif dir == "back" then
 		Dir = 6
 	end
 	
