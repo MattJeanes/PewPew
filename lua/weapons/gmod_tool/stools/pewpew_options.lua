@@ -127,7 +127,7 @@ if (CLIENT) then
 	local weapondesigner = CreateClientConVar("pewpew_options_wpn_designer","0",false,false)
 	
 	local function Apply( ply, cmd, args )
-		if LocalPlayer():IsAdmin() or LocalPlayer():IsSuperAdmin() then
+		if LocalPlayer():IsAdmin() then
 			net.Start("PewPew-SetOptions")
 				net.WriteString(dmg:GetString())
 				net.WriteString(firing:GetString())

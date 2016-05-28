@@ -34,3 +34,4 @@ E2Helper.Descriptions["pewFindByOwner"] = "Returns an array of identifiers for a
 E2Helper.Descriptions["pewFindByCannon"] = "Returns an array of identifiers for all bullets fired by the specified cannon."
 E2Helper.Descriptions["pewFindInSphere"] = "Returns an array of identifiers for all bullets located inside the specified sphere."
 E2Helper.Descriptions["pewFindInBox"] = "Returns an array of identifiers for all bullets located inside the specified box."
+E2Helper.Descriptions["pewCreate"] = "Creates and returns a PewPew cannon."

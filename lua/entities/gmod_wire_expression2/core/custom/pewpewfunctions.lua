@@ -387,4 +387,72 @@ e2function array pewFindInBox( vector minpos, vector maxpos )
 	return r
 end
 
+__e2setcost(20)
+
+pewpew:CreateConVar("AllowE2Create", "bool", true)
+
+local function create(ply, bullet, model, pos, ang, dir, fire, reload)
+	
+	if not pewpew:GetConVar("AllowE2Create") then return end
+	if not ply:CheckLimit("pewpew") then return end
+	if not util.IsValidProp(model) then return end
+	local Bullet = pewpew:GetWeapon(bullet)
+	if not bullet then return end
+	if Bullet.AdminOnly and not ply:IsAdmin() then return end
+	if Bullet.SuperAdminOnly and not ply:IsSuperAdmin() then return end
+
+	local ent = ents.Create("pewpew_base_cannon")
+	if not IsValid(ent) then return end
+	ply:AddCount("pewpew", ent)
+	ply:AddCleanup("pewpew", ent)
+
+	local Dir
+	if dir == "up" then
+		Dir = 1
+	elseif dir == "down" then
+		Dir = 2
+	elseif dir == "right" then
+		Dir = 3
+	elseif dir == "left" then
+		Dir = 4
+	elseif dir == "forward" then
+		Dir = 5
+	elseif dir == "back" then
+		Dir = 6
+	end
+	
+	ent:SetModel(model)
+
+	E2Lib.setPos(ent, Vector(pos[1],pos[2],pos[3]))
+	E2Lib.setAng(ent, Angle(ang[1],ang[2],ang[3]))
+
+	ent:SetOptions(Bullet, ply, fire, reload, Dir)
+
+	ent:Spawn()
+	ent:Activate()
+
+	undo.Create("pewpew")
+	undo.AddEntity(ent)
+	undo.SetPlayer(ply)
+	undo.Finish()
+
+	return ent
+end
+
+e2function entity pewCreate( string bullet, string model, vector pos, angle ang, string dir, number fire, number reload )
+	return create(self.player, bullet, model, pos, ang, dir, fire, reload)
+end
+
+e2function entity pewCreate( string bullet, string model, vector pos, angle ang, number fire, number reload )
+	return create(self.player, bullet, model, pos, ang, nil, fire, reload)
+end
+
+e2function entity pewCreate( string bullet, string model, vector pos, angle ang, string dir )
+	return create(self.player, bullet, model, pos, ang, dir)
+end
+
+e2function entity pewCreate( string bullet, string model, vector pos, angle ang )
+	return create(self.player, bullet, model, pos, ang)
+end
+
 __e2setcost(nil)

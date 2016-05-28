@@ -4,19 +4,21 @@
 
 util.AddNetworkString("PewPew-SetOptions")
 
-net.Receive("PewPew-SetOptions", function()
-	RunConsoleCommand("pewpew_damage",net.ReadString())
-	RunConsoleCommand("pewpew_firing",net.ReadString())
-	RunConsoleCommand("pewpew_numpads",net.ReadString())
-	RunConsoleCommand("pewpew_energyusage",net.ReadString())
-	RunConsoleCommand("pewpew_coredamageonly",net.ReadString())
-	RunConsoleCommand("pewpew_damagemul",net.ReadString())
-	RunConsoleCommand("pewpew_coredamagemul",net.ReadString())
-	RunConsoleCommand("pewpew_repairtoolheal",net.ReadString())
-	RunConsoleCommand("pewpew_repairtoolhealcores",net.ReadString())
-	RunConsoleCommand("pewpew_damagelogsending",net.ReadString())
-	RunConsoleCommand("PewPew_PropProtDamage",net.ReadString())
-	RunConsoleCommand("PewPew_WeaponDesigner",net.ReadString())
+net.Receive("PewPew-SetOptions", function(len,ply)
+	if ply:IsAdmin() then
+		RunConsoleCommand("pewpew_damage",net.ReadString())
+		RunConsoleCommand("pewpew_firing",net.ReadString())
+		RunConsoleCommand("pewpew_numpads",net.ReadString())
+		RunConsoleCommand("pewpew_energyusage",net.ReadString())
+		RunConsoleCommand("pewpew_coredamageonly",net.ReadString())
+		RunConsoleCommand("pewpew_damagemul",net.ReadString())
+		RunConsoleCommand("pewpew_coredamagemul",net.ReadString())
+		RunConsoleCommand("pewpew_repairtoolheal",net.ReadString())
+		RunConsoleCommand("pewpew_repairtoolhealcores",net.ReadString())
+		RunConsoleCommand("pewpew_damagelogsending",net.ReadString())
+		RunConsoleCommand("PewPew_PropProtDamage",net.ReadString())
+		RunConsoleCommand("PewPew_WeaponDesigner",net.ReadString())
+	end
 end)
 
 pewpew.ConVars = {}
