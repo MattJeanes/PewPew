@@ -106,6 +106,7 @@ end
 function ENT:RemoveAllProps()
 	local nr = table.Count(self.Props)
 	if (nr>0) then
+		local props = self.Props
 		for _, ent in pairs( self.Props ) do
 			if IsValid(ent) then
 				constraint.RemoveAll( ent )
@@ -121,8 +122,8 @@ function ENT:RemoveAllProps()
 		end
 		
 		-- Random Explosions
-		timer.Create("PewPew_CoreDeathEffect_"..tostring(self)..CurTime(),math.Clamp(1/(nr/10),0.05,1),math.Clamp(nr*10,2,59),function(props,nr)
-			if not props or not type(props)=="table" then return end
+		timer.Create("PewPew_CoreDeathEffect_"..tostring(self)..CurTime(),math.Clamp(1/(nr/10),0.05,1),math.Clamp(nr*10,2,59),function()
+			if not props or type(props)!="table" then return end
 			local ent = table.Random( props )
 			if (ent and ent:IsValid()) then
 				ent:EmitSound("weapons/explode" .. math.random(3,5) .. ".wav")
@@ -146,7 +147,7 @@ function ENT:RemoveAllProps()
 					ent:Remove()
 				end
 			end
-		end,self.Props,nr)
+		end)
 		
 		-- massive boom if more than 100 props
 		if (nr>100) then
@@ -157,15 +158,15 @@ function ENT:RemoveAllProps()
 		end
 		
 		-- Remove them all
-		timer.Create("PewPew_CoreDeathEffect_Remove_"..tostring(self)..CurTime(),math.Clamp(nr,2,60),1,function(props)
-			if props then
+		timer.Create("PewPew_CoreDeathEffect_Remove_"..tostring(self)..CurTime(),math.Clamp(nr,2,60),1,function()
+			if props and table.Count(props) > 0 then
 				for _, ent in pairs( props ) do
 					if (ent and ent:IsValid()) then
 						ent:Remove()
 					end
 				end
 			end
-		end,self.Props)
+		end)
 		self.Props = {}
 	end
 	self:Remove()	
