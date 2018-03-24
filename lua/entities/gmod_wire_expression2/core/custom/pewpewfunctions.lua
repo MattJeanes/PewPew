@@ -391,6 +391,14 @@ __e2setcost(20)
 
 pewpew:CreateConVar("AllowE2Create", "int", true)
 
+local dirMap = {}
+dirMap.up      = 1
+dirMap.down    = 2
+dirMap.right   = 3
+dirMap.left    = 4
+dirMap.forward = 5
+dirMap.back    = 6
+
 local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	local plyIsAdmin = ply:IsAdmin()
 	local plyIsSuperAdmin = ply:IsSuperAdmin()
@@ -410,14 +418,6 @@ local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	if not IsValid(ent) then return end
 	ply:AddCount("pewpew", ent)
 	ply:AddCleanup("pewpew", ent)
-
-	local dirMap = {}
-	dirMap.up      = 1
-	dirMap.down    = 2
-	dirMap.right   = 3
-	dirMap.left    = 4
-	dirMap.forward = 5
-	dirMap.back    = 6
 
 	local Dir = dirMap[dir] or dirMap.up
 	
