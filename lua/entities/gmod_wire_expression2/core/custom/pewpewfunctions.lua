@@ -389,7 +389,7 @@ end
 
 __e2setcost(20)
 
-pewpew:CreateConVar("AllowE2Create", "bool", true)
+pewpew:CreateConVar("AllowE2Create", "int", true)
 
 local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	local plyIsAdmin = ply:IsAdmin()
