@@ -110,7 +110,7 @@ function ENT:RemoveAllProps()
 		for _, ent in pairs( self.Props ) do
 			if IsValid(ent) then
 				constraint.RemoveAll( ent )
-				ent:SetCollisionGroup( COLLISION_GROUP_NONE )
+				ent:SetCollisionGroup( COLLISION_GROUP_DEBRIS_TRIGGER )
 				local phys = ent:GetPhysicsObject()
 				if (phys and phys:IsValid()) then
 					phys:EnableMotion(true)
