@@ -393,7 +393,7 @@ pewpew:CreateConVar("AllowE2Create", "bool", true)
 
 local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	local plyIsAdmin = ply:IsAdmin()
-	local plyIsSuperAdmin = ply:IsSuperAdmin
+	local plyIsSuperAdmin = ply:IsSuperAdmin()
 	local allowCreate = pewpew:GetConVar("AllowE2Create")
 	lcoal allowAdminCreate = allowCreate == 2
 	
