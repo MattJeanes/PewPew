@@ -419,7 +419,7 @@ local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	dirMap.forward = 5
 	dirMap.back    = 6
 
-	local Dir = dirMap[dir]
+	local Dir = dirMap[dir] or 1
 	
 	ent:SetModel(model)
 
