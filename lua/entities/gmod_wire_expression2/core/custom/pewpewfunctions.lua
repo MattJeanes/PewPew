@@ -395,7 +395,7 @@ local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	local plyIsAdmin = ply:IsAdmin()
 	local plyIsSuperAdmin = ply:IsSuperAdmin()
 	local allowCreate = pewpew:GetConVar("AllowE2Create")
-	lcoal allowAdminCreate = allowCreate == 2
+	local allowAdminCreate = allowCreate == 2
 	
 	if not allowCreate then return end
 	if allowAdminCreate and not plyIsAdmin then return end
