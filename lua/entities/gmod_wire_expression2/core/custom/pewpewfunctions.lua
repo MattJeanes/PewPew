@@ -389,37 +389,37 @@ end
 
 __e2setcost(20)
 
-pewpew:CreateConVar("AllowE2Create", "bool", true)
+pewpew:CreateConVar("AllowE2Create", "int", true)
+
+local dirMap = {}
+dirMap.up      = 1
+dirMap.down    = 2
+dirMap.right   = 3
+dirMap.left    = 4
+dirMap.forward = 5
+dirMap.back    = 6
 
 local function create(ply, bullet, model, pos, ang, dir, fire, reload)
+	local plyIsAdmin = ply:IsAdmin()
+	local plyIsSuperAdmin = ply:IsSuperAdmin()
+	local allowCreate = pewpew:GetConVar("AllowE2Create")
+	local allowAdminCreate = allowCreate == 2
 	
-	if not pewpew:GetConVar("AllowE2Create") then return end
+	if not allowCreate then return end
+	if allowAdminCreate and not plyIsAdmin then return end
 	if not ply:CheckLimit("pewpew") then return end
 	if not util.IsValidProp(model) then return end
 	local Bullet = pewpew:GetWeapon(bullet)
 	if not bullet then return end
-	if Bullet.AdminOnly and not ply:IsAdmin() then return end
-	if Bullet.SuperAdminOnly and not ply:IsSuperAdmin() then return end
+	if Bullet.AdminOnly and not plyIsAdmin then return end
+	if Bullet.SuperAdminOnly and not plyIsSuperAdmin then return end
 
 	local ent = ents.Create("pewpew_base_cannon")
 	if not IsValid(ent) then return end
 	ply:AddCount("pewpew", ent)
 	ply:AddCleanup("pewpew", ent)
 
-	local Dir
-	if dir == "up" then
-		Dir = 1
-	elseif dir == "down" then
-		Dir = 2
-	elseif dir == "right" then
-		Dir = 3
-	elseif dir == "left" then
-		Dir = 4
-	elseif dir == "forward" then
-		Dir = 5
-	elseif dir == "back" then
-		Dir = 6
-	end
+	local Dir = dirMap[dir] or dirMap.up
 	
 	ent:SetModel(model)
 
