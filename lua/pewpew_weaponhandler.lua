@@ -56,7 +56,7 @@ function pewpew:LoadDirectory( Dir ) -- Thanks to Jcw87 for fixing this function
 		CurrentCategoryTable = self.Categories
 	end
 	
-	local entries,directories = file.Find( Dir .. "/*.lua", "LUA")
+	local entries,directories = file.Find( Dir .. "/*", "LUA")
 	for _, entry in ipairs ( entries ) do
 		if (SERVER) then 
 			AddCSLuaFile( Dir .. "/" .. entry )
