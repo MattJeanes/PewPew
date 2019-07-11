@@ -38,15 +38,15 @@ BULLET.AngleOffset = Angle(-90,0,0)
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 200
-BULLET.Radius = 145
+BULLET.Damage = 100
+BULLET.Radius = 75
 BULLET.RangeDamageMul = 2.8
-BULLET.PlayerDamage = 50
-BULLET.PlayerDamageRadius = 100
+BULLET.PlayerDamage = 25
+BULLET.PlayerDamageRadius = 50
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.15
-BULLET.Ammo = 12
+BULLET.Reloadtime = 0.25
+BULLET.Ammo = 6
 BULLET.AmmoReloadtime = 8
 
 -- Other
