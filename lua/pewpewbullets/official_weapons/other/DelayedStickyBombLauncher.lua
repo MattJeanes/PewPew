@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Delayed Sticky-Bomb Launcher"
+BULLET.Name = "Delayed Sticky-Bomb Launcher (DO NOT SPAWN)"
 BULLET.Author = "Free Fall"
 BULLET.Description = "Fires a bomb that will stick to whatever it hits and explodes short time after"
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 BULLET.UseOldSystem = true
 
 -- Appearance
