@@ -8,7 +8,7 @@ BULLET.Name = "Thud Rounds"
 BULLET.Author = "Divran"
 BULLET.Description = "Pushes the target away, but deals no damage."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/dav0r/hoverball.mdl"
