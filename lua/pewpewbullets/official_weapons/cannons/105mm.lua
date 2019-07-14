@@ -33,13 +33,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 1000
-BULLET.Radius = 600
+BULLET.Damage = 500
+BULLET.Radius = 300
 BULLET.RangeDamageMul = 2.6
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 400
-BULLET.PlayerDamageRadius = 800
+BULLET.PlayerDamage = 100
+BULLET.PlayerDamageRadius = 400
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 8
