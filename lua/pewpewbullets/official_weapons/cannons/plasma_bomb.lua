@@ -29,7 +29,7 @@ BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "enersplosion"
 
 -- Movement
-BULLET.Speed = 160
+BULLET.Speed = 75
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
 --BULLET.Gravity = 0.06
@@ -37,8 +37,8 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 280
-BULLET.Radius = 500
+BULLET.Damage = 140
+BULLET.Radius = 250
 BULLET.RangeDamageMul = 2.2
 BULLET.PlayerDamage = 99
 BULLET.PlayerDamageRadius = 100
