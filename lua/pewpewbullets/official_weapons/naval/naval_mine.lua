@@ -32,11 +32,11 @@ BULLET.Spread = nil
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 3000
-BULLET.Radius = 1000
+BULLET.Damage = 1500
+BULLET.Radius = 500
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 2000
-BULLET.PlayerDamageRadius = 950
+BULLET.PlayerDamage = 100
+BULLET.PlayerDamageRadius = 250
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 1
