@@ -18,11 +18,11 @@ BULLET.FireEffect = "scud_splosion"
 
 -- Damage
 BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 950
-BULLET.Radius = 1000
+BULLET.Damage = 475
+BULLET.Radius = 500
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 500
-BULLET.PlayerDamageRadius = 250
+BULLET.PlayerDamage = 100
+BULLET.PlayerDamageRadius = 175
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 1
