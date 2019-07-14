@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "C4 Spawner"
+BULLET.Name = "C4 Spawner (Do Not Use)"
 BULLET.Author = "Divran"
 BULLET.Description = "Spawns C4s so that you can applyForce them with E2."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/Items/grenadeAmmo.mdl"
