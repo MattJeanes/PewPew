@@ -25,7 +25,7 @@ BULLET.FireSound = {"arty/railgun.wav"}
 BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
-BULLET.Speed = 400
+BULLET.Speed = 1000
 --BULLET.Gravity = 0.02
 BULLET.RecoilForce = 100
 BULLET.Spread = 0
@@ -33,7 +33,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "SliceDamage"
-BULLET.Damage = 1000
+BULLET.Damage = 500
 BULLET.NumberOfSlices = 5
 BULLET.SliceDistance = 750
 
