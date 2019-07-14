@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Homing Missile - Normal"
+BULLET.Name = "Seeker Missile"
 BULLET.Author = "Divran"
 BULLET.Description = "Fires homing missiles."
 BULLET.AdminOnly = false
