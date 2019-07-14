@@ -14,8 +14,8 @@ BULLET.SuperAdminOnly = false
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.PlayerDamage = 500
-BULLET.PlayerDamageRadius = 300
+BULLET.PlayerDamage = 100
+BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
 BULLET.Ammo = 0
@@ -58,7 +58,7 @@ function BULLET:CannonPhysicsCollide( Data, PhysObj )
 			local SelfVel = Data.OurOldVelocity
 			local Vel = (TargetVel - SelfVel):Length()
 			
-			local Damage = math.Clamp(Vel ^ 2 / 450,1,10000)
+			local Damage = math.Clamp(Vel ^ 2 / 250,1,10000)
 
 			pewpew:PointDamage( Target, Damage, self )
 			
