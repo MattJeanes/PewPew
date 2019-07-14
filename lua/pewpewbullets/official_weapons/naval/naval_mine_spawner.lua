@@ -8,7 +8,7 @@ BULLET.Name = "Naval Mine Spawner"
 BULLET.Author = "Divran"
 BULLET.Description = "Deploy in water. Mines will hover at designated height until touched. If height = 0, they will hover where spawned."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/Combine_Helicopter/helicopter_bomb01.mdl"
