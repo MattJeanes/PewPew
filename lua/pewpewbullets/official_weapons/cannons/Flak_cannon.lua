@@ -35,13 +35,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 250
-BULLET.Radius = 850
+BULLET.Damage = 125
+BULLET.Radius = 425
 BULLET.RangeDamageMul = 2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 500
-BULLET.PlayerDamageRadius = 1000
+BULLET.PlayerDamage = 35
+BULLET.PlayerDamageRadius = 750
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 2
