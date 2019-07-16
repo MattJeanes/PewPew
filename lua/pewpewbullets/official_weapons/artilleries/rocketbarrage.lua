@@ -8,7 +8,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "Rocket Barrage"
 BULLET.Author = "Divran"
-BULLET.Description = "Fires dozens of rockets in an arc which cover a large area."
+BULLET.Description = "Fires a dozen rockets in an arc which cover a large area."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -32,15 +32,15 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 150
+BULLET.Damage = 75
 BULLET.Radius = 250
 BULLET.RangeDamageMul = 2
-BULLET.PlayerDamage = 150
-BULLET.PlayerDamageRadius = 300
+BULLET.PlayerDamage = 25
+BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.2
-BULLET.Ammo = 16
+BULLET.Ammo = 12
 BULLET.AmmoReloadtime = 8
 
 BULLET.EnergyPerShot = 220
