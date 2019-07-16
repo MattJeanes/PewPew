@@ -21,7 +21,7 @@ BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for avail
 BULLET.Damage = 475
 BULLET.Radius = 500
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 100
+BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 175
 
 -- Reloading/Ammo
