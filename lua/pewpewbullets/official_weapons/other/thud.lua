@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Thud Rounds"
+BULLET.Name = "Thud Rounds (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "Pushes the target away, but deals no damage."
 BULLET.AdminOnly = false
