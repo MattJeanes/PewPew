@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "230mm Cannon"
+BULLET.Name = "230mm Cannon (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "Very slow rate of fire, very high damage."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/combatmodels/tankshell_230mm.mdl"
