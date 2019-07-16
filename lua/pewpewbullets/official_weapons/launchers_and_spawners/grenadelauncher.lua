@@ -39,7 +39,7 @@ BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 275
 BULLET.Radius = 200
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 50
+BULLET.PlayerDamage = 75
 BULLET.PlayerDamageRadius = 100
 
 -- Reloading/Ammo
