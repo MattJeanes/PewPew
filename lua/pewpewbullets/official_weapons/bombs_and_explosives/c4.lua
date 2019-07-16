@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "C4 (Do Not Spawn)"
+BULLET.Name = "C4 (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "C4. High damage, low radius."
 BULLET.AdminOnly = false
