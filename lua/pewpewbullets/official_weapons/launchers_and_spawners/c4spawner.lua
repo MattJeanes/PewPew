@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "C4 Spawner (Do Not Use)"
+BULLET.Name = "C4 Spawner (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "Spawns C4s so that you can applyForce them with E2."
 BULLET.AdminOnly = false
