@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Manual Defense"
+BULLET.Name = "M.P.S."
 BULLET.Author = "Divran"
-BULLET.Description = "This defense will kill the target PewPew bullet if it is in range. Has 3000 range. The beam tip has 120 range."
+BULLET.Description = "The Manual Protection Sytem or M.P.S. will target incoming projectiles and shoot them down within a 75 degree cone in front of it."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -19,7 +19,7 @@ BULLET.FireEffect = "pewpew_defensebeam"
 -- Damage
 BULLET.DamageType = "DefenseDamage"
 BULLET.Damage = 100
-BULLET.Radius = 3000
+BULLET.Radius = 2000
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.25
