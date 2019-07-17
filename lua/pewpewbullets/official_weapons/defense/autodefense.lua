@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Automatic Defense"
+BULLET.Name = "A.P.S."
 BULLET.Author = "Divran"
-BULLET.Description = "This defense will automatically aquire targets in front of it within a cone of 75 degrees. Has 2500 range."
+BULLET.Description = "The Active Protection System, or A.P.S. will automatically target and destroy projectiles in a 75 degree cone infront of it."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -19,7 +19,7 @@ BULLET.FireEffect = "pewpew_defensebeam"
 -- Damage
 BULLET.DamageType = "DefenseDamage"
 BULLET.Damage = 50
-BULLET.Radius = 2500
+BULLET.Radius = 1000
 BULLET.Degrees = 75
 
 -- Reloading/Ammo
