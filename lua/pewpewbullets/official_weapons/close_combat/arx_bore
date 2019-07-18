@@ -7,7 +7,7 @@ BULLET.Version = 2
 
 -- General Information
 BULLET.Name = "Arx Bore"
-BULLET.Author = "Divran"
+BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "A short range cutting tool"
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
