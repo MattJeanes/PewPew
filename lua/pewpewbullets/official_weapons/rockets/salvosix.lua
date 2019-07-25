@@ -22,7 +22,7 @@ BULLET.Trail = nil
 BULLET.FireSound = {"arty/rocket.wav"}
 BULLET.ExplosionSound = {"weapons/explode3.wav","weapons/explode4.wav","weapons/explode5.wav"}
 BULLET.FireEffect = nil
-BULLET.ExplosionEffect = "v2splode"
+BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
 BULLET.Speed = 175
