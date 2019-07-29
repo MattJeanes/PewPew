@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Salvo Six v2"
+BULLET.Name = "Salvo Six"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "Rapidly fires a spectacle of up to six light explosive partial tracking missiles."
 BULLET.AdminOnly = false
@@ -25,10 +25,10 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 150
+BULLET.Speed = 75
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
-BULLET.Spread = 0.75
+BULLET.Spread = 2
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
@@ -41,9 +41,9 @@ BULLET.PlayerDamage = 20
 BULLET.PlayerDamageRadius = 100
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.01
+BULLET.Reloadtime = 0.03
 BULLET.Ammo = 6
-BULLET.AmmoReloadtime = 12
+BULLET.AmmoReloadtime = 8
 
 BULLET.Lifetime = {0.4,6}
 BULLET.ExplodeAfterDeath = true
