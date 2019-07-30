@@ -19,7 +19,7 @@ BULLET.FireEffect = "pewpew_defensebeam"
 -- Damage
 BULLET.DamageType = "DefenseDamage"
 BULLET.Damage = 100
-BULLET.Radius = 2000
+BULLET.Radius = 1500
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.25
