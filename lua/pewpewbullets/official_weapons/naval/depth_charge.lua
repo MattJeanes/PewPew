@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Depth Charge"
+BULLET.Name = "Depth Charge (Restricted)"
 BULLET.Author = "Zio_Matrix"
 BULLET.Description = "Launches a Depth Charge that explodes underwater."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/props_c17/oildrum001.mdl"
