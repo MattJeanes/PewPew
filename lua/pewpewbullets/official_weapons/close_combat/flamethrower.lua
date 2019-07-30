@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Flamethrower"
+BULLET.Name = "Flamethrower (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "Kill it with fire!"
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Appearance
 BULLET.Model = "models/weapons/w_bugbait.mdl" 
