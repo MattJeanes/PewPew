@@ -41,9 +41,9 @@ BULLET.PlayerDamage = 60
 BULLET.PlayerDamageRadius = 250
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.3
+BULLET.Reloadtime = 0.5
 BULLET.Ammo = 6
-BULLET.AmmoReloadtime = 6
+BULLET.AmmoReloadtime = 10
 
 BULLET.EnergyPerShot = 400
 
