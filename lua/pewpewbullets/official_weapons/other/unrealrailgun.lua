@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Unrealistic Railgun"
+BULLET.Name = "Plasma Caster"
 BULLET.Author = "Divran"
 BULLET.Description = "An unrealistic railgun :)"
 BULLET.AdminOnly = false
@@ -30,7 +30,7 @@ BULLET.ExplosionEffect = "railgun"
 
 -- Movement
 BULLET.Speed = 90
-BULLET.Gravity = 200
+BULLET.Gravity = 125
 BULLET.RecoilForce = 0
 BULLET.Spread = 0.15
 BULLET.AffectedBySBGravity = true
@@ -43,10 +43,10 @@ BULLET.RangeDamageMul = 2.8
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamageRadius = 70
-BULLET.PlayerDamage = 70
+BULLET.PlayerDamage = 50
 
 -- Reload/Ammo
-BULLET.Reloadtime = 0.4
+BULLET.Reloadtime = 0.2
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
