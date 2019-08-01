@@ -25,7 +25,7 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 75
+BULLET.Speed = 150
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
 BULLET.Spread = 6
