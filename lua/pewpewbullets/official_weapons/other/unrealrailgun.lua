@@ -8,7 +8,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "Plasma Caster"
 BULLET.Author = "Divran"
-BULLET.Description = "An unrealistic railgun :)"
+BULLET.Description = "Rapidly fired super-heated balls of plasma that can burn through flesh and stone alike. "
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
