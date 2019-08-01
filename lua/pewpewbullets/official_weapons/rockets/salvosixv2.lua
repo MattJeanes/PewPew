@@ -28,7 +28,7 @@ BULLET.ExplosionEffect = "v2splode"
 BULLET.Speed = 100
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
-BULLET.Spread = 6
+BULLET.Spread = 10
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
@@ -45,7 +45,7 @@ BULLET.Reloadtime = 0.22
 BULLET.Ammo = 6
 BULLET.AmmoReloadtime = 8
 
-BULLET.Lifetime = {3,6}
+BULLET.Lifetime = {1,6}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 7000
 
