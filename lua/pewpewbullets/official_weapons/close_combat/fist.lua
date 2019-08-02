@@ -6,16 +6,16 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Fist (Restricted)"
+BULLET.Name = "Impact Driver"
 BULLET.Author = "Divran"
 BULLET.Description = "The damage of this weapon depends on its impact speed. Will not damage constrained entities."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = true
+BULLET.SuperAdminOnly = false
 
 -- Damage
 BULLET.DamageType = "PointDamage"
 BULLET.PlayerDamage = 100
-BULLET.PlayerDamageRadius = 150
+BULLET.PlayerDamageRadius = 50
 
 -- Reloading/Ammo
 BULLET.Ammo = 0
@@ -58,7 +58,7 @@ function BULLET:CannonPhysicsCollide( Data, PhysObj )
 			local SelfVel = Data.OurOldVelocity
 			local Vel = (TargetVel - SelfVel):Length()
 			
-			local Damage = math.Clamp(Vel ^ 2 / 250,1,10000)
+			local Damage = math.Clamp(Vel ^ 2 / 250,1,2500)
 
 			pewpew:PointDamage( Target, Damage, self )
 			
