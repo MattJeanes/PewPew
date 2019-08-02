@@ -6,11 +6,11 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Fist"
+BULLET.Name = "Fist (Restricted)"
 BULLET.Author = "Divran"
 BULLET.Description = "The damage of this weapon depends on its impact speed. Will not damage constrained entities."
 BULLET.AdminOnly = false
-BULLET.SuperAdminOnly = false
+BULLET.SuperAdminOnly = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
