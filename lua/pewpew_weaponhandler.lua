@@ -9,7 +9,7 @@ function pewpew:LoadWeapons()
 	self:LoadDirectory( "pewpewbullets" )
 end
 concommand.Add("PewPew_LoadBullets",function(ply,cmd,args) 
-	if (ply:IsSuperAdmin() or !ply:IsValid()) then
+	if ( not ply:IsValid() or ply:IsSuperAdmin() ) then
 		pewpew:LoadWeapons()
 	end
 end)
@@ -26,7 +26,7 @@ function pewpew:ReloadWeapons()
 	end
 end
 concommand.Add("PewPew_ReloadWeapons",function(ply,cmd,args)
-	if (ply:IsSuperAdmin() or !ply:IsValid()) then
+	if ( not ply:IsValid() or ply:IsSuperAdmin() ) then
 		pewpew:ReloadWeapons()
 	end
 end)
