@@ -58,10 +58,12 @@ function pewpew:LoadDirectory( Dir ) -- Thanks to Jcw87 for fixing this function
 	
 	local entries,directories = file.Find( Dir .. "/*", "LUA")
 	for _, entry in ipairs ( entries ) do
-		if (SERVER) then 
-			AddCSLuaFile( Dir .. "/" .. entry )
+		if string.EndsWith(entry, ".lua") then
+			if (SERVER) then 
+				AddCSLuaFile( Dir .. "/" .. entry )
+			end
+			include( Dir .. "/" .. entry )
 		end
-		include( Dir .. "/" .. entry )
 	end
 	for _, directory in ipairs( directories ) do
 		self:LoadDirectory( Dir .. "/" .. directory )
