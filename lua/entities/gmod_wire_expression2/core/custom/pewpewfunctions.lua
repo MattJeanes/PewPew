@@ -389,7 +389,7 @@ end
 
 __e2setcost(20)
 
-pewpew:CreateConVar("AllowE2Create", "int", true)
+pewpew:CreateConVar("AllowE2Create", "int", "1")
 
 local dirMap = {}
 dirMap.up      = 1
@@ -404,8 +404,8 @@ local function create(ply, bullet, model, pos, ang, dir, fire, reload)
 	local plyIsSuperAdmin = ply:IsSuperAdmin()
 	local allowCreate = pewpew:GetConVar("AllowE2Create")
 	local allowAdminCreate = allowCreate == 2
-	
-	if not allowCreate then return end
+
+	if allowCreate == 0 then return end
 	if allowAdminCreate and not plyIsAdmin then return end
 	if not ply:CheckLimit("pewpew") then return end
 	if not util.IsValidProp(model) then return end
