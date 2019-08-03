@@ -22,7 +22,7 @@ BULLET.Trail = nil
 BULLET.FireSound = {"npc/attack_helicopter/aheli_mine_drop1.wav"}
 BULLET.ExplosionSound = {"weapons/explode3.wav","weapons/explode4.wav","weapons/explode5.wav"}
 BULLET.FireEffect = nil
-BULLET.ExplosionEffect = "HEATsplode"
+BULLET.ExplosionEffect = "explosion"
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
