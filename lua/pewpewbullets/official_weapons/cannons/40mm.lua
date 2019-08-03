@@ -35,12 +35,12 @@ BULLET.AffectedBySBGravity = true
 BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 200
 BULLET.Radius = 200
-BULLET.RangeDamageMul = 2
+BULLET.RangeDamageMul = 2.2
 BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 3
+BULLET.Reloadtime = 3.5
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
