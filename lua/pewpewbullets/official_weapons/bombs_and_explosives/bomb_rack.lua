@@ -22,7 +22,7 @@ BULLET.Trail = nil
 BULLET.FireSound = {"npc/attack_helicopter/aheli_mine_drop1.wav"}
 BULLET.ExplosionSound = {"weapons/explode3.wav","weapons/explode4.wav","weapons/explode5.wav"}
 BULLET.FireEffect = nil
-BULLET.ExplosionEffect = "athesplode"
+BULLET.ExplosionEffect = "HEATsplode"
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
@@ -31,7 +31,7 @@ BULLET.Radius = 250
 BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 25
+BULLET.PlayerDamage = 75
 BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
