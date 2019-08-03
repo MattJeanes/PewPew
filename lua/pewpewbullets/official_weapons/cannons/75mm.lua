@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "75mm Cannon"
+BULLET.Name = "75mm Cannon (HE)"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "Moderate rate of fire, moderate damage."
 BULLET.AdminOnly = false
@@ -25,7 +25,7 @@ BULLET.FireEffect = "cannon_flare"
 BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
-BULLET.Speed = 135
+BULLET.Speed = 130
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
@@ -33,13 +33,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 300
+BULLET.Damage = 275
 BULLET.Radius = 300
-BULLET.RangeDamageMul = 2.6
+BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 110
-BULLET.PlayerDamageRadius = 300
+BULLET.PlayerDamageRadius = 350
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 5
