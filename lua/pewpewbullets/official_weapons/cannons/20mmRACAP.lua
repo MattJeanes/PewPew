@@ -21,7 +21,7 @@ BULLET.ExplosionEffect = "gcombat_explosion"
 
 -- Movement
 BULLET.Speed = 150
---BULLET.Gravity = 0.1
+BULLET.Gravity = 0.1
 BULLET.RecoilForce = 35
 BULLET.Spread = 0.3
 BULLET.AffectedBySBGravity = true
@@ -38,7 +38,7 @@ BULLET.PlayerDamage = 10
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.08
-BULLET.Ammo = 50
+BULLET.Ammo = 25
 BULLET.AmmoReloadtime = 14
 
 -- Other
