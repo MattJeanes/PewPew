@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "90mm Cannon (HE)"
+BULLET.Name = "90mm Cannon (AP)"
 BULLET.Author = "Divran"
 BULLET.Description = "Aim away from face."
 BULLET.AdminOnly = false
