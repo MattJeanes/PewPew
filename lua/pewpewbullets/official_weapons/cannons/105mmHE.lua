@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "105mm Cannon"
+BULLET.Name = "105mm Cannon (HE)"
 BULLET.Author = "Divran"
 BULLET.Description = "Slow rate of fire, high damage."
 BULLET.AdminOnly = false
@@ -25,7 +25,7 @@ BULLET.FireEffect = "cannon_flare"
 BULLET.ExplosionEffect = "big_splosion"
 
 -- Movement
-BULLET.Speed = 135
+BULLET.Speed = 95
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
@@ -33,13 +33,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 500
-BULLET.Radius = 300
+BULLET.Damage = 400
+BULLET.Radius = 500
 BULLET.RangeDamageMul = 2.6
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 110
-BULLET.PlayerDamageRadius = 400
+BULLET.PlayerDamageRadius = 450
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 8
