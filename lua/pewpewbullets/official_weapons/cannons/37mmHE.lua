@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "37mm Cannon"
+BULLET.Name = "37mm Cannon (HE)"
 BULLET.Author = "Divran"
 BULLET.Description = "Rapid fire, low damage."
 BULLET.AdminOnly = false
@@ -25,7 +25,7 @@ BULLET.FireEffect = "cannon_flare"
 BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
-BULLET.Speed = 100
+BULLET.Speed = 125
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 100
 BULLET.Spread = 0
@@ -33,16 +33,16 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 100
-BULLET.Radius = 125
+BULLET.Damage = 150
+BULLET.Radius = 150
 BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 100
+BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 2.3
+BULLET.Reloadtime = 3
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
