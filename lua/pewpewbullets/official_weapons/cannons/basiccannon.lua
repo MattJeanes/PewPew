@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Basic Cannon"
+BULLET.Name = "90mm Cannon (HE)"
 BULLET.Author = "Divran"
 BULLET.Description = "Aim away from face."
 BULLET.AdminOnly = false
@@ -33,7 +33,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 150
+BULLET.Damage = 300
 BULLET.Radius = 400
 BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
