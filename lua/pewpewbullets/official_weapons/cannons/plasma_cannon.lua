@@ -26,10 +26,10 @@ BULLET.Trail = { StartSize = 10,
 BULLET.FireSound = {"col32/bomb3.wav"}
 BULLET.ExplosionSound = {"weapons/explode1.wav","weapons/explode2.wav"}
 BULLET.FireEffect = "muzzleflash"
-BULLET.ExplosionEffect = "enersplosion"
+BULLET.ExplosionEffect = "big_splosion"
 
 -- Movement
-BULLET.Speed = 75
+BULLET.Speed = 50
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
 --BULLET.Gravity = 0.06
@@ -44,7 +44,7 @@ BULLET.PlayerDamage = 100
 BULLET.PlayerDamageRadius = 100
 
 -- Reload/Ammo
-BULLET.Reloadtime = 3
+BULLET.Reloadtime = 5.5
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
