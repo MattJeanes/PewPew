@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "20mm RAC (HE)"
+BULLET.Name = "20mm RAC (AP)"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "20mm autocannon, high RPM, low damage and ammo."
 BULLET.AdminOnly = false
