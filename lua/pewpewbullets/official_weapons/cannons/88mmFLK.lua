@@ -8,7 +8,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Flak Cannon"
+BULLET.Name = "88mm Flak Cannon"
 BULLET.Author = "Divran"
 BULLET.Description = "Shoots bullets which explode in midair, making it easier to shoot down airplanes."
 BULLET.AdminOnly = false
@@ -35,16 +35,16 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 125
-BULLET.Radius = 425
+BULLET.Damage = 300
+BULLET.Radius = 525
 BULLET.RangeDamageMul = 2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 100
-BULLET.PlayerDamageRadius = 350
+BULLET.PlayerDamageRadius = 450
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 2
+BULLET.Reloadtime = 4
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
