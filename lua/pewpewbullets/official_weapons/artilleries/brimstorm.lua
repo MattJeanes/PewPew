@@ -6,7 +6,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "Brimstorm"
 BULLET.Author = "Hexwolf"
-BULLET.Description = "Aim high!"
+BULLET.Description = "Rain hellfire down on your foes, aim high and cover a wide area with a shower of bullets. "
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -21,10 +21,10 @@ BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "mghit"
 
 -- Movement
-BULLET.Speed = 40
---BULLET.Gravity = 5
+BULLET.Speed = 30
+--BULLET.Gravity = 7
 BULLET.RecoilForce = 35
-BULLET.Spread = 8
+BULLET.Spread = 5
 BULLET.AffectedBySBGravity = true
 
 -- Damage
@@ -33,7 +33,7 @@ BULLET.Damage = 25
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1
-BULLET.Ammo = 100
+BULLET.Ammo = 200
 BULLET.AmmoReloadtime = 45
 
 -- Other
