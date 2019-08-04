@@ -32,7 +32,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 5
+BULLET.Damage = 20
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0
