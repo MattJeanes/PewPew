@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "120mm AL Cannon (HE)"
+BULLET.Name = "120mm Auto loading Cannon (HE)"
 BULLET.Author = "Chippy"
 BULLET.Description = "Auto Loading 120mm High Explosive tank cannon."
 BULLET.AdminOnly = false
