@@ -22,10 +22,10 @@ BULLET.Trail = nil
 BULLET.FireSound = {"chippy/120mm.wav"}
 BULLET.ExplosionSound = {"weapons/explode1.wav","weapons/explode2.wav"}
 BULLET.FireEffect = "cannon_flare"
-BULLET.ExplosionEffect = "HEATsplode"
+BULLET.ExplosionEffect = "big_splosion"
 
 -- Movement
-BULLET.Speed = 140
+BULLET.Speed = 90
 --BULLET.Gravity = 0.056
 BULLET.RecoilForce = 800
 BULLET.Spread = 0
@@ -33,13 +33,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 1000
-BULLET.Radius = 200
+BULLET.Damage = 500
+BULLET.Radius = 600
 BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 200
-BULLET.PlayerDamageRadius = 100
+BULLET.PlayerDamage = 110
+BULLET.PlayerDamageRadius = 500
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 8
