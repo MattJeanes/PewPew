@@ -27,7 +27,7 @@ BULLET.ExplosionEffect = "muzzleflash"
 BULLET.Speed = 150
 --BULLET.Gravity = 0.056
 BULLET.RecoilForce = 800
-BULLET.Spread = 1
+BULLET.Spread = 2
 BULLET.AffectedBySBGravity = true
 
 -- Damage
@@ -35,7 +35,7 @@ BULLET.DamageType = "PointDamage" -- Look in gcombat_damagecontrol.lua for avail
 BULLET.Damage = 5
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0
+BULLET.Reloadtime = 0.000001
 BULLET.Ammo = 30
 BULLET.AmmoReloadtime = 12
 
