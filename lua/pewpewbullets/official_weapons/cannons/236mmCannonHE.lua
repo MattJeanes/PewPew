@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "236mm Cannon HE"
+BULLET.Name = "236mm Cannon (HE)"
 BULLET.Author = "Divran"
 BULLET.Description = "Has a low initial velocity, making it easier to fire in high arcs to shoot above walls without hitting the top of the map."
 BULLET.AdminOnly = false
