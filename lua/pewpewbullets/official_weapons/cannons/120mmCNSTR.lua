@@ -25,7 +25,7 @@ BULLET.ExplosionEffect = "muzzleflash"
 
 -- Movement
 BULLET.Speed = 150
---BULLET.Gravity = 0
+BULLET.Gravity = 0
 BULLET.RecoilForce = 800
 BULLET.Spread = 1.5
 BULLET.AffectedBySBGravity = true
