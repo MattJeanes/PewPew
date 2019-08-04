@@ -22,14 +22,14 @@ BULLET.ExplosionEffect = "mghit"
 
 -- Movement
 BULLET.Speed = 40
-BULLET.Gravity = 10
+--BULLET.Gravity = 5
 BULLET.RecoilForce = 35
-BULLET.Spread = 10
+BULLET.Spread = 8
 BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 50
+BULLET.Damage = 25
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1
