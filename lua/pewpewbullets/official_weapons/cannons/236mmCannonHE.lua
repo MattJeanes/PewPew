@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Low Velocity Cannon"
+BULLET.Name = "236mm Cannon HE"
 BULLET.Author = "Divran"
-BULLET.Description = "Has a low initial velocity, making it easier to fire in high arcs to shoot above walls without hitting the top of the map. Otherwise has the same stats as the basic cannon."
+BULLET.Description = "Has a low initial velocity, making it easier to fire in high arcs to shoot above walls without hitting the top of the map."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -32,16 +32,16 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 150
-BULLET.Radius = 400
+BULLET.Damage = 750
+BULLET.Radius = 800
 BULLET.RangeDamageMul = 2.2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 110
-BULLET.PlayerDamageRadius = 400
+BULLET.PlayerDamageRadius = 600
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 3
+BULLET.Reloadtime = 45
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
