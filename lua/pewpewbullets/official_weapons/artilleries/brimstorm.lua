@@ -21,8 +21,8 @@ BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "mghit"
 
 -- Movement
-BULLET.Speed = 30
-BULLET.Gravity = 1
+BULLET.Speed = 40
+BULLET.Gravity = 10
 BULLET.RecoilForce = 35
 BULLET.Spread = 10
 BULLET.AffectedBySBGravity = true
@@ -33,8 +33,8 @@ BULLET.Damage = 50
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1
-BULLET.Ammo = 50
-BULLET.AmmoReloadtime = 14
+BULLET.Ammo = 100
+BULLET.AmmoReloadtime = 45
 
 -- Other
 BULLET.EnergyPerShot = 80
