@@ -17,7 +17,7 @@ BULLET.Model = "models/combatmodels/tankshell_25mm.mdl"
 BULLET.FireSound = {"arty/25mm.wav"}
 BULLET.ExplosionSound = nil
 BULLET.FireEffect = "cannon_flare"
-BULLET.ExplosionEffect = "gcombat_explosion"
+BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
 BULLET.Speed = 150
