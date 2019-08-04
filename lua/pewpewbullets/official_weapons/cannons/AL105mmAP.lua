@@ -6,7 +6,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "105mm AL Cannon (AP)"
+BULLET.Name = "105mm Auto loading Cannon (AP)"
 BULLET.Author = "Divran"
 BULLET.Description = "105mm Auto loading Cannon."
 BULLET.AdminOnly = false
