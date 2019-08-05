@@ -32,7 +32,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 25
+BULLET.Damage = 30
 BULLET.Radius = nil
 BULLET.RangeDamageMul = nil
 BULLET.NumberOfSlices = nil
