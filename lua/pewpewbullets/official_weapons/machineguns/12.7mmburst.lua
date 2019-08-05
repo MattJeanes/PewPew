@@ -4,9 +4,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "50 cal burst machinegun"
+BULLET.Name = "12.7mm burst machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "50 caliber burstfire machinegun."
+BULLET.Description = "12.7mm Burstfire machinegun."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
