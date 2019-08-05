@@ -26,7 +26,7 @@ BULLET.ReducedDamagePerSlice = 0
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.3
 BULLET.Ammo = 3
-BULLET.AmmoReloadtime = 0.5
+BULLET.AmmoReloadtime = 2
 
 BULLET.EnergyPerShot = 1000
 
