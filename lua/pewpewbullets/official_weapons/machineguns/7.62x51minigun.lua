@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "7.62×51mm Minigun"
+BULLET.Name = "7.62x51mm Minigun"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "Short spool time, followed by a hail of bullets."
 BULLET.AdminOnly = false
