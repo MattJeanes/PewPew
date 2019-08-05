@@ -4,9 +4,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Basic Machinegun"
-BULLET.Author = "Divran"
-BULLET.Description = "Rapid fire machinegun with a large magazine."
+BULLET.Name = "5.56x42mm Machinegun"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Rapid fire 5.56x42mm machine gun."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -25,7 +25,7 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.EmptyMagSound = {"weapons/pistol/pistol_empty.wav"}
 
 -- Movement
-BULLET.Speed = 100
+BULLET.Speed = 150
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 30
 BULLET.Spread = 0.2
@@ -33,7 +33,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 45
+BULLET.Damage = 20
 BULLET.Radius = nil
 BULLET.RangeDamageMul = nil
 BULLET.NumberOfSlices = nil
@@ -43,8 +43,8 @@ BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1
-BULLET.Ammo = 100
-BULLET.AmmoReloadtime = 10
+BULLET.Ammo = 0
+BULLET.AmmoReloadtime = 0
 
 BULLET.EnergyPerShot = 180
 
