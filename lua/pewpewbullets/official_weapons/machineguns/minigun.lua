@@ -28,12 +28,12 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 30
+BULLET.Damage = 15
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.05
-BULLET.Ammo = 180
-BULLET.AmmoReloadtime = 14
+BULLET.Ammo = 0
+BULLET.AmmoReloadtime = 0
 
 -- Other
 BULLET.EnergyPerShot = 80
