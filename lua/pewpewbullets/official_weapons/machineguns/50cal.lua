@@ -5,7 +5,7 @@ BULLET.Version = 2
 
 -- General Information
 BULLET.Name = "50 cal machinegun"
-BULLET.Author = "Divran"
+BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "50 caliber machinegun."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
@@ -32,7 +32,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 75
+BULLET.Damage = 25
 BULLET.Radius = nil
 BULLET.RangeDamageMul = nil
 BULLET.NumberOfSlices = nil
@@ -42,8 +42,8 @@ BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.2
-BULLET.Ammo = 70
-BULLET.AmmoReloadtime = 9
+BULLET.Ammo = 0
+BULLET.AmmoReloadtime = 0
 
 BULLET.EnergyPerShot = 300
 
