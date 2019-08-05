@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Minigun"
+BULLET.Name = "5.56x42mm Rotary Machinegun"
 BULLET.Author = "Divran"
 BULLET.Description = "5.56x42mm machinegun with enhanced RPM. Requires a short time to spool."
 BULLET.AdminOnly = false
