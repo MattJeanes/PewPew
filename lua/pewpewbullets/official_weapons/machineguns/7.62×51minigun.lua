@@ -4,9 +4,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Minigun"
-BULLET.Author = "Divran"
-BULLET.Description = "Extreme fire rate, low accuracy and damage."
+BULLET.Name = "7.62×51mm Minigun"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Short spool time, followed by a hail of bullets."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -23,15 +23,15 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.Speed = 100
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 35
-BULLET.Spread = 0.5
+BULLET.Spread = 0.3
 BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 15
+BULLET.Damage = 30
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.05
+BULLET.Reloadtime = 0.1
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
