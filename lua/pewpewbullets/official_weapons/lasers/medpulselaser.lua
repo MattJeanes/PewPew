@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Basic Laser"
-BULLET.Author = "Divran"
-BULLET.Description = "Fires a laser beam which slices through and damages 4 props."
+BULLET.Name = "Medium Pulse Laser"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Fires a laser up to 3 times rapidly, dealing moderate damage."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -18,15 +18,15 @@ BULLET.ExplosionEffect = "ISSmallPulseBeam"
 
 -- Damage
 BULLET.DamageType = "SliceDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 180
-BULLET.NumberOfSlices = 4
+BULLET.Damage = 25
+BULLET.NumberOfSlices = 3
 BULLET.SliceDistance = 50000
 BULLET.ReducedDamagePerSlice = 0
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.7
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Reloadtime = 0.3
+BULLET.Ammo = 3
+BULLET.AmmoReloadtime = 0.5
 
 BULLET.EnergyPerShot = 1000
 
