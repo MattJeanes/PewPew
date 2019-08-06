@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "6.62x51mm Rotary Machinegun"
+BULLET.Name = "7.62x51mm Rotary Machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "6.62x51mm machinegun with enhanced RPM. Requires a short time to spool."
 BULLET.AdminOnly = false
