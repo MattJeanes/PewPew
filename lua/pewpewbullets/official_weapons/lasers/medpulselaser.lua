@@ -16,37 +16,51 @@ BULLET.SuperAdminOnly = false
 BULLET.FireSound = {"Lasers/Small/Laser.wav"}
 BULLET.ExplosionEffect = "ISSmallPulseBeam"
 
+-- Movement
+BULLET.Spread = 0
+
 -- Damage
-BULLET.DamageType = "SliceDamage" -- Look in gcombat_damagecontrol.lua for available damage types
-BULLET.Damage = 25
-BULLET.NumberOfSlices = 3
-BULLET.SliceDistance = 50000
-BULLET.ReducedDamagePerSlice = 0
+BULLET.DamageType = "PointDamage"
+BULLET.Damage = 40
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.3
+BULLET.Reloadtime = 0.15
 BULLET.Ammo = 3
 BULLET.AmmoReloadtime = 2
 
-BULLET.EnergyPerShot = 1000
+BULLET.ExplodeAfterDeath = false
+BULLET.EnergyPerShot = 200
 
 BULLET.Gravity = 0
 
--- Custom Functions 
--- (If you set the override var to true, the cannon/bullet will run these instead. Use these functions to do stuff which is not possible with the above variables)
-
 -- Fire (Is called before the cannon is about to fire)
-function BULLET:Fire()		
-	local Dir, startpos = pewpew:GetFireDirection( self.Direction, self )
+function BULLET:Fire()
+	-- Calculate initial position of bullet
+	local direction, startpos = pewpew:GetFireDirection( self.Direction, self )
+	
+	local num = self.Bullet.Spread
+	if (num) then
+		local spread = Angle(math.Rand(-num,num),math.Rand(-num,num),0)
+		direction:Rotate(spread)
+	end
 	
 	-- Deal damage
-	local HitPos = pewpew:SliceDamage( startpos, Dir, self.Bullet.Damage, self.Bullet.NumberOfSlices, self.Bullet.SliceDistance, self.Bullet.ReducedDamagePerSlice, self )
+	local trace = pewpew:Trace( startpos, direction * 100000 )
+	local HitPos = trace.HitPos or StartPos + direction * 100000
+	if (trace.Entity and trace.Entity:IsValid()) then
+		-- Stargate shield damage
+		if (trace.Entity:GetClass() == "shield") then
+			trace.Entity:Hit(nil,trace.HitPos,self.Bullet.Damage*pewpew:GetConVar("StargateShield_DamageMul"),trace.HitNormal)
+		else
+			pewpew:PointDamage( trace.Entity, self.Bullet.Damage, self )
+		end
+	end
 	
 	-- Effects
 	self:EmitSound( self.Bullet.FireSound[1] )
 	
 	local effectdata = EffectData()
-	effectdata:SetOrigin( HitPos or (startpos + Dir * self.Bullet.SliceDistance)  )
+	effectdata:SetOrigin( HitPos  )
 	effectdata:SetStart( startpos )
 	util.Effect( self.Bullet.ExplosionEffect, effectdata )
 end
