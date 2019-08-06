@@ -31,7 +31,7 @@ BULLET.DamageType = "PointDamage"
 BULLET.Damage = 30
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.2
+BULLET.Reloadtime = 0.02
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
