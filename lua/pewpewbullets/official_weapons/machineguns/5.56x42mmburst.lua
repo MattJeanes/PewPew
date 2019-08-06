@@ -41,7 +41,7 @@ BULLET.PlayerDamage = nil
 BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.5
+BULLET.Reloadtime = 0.07
 BULLET.Ammo = 6
 BULLET.AmmoReloadtime = 1
 
