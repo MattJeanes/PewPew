@@ -4,7 +4,7 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "7.62x51mm Machinegun"
+BULLET.Name = "7.62x51mm Burstfire Machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "7.62x51mm Machinegun."
 BULLET.AdminOnly = false
@@ -44,7 +44,7 @@ BULLET.PlayerDamageRadius = nil
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.15
 BULLET.Ammo = 3
-BULLET.AmmoReloadtime = 0.3
+BULLET.AmmoReloadtime = .5
 
 BULLET.EnergyPerShot = 180
 
