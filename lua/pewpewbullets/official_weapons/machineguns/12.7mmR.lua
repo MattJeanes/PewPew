@@ -28,7 +28,7 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 30
+BULLET.Damage = 50
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.02
