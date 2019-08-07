@@ -38,6 +38,9 @@ BULLET.Radius = 25
 BULLET.RangeDamageMul = 2.2
 BULLET.PlayerDamage = 200
 BULLET.PlayerDamageRadius = 25
+BULLET.NumberOfSlices = 3
+BULLET.SliceDistance = 500
+BULLET.ReducedDamagePerSlice = 0
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 3.5

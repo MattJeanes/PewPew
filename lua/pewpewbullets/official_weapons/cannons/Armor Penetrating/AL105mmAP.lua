@@ -36,8 +36,9 @@ BULLET.DamageType = "BlastDamage" -- Look in gcombat_damagecontrol.lua for avail
 BULLET.Damage = 800
 BULLET.Radius = 100
 BULLET.RangeDamageMul = 2.6
-BULLET.NumberOfSlices = nil
-BULLET.SliceDistance = nil
+BULLET.NumberOfSlices = 3
+BULLET.SliceDistance = 500
+BULLET.ReducedDamagePerSlice = 0
 BULLET.PlayerDamage = 200
 BULLET.PlayerDamageRadius = 50
 
