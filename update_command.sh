@@ -1,8 +1,5 @@
-pewpew="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/.git"
-echo $pewpew
-echo $pewpew
-echo $pewpew
+pewpew="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-git --git-dir=$pewpew fetch --all
-git --git-dir=$pewpew reset --hard origin/master
-git --git-dir=$pewpew checkout $pewpew/..
+git --git-dir=$pewpew/.git fetch --all
+git checkout -- $pewpew
+git --git-dir=$pewpew/.git reset --hard origin/master
