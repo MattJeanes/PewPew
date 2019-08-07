@@ -33,12 +33,13 @@ BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "SliceDamage"
-BULLET.Damage = 500
-BULLET.NumberOfSlices = 5
-BULLET.SliceDistance = 750
+BULLET.Damage = 800
+BULLET.NumberOfSlices = 8
+BULLET.SliceDistance = 5000
+BULLET.ReducedDamagePerSlice = 100
 
 -- Reload/Ammo
-BULLET.Reloadtime = 6.2
+BULLET.Reloadtime = 6.5
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
