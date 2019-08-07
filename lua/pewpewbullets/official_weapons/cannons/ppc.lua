@@ -18,8 +18,8 @@ BULLET.Material = nil
 BULLET.Color = Color(0,191,255,255)
 BULLET.Trail = { StartSize = 10,
 				 EndSize = 2,
-				 Length = 4,
-				 Texture = "trails/smoke.vmt",
+				 Length = 10,
+				 Texture = "trails/physbeam",
 				 Color = Color( 0,191,255, 255 ) }
 
 -- Effects / Sounds
@@ -32,8 +32,6 @@ BULLET.ExplosionEffect = "HEATsplode"
 BULLET.Speed = 50
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
---BULLET.Gravity = 0
-BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "EMPDamage"
