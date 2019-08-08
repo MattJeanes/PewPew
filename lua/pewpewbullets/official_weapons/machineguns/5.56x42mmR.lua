@@ -23,7 +23,7 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.Speed = 150
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 30
-BULLET.Spread = 0.25
+BULLET.Spread = 0.75
 BULLET.AffectedBySBGravity = true
 
 -- Damage
