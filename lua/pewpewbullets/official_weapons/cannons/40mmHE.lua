@@ -40,7 +40,7 @@ BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 3.5
+BULLET.Reloadtime = 3
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
