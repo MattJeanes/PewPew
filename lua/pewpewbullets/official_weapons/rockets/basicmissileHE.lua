@@ -6,8 +6,8 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Basic Rocket Launcher"
-BULLET.Author = "Divran"
+BULLET.Name = "Rocket Launcher (HE)"
+BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "Rocket launcher with 6 rockets."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false

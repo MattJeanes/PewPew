@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Salvo Six"
+BULLET.Name = "[Homing] Surface to air (HE)"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "Rapidly fires a spectacle of up to six light explosive partial tracking missiles."
+BULLET.Description = "Extremely fast and accurate missile, only homes for 0.4 seconds."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -25,27 +25,27 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 75
+BULLET.Speed = 175
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
-BULLET.Spread = 20
+BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 60
-BULLET.Radius = 100
+BULLET.Damage = 400
+BULLET.Radius = 225
 BULLET.RangeDamageMul = 2.8
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 50
-BULLET.PlayerDamageRadius = 100
+BULLET.PlayerDamage = 110
+BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.22
-BULLET.Ammo = 6
-BULLET.AmmoReloadtime = 8
+BULLET.Reloadtime = 6
+BULLET.Ammo = 0
+BULLET.AmmoReloadtime = 0
 
-BULLET.Lifetime = {1.5,6}
+BULLET.Lifetime = {0.4,6}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 7000
 

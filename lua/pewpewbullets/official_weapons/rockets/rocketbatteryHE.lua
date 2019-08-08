@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Rocket Battery"
-BULLET.Author = "Divran"
-BULLET.Description = "Rapid fire rocket battery with 12 dumb rockets."
+BULLET.Name = "Rocket Battery (HE)"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Rapid fire rocket battery with 6 dumb rockets."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -38,11 +38,11 @@ BULLET.AngleOffset = Angle(-90,0,0)
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 100
-BULLET.Radius = 75
+BULLET.Damage = 150
+BULLET.Radius = 150
 BULLET.RangeDamageMul = 2.8
-BULLET.PlayerDamage = 25
-BULLET.PlayerDamageRadius = 50
+BULLET.PlayerDamage = 75
+BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.25

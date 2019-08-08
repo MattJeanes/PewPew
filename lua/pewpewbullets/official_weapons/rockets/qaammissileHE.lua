@@ -6,8 +6,8 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "QAAM missile"
-BULLET.Author = "Zio Matrix"
+BULLET.Name = "[Homing] QAAM missile (HE)"
+BULLET.Author = "Hexwolf (Base by Zio Matrix)"
 BULLET.Description = "Fires highly accurate, low-damage missiles."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
@@ -32,17 +32,17 @@ BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 50
+BULLET.Damage = 150
 BULLET.Radius = 75
 BULLET.RangeDamageMul = 2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
-BULLET.PlayerDamage = 100
+BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 75
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.25
-BULLET.Ammo = 2
+BULLET.Ammo = 3
 BULLET.AmmoReloadtime = 12
 
 BULLET.Lifetime = {15,15}

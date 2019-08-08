@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Seeker Missile"
-BULLET.Author = "Divran"
-BULLET.Description = "Fires homing missiles."
+BULLET.Name = "[Homing] Air to surface (HE)"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Slow moving, deadly missile. Its limitation is that it can't fly up."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -25,29 +25,27 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 20
+BULLET.Speed = 35
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
 BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 400
-BULLET.Radius = 150
-BULLET.RangeDamageMul = 2
-BULLET.NumberOfSlices = nil
-BULLET.SliceDistance = nil
+BULLET.Damage = 600
+BULLET.Radius = 200
+BULLET.RangeDamageMul = 2.4
 BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 4
+BULLET.Reloadtime = 10
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
-BULLET.Lifetime = {50,50}
+BULLET.Lifetime = {4,4}
 BULLET.ExplodeAfterDeath = true
-BULLET.EnergyPerShot = 4800
+BULLET.EnergyPerShot = 10000
 
 BULLET.UseOldSystem = true
 
@@ -88,23 +86,11 @@ end
 -- Initialize (Is called when the bullet initializes)
 function BULLET:Initialize()   
 	self:DefaultInitialize()
-	
-	self.TargetDir = self.Entity:GetUp()
+	self.TargetDir = self.FlightDirection
+	self.MaxZ = self.TargetDir.z
 	if (self.Cannon:IsValid()) then
 		if (self.Cannon.TargetPos and self.Cannon.TargetPos != Vector(0,0,0)) then
 			self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
-		end
-	end
-	
-	-- Lifetime
-	self.Lifetime = false
-	if (self.Bullet.Lifetime) then
-		if (self.Bullet.Lifetime[1] > 0 and self.Bullet.Lifetime[2] > 0) then
-			if (self.Bullet.Lifetime[1] == self.Bullet.Lifetime[2]) then
-				self.Lifetime = CurTime() + self.Bullet.Lifetime[1]
-			else
-				self.Lifetime = CurTime() + math.Rand(self.Bullet.Lifetime[1],self.Bullet.Lifetime[2])
-			end
 		end
 	end
 
@@ -121,16 +107,36 @@ function BULLET:Think()
 	if (self.Cannon and self.Cannon:IsValid() and self.Cannon.TargetPos) then
 		self.FlightDirection = self.FlightDirection + (self.TargetDir-self.FlightDirection) / 20
 		self.FlightDirection = self.FlightDirection:GetNormalized()
-
+		
 		self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
+			
+		if (self.TargetDir.z < self.MaxZ) then self.MaxZ = self.TargetDir.z end
+		self.TargetDir.z = math.min( self.TargetDir.z, self.MaxZ )
 	end
 	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(90,0,0) )
+
+--[[
+	-- Make it fly
+	self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
+	--if (self.TargetDir != Vector(0,0,0)) then
+		self.FlightDirection = self.FlightDirection + (self.TargetDir-self.FlightDirection) / 20
+		self.FlightDirection = self.FlightDirection:GetNormalized()
+	--end
+	if (self.Cannon:IsValid()) then
+		if (self.Cannon.TargetPos and self.Cannon.TargetPos != Vector(0,0,0)) then
+			self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
+			if (self.TargetDir.z < self.MaxZ) then self.MaxZ = self.TargetDir.z end
+			self.TargetDir.z = math.min( self.TargetDir.z, self.MaxZ )
+		end
+	end
+	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(90,0,0) )
+]]
 	
 	-- Lifetime
 	if (self.Lifetime) then
 		if (CurTime() > self.Lifetime) then
 			if (self.Bullet.ExplodeAfterDeath) then
-				local trace = pewpew:Trace( self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
+				local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
 				self:Explode( trace )
 			else
 				self.Entity:Remove()
@@ -140,7 +146,7 @@ function BULLET:Think()
 	
 	if (CurTime() > self.TraceDelay) then
 		-- Check if it hit something
-		local trace = pewpew:Trace( self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self )
+		local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
 		
 		if (trace.Hit and !self.Exploded) then	
 			self.Exploded = true

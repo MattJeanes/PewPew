@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Homing Missile - Surface to air"
+BULLET.Name = "Seeker Missile (HE)"
 BULLET.Author = "Divran"
-BULLET.Description = "Extremely fast and accurate missile. Its limitation is that it only homes for a short period of time (0.4 seconds)."
+BULLET.Description = "Fires a very slow, long lasting homing missile."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -25,7 +25,7 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 175
+BULLET.Speed = 20
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
 BULLET.Spread = 0
@@ -33,25 +33,27 @@ BULLET.Spread = 0
 -- Damage
 BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 400
-BULLET.Radius = 225
-BULLET.RangeDamageMul = 2.8
+BULLET.Radius = 150
+BULLET.RangeDamageMul = 2
 BULLET.NumberOfSlices = nil
 BULLET.SliceDistance = nil
 BULLET.PlayerDamage = 110
 BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 6
+BULLET.Reloadtime = 4
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
-BULLET.Lifetime = {0.4,6}
+BULLET.Lifetime = {50,50}
 BULLET.ExplodeAfterDeath = true
-BULLET.EnergyPerShot = 7000
+BULLET.EnergyPerShot = 4800
+
+BULLET.UseOldSystem = true
 
 BULLET.CustomInputs = { "Fire", "X", "Y", "Z", "XYZ [VECTOR]" }
 
-BULLET.UseOldSystem = true
+
 -- Custom Functions 
 -- (If you set the override var to true, the cannon/bullet will run these instead. Use these functions to do stuff which is not possible with the above variables)
 
@@ -95,8 +97,16 @@ function BULLET:Initialize()
 	end
 	
 	-- Lifetime
-	self.Lifetime = CurTime() + self.Bullet.Lifetime[2]
-	self.Thrust = CurTime() + self.Bullet.Lifetime[1]
+	self.Lifetime = false
+	if (self.Bullet.Lifetime) then
+		if (self.Bullet.Lifetime[1] > 0 and self.Bullet.Lifetime[2] > 0) then
+			if (self.Bullet.Lifetime[1] == self.Bullet.Lifetime[2]) then
+				self.Lifetime = CurTime() + self.Bullet.Lifetime[1]
+			else
+				self.Lifetime = CurTime() + math.Rand(self.Bullet.Lifetime[1],self.Bullet.Lifetime[2])
+			end
+		end
+	end
 
 	local trail = ents.Create("env_fire_trail")
 	trail:SetPos( self.Entity:GetPos() - self.Entity:GetUp() * 20 )
@@ -108,7 +118,7 @@ end
 function BULLET:Think()
 	-- Make it fly
 	self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
-	if (self.Cannon and self.Cannon:IsValid() and self.Cannon.TargetPos and CurTime() < self.Thrust) then 
+	if (self.Cannon and self.Cannon:IsValid() and self.Cannon.TargetPos) then
 		self.FlightDirection = self.FlightDirection + (self.TargetDir-self.FlightDirection) / 20
 		self.FlightDirection = self.FlightDirection:GetNormalized()
 
@@ -120,7 +130,7 @@ function BULLET:Think()
 	if (self.Lifetime) then
 		if (CurTime() > self.Lifetime) then
 			if (self.Bullet.ExplodeAfterDeath) then
-				local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
+				local trace = pewpew:Trace( self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
 				self:Explode( trace )
 			else
 				self.Entity:Remove()
@@ -130,7 +140,7 @@ function BULLET:Think()
 	
 	if (CurTime() > self.TraceDelay) then
 		-- Check if it hit something
-		local trace = pewpew:Trace(self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self)
+		local trace = pewpew:Trace( self:GetPos() - self.FlightDirection * self.Bullet.Speed, self.FlightDirection * self.Bullet.Speed, self )
 		
 		if (trace.Hit and !self.Exploded) then	
 			self.Exploded = true

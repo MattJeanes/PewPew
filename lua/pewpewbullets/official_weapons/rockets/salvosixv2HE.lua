@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Homing Missile - Air to surface"
-BULLET.Author = "Divran"
-BULLET.Description = "Slow moving, deadly missile. Its limitation is that it can't fly up."
+BULLET.Name = "[Homing] Salvo Six (HE)"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Rapidly fires a spectacle of up to six light explosive partial tracking missiles."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -25,33 +25,33 @@ BULLET.FireEffect = nil
 BULLET.ExplosionEffect = "v2splode"
 
 -- Movement
-BULLET.Speed = 35
+BULLET.Speed = 75
 BULLET.Gravity = 0
 BULLET.RecoilForce = 60
-BULLET.Spread = 0
+BULLET.Spread = 20
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 600
-BULLET.Radius = 200
-BULLET.RangeDamageMul = 2.4
-BULLET.PlayerDamage = 110
-BULLET.PlayerDamageRadius = 200
+BULLET.Damage = 100
+BULLET.Radius = 150
+BULLET.RangeDamageMul = 2.8
+BULLET.NumberOfSlices = nil
+BULLET.SliceDistance = nil
+BULLET.PlayerDamage = 75
+BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 10
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Reloadtime = 0.22
+BULLET.Ammo = 6
+BULLET.AmmoReloadtime = 8
 
-BULLET.Lifetime = {4,4}
+BULLET.Lifetime = {1.5,6}
 BULLET.ExplodeAfterDeath = true
-BULLET.EnergyPerShot = 10000
-
-BULLET.UseOldSystem = true
+BULLET.EnergyPerShot = 7000
 
 BULLET.CustomInputs = { "Fire", "X", "Y", "Z", "XYZ [VECTOR]" }
 
-
+BULLET.UseOldSystem = true
 -- Custom Functions 
 -- (If you set the override var to true, the cannon/bullet will run these instead. Use these functions to do stuff which is not possible with the above variables)
 
@@ -86,13 +86,17 @@ end
 -- Initialize (Is called when the bullet initializes)
 function BULLET:Initialize()   
 	self:DefaultInitialize()
-	self.TargetDir = self.FlightDirection
-	self.MaxZ = self.TargetDir.z
+	
+	self.TargetDir = self.Entity:GetUp()
 	if (self.Cannon:IsValid()) then
 		if (self.Cannon.TargetPos and self.Cannon.TargetPos != Vector(0,0,0)) then
 			self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
 		end
 	end
+	
+	-- Lifetime
+	self.Lifetime = CurTime() + self.Bullet.Lifetime[2]
+	self.Thrust = CurTime() + self.Bullet.Lifetime[1]
 
 	local trail = ents.Create("env_fire_trail")
 	trail:SetPos( self.Entity:GetPos() - self.Entity:GetUp() * 20 )
@@ -104,33 +108,13 @@ end
 function BULLET:Think()
 	-- Make it fly
 	self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
-	if (self.Cannon and self.Cannon:IsValid() and self.Cannon.TargetPos) then
+	if (self.Cannon and self.Cannon:IsValid() and self.Cannon.TargetPos and CurTime() < self.Thrust) then 
 		self.FlightDirection = self.FlightDirection + (self.TargetDir-self.FlightDirection) / 20
 		self.FlightDirection = self.FlightDirection:GetNormalized()
-		
-		self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
-			
-		if (self.TargetDir.z < self.MaxZ) then self.MaxZ = self.TargetDir.z end
-		self.TargetDir.z = math.min( self.TargetDir.z, self.MaxZ )
-	end
-	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(90,0,0) )
 
---[[
-	-- Make it fly
-	self.Entity:SetPos( self.Entity:GetPos() + self.FlightDirection * self.Bullet.Speed )
-	--if (self.TargetDir != Vector(0,0,0)) then
-		self.FlightDirection = self.FlightDirection + (self.TargetDir-self.FlightDirection) / 20
-		self.FlightDirection = self.FlightDirection:GetNormalized()
-	--end
-	if (self.Cannon:IsValid()) then
-		if (self.Cannon.TargetPos and self.Cannon.TargetPos != Vector(0,0,0)) then
-			self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
-			if (self.TargetDir.z < self.MaxZ) then self.MaxZ = self.TargetDir.z end
-			self.TargetDir.z = math.min( self.TargetDir.z, self.MaxZ )
-		end
+		self.TargetDir = (self.Cannon.TargetPos-self:GetPos()):GetNormalized()
 	end
 	self.Entity:SetAngles( self.FlightDirection:Angle() + Angle(90,0,0) )
-]]
 	
 	-- Lifetime
 	if (self.Lifetime) then
