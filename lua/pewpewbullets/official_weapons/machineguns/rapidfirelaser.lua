@@ -21,7 +21,7 @@ BULLET.Spread = 0.3
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 25
+BULLET.Damage = 15
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.1

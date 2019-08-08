@@ -18,8 +18,7 @@ BULLET.ExplosionEffect = "MedLaser"
 
 -- Damage
 BULLET.DamageType = "PointDamage"
-BULLET.Damage = 155
-BULLET.PlayerDamage = 50
+BULLET.Damage = 75
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.5
