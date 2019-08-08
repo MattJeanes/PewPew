@@ -6,8 +6,8 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Railgun"
-BULLET.Author = "Divran"
+BULLET.Name = "XR-8 Railgun"
+BULLET.Author = "Hexwolf (Base by Divran)"
 BULLET.Description = "Fires extremely fast moving rounds with deadly accuracy. Slices through armor like a hot knife through butter."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
