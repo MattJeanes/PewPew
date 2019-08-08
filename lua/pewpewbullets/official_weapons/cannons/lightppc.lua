@@ -8,7 +8,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "Light Particle Projection Cannon "
 BULLET.Author = "Hexwolf (Base by Colonel Thirty Two)"
-BULLET.Description = "Fires a condensed ball of superheated particles, causes electronics to briefly malfunction."
+BULLET.Description = "Fires a condensed ball of superheated particles."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -18,7 +18,7 @@ BULLET.Material = nil
 BULLET.Color = Color(0,255,255,255)
 BULLET.Trail = { StartSize = 10,
 				 EndSize = 2,
-				 Length = 100,
+				 Length = 10000,
 				 Texture = "trails/physbeam",
 				 Color = Color( 0,255,255, 255 ) }
 
@@ -36,7 +36,7 @@ BULLET.Spread = 0
 BULLET.AffectedBySBGravity = false
 
 -- Damage
-BULLET.DamageType = "EMPDamage"
+BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 500
 BULLET.Radius = 200
 BULLET.Duration = 2
