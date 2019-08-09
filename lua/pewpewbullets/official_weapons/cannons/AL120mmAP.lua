@@ -39,7 +39,7 @@ BULLET.SliceDistance = 650
 BULLET.ReducedDamagePerSlice = 0
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 8
+BULLET.Reloadtime = 7
 BULLET.Ammo = 5
 BULLET.AmmoReloadtime = 45
 
