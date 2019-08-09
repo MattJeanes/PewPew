@@ -25,7 +25,7 @@ BULLET.ExplosionEffect = "mghit"
 
 -- Movement
 BULLET.Speed = 251
---BULLET.Gravity = 0.01
+BULLET.Gravity = 0.01
 BULLET.RecoilForce = 30
 BULLET.Spread = 0.15
 BULLET.AffectedBySBGravity = true
