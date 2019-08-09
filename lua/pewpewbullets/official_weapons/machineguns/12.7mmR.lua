@@ -14,13 +14,13 @@ BULLET.SuperAdminOnly = false
 BULLET.Model = "models/combatmodels/tankshell_25mm.mdl"
 
 -- Effects / Sounds
-BULLET.FireSound = {"arty/mg42.wav"}
+BULLET.FireSound = {"arty/50cal.wav"}
 BULLET.ExplosionSound = nil
 BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "mghit"
 
 -- Movement
-BULLET.Speed = 100
+BULLET.Speed = 175
 --BULLET.Gravity = 0.03
 BULLET.RecoilForce = 50
 BULLET.Spread = 0.75
