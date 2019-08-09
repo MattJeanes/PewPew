@@ -25,7 +25,7 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.EmptyMagSound = {"weapons/pistol/pistol_empty.wav"}
 
 -- Movement
-BULLET.Speed = 200
+BULLET.Speed = 201
 --BULLET.Gravity = 0.02
 BULLET.RecoilForce = 30
 BULLET.Spread = 0.2
