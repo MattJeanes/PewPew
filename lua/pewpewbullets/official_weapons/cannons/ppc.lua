@@ -18,7 +18,7 @@ BULLET.Material = nil
 BULLET.Color = Color(0,255,255,255)
 BULLET.Trail = { StartSize = 10,
 				 EndSize = 0,
-				 Length = 10,
+				 Length = 0.6,
 				 Texture = "trails/smoke.vmt",
 				 Color = Color( 0,255,255, 255 ) }
 
