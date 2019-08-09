@@ -30,9 +30,9 @@ BULLET.ExplosionEffect = "explosion"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 75
+BULLET.Speed = 50
 BULLET.RecoilForce = 100
-BULLET.Spread = 0.03
+BULLET.Spread = 0.3
 
 -- Damage
 BULLET.DamageType = "BlastDamage"

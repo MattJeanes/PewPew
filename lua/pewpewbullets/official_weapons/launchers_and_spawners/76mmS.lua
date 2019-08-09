@@ -30,9 +30,9 @@ BULLET.ExplosionEffect = "pewpew_bigsmoke"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 75
+BULLET.Speed = 10
 BULLET.RecoilForce = 100
-BULLET.Spread = 10
+BULLET.Spread = 50
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 0.03

@@ -32,7 +32,7 @@ BULLET.EmptyMagSound = nil
 -- Movement
 BULLET.Speed = 30
 BULLET.RecoilForce = 100
-BULLET.Spread = 0.03
+BULLET.Spread = 0.3
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
