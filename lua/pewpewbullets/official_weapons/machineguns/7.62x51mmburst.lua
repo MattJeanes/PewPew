@@ -22,11 +22,10 @@ BULLET.FireSound = {"arty/20mmauto.wav"}
 BULLET.ExplosionSound = nil
 BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "mghit"
-BULLET.EmptyMagSound = {"weapons/pistol/pistol_empty.wav"}
 
 -- Movement
 BULLET.Speed = 125
---BULLET.Gravity = 0.1
+--BULLET.Gravity = 0.02
 BULLET.RecoilForce = 30
 BULLET.Spread = 0.15
 BULLET.AffectedBySBGravity = true
