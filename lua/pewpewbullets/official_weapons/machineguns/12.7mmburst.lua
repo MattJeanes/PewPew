@@ -23,7 +23,7 @@ BULLET.FireEffect = "muzzleflash"
 BULLET.ExplosionEffect = "mghit"
 
 -- Movement
-BULLET.Speed = 100
+BULLET.Speed = 175
 --BULLET.Gravity = 0.03
 BULLET.RecoilForce = 50
 BULLET.Spread = 0.25
