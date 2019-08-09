@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Grenade Launcher"
-BULLET.Author = "Divran"
-BULLET.Description = "Fires a timed grenade."
+BULLET.Name = "40mm Auto Grenade Launcher"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Rapidly fires timed grenades."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -30,22 +30,22 @@ BULLET.ExplosionEffect = "explosion"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 50
+BULLET.Speed = 75
 BULLET.RecoilForce = 100
-BULLET.Spread = 0
+BULLET.Spread = 0.03
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 275
+BULLET.Damage = 200
 BULLET.Radius = 200
 BULLET.RangeDamageMul = 2.6
 BULLET.PlayerDamage = 75
-BULLET.PlayerDamageRadius = 100
+BULLET.PlayerDamageRadius = 150
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 3.5
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Reloadtime = 0.4
+BULLET.Ammo = 15
+BULLET.AmmoReloadtime = 12
 
 -- Other
 BULLET.Lifetime = {5,5}

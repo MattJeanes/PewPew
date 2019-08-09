@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "Smoke Grenade Launcher"
-BULLET.Author = "Divran"
-BULLET.Description = "Fires a timed smoke grenade."
+BULLET.Name = "76mm Smoke Grenade Launcher"
+BULLET.Author = "Hexwolf (Base by Divran)"
+BULLET.Description = "Fires a timed smoke grenade in a short range."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -30,17 +30,17 @@ BULLET.ExplosionEffect = "pewpew_bigsmoke"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 50
+BULLET.Speed = 75
 BULLET.RecoilForce = 100
-BULLET.Spread = 0
+BULLET.Spread = 10
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 3.5
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Reloadtime = 0.03
+BULLET.Ammo = 3
+BULLET.AmmoReloadtime = 45
 
 -- Other
-BULLET.Lifetime = {5,5}
+BULLET.Lifetime = {1,1}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 2000
 
