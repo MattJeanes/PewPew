@@ -32,7 +32,7 @@ BULLET.EmptyMagSound = nil
 -- Movement
 BULLET.Speed = 60
 BULLET.RecoilForce = 100
-BULLET.Spread = 0.6
+BULLET.Spread = 2
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
@@ -48,7 +48,7 @@ BULLET.Ammo = 20
 BULLET.AmmoReloadtime = 10
 
 -- Other
-BULLET.Lifetime = {5,5}
+BULLET.Lifetime = {3,3}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 4000
 

@@ -48,7 +48,7 @@ BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
 -- Other
-BULLET.Lifetime = {5,5}
+BULLET.Lifetime = {3,3}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 4000
 

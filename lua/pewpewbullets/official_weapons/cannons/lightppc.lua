@@ -17,9 +17,9 @@ BULLET.Model = "models/combatmodels/tankshell_230mm.mdl"
 BULLET.Material = nil
 BULLET.Color = Color(0,255,255,255)
 BULLET.Trail = { StartSize = 10,
-				 EndSize = 2,
-				 Length = 10000,
-				 Texture = "trails/physbeam",
+				 EndSize = 0,
+				 Length = 10,
+				 Texture = "trails/smoke.vmt",
 				 Color = Color( 0,255,255, 255 ) }
 
 -- Effects / Sounds
@@ -30,10 +30,10 @@ BULLET.ExplosionEffect = "HEATsplode"
 
 -- Movement
 BULLET.Speed = 150
---BULLET.Gravity = 0.0
+BULLET.Gravity = 0.01
 BULLET.RecoilForce = 500
 BULLET.Spread = 0
-BULLET.AffectedBySBGravity = false
+BULLET.AffectedBySBGravity = true
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
