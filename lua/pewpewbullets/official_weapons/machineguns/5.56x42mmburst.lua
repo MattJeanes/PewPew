@@ -6,7 +6,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "5.56x42mm Burstfire Machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "Rapid fire 5.56x42mm machine gun."
+BULLET.Description = "Burstfire 5.56x42mm machinegun. Bursts fire faster than the standard version, with more accuracy."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -27,7 +27,7 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.Speed = 150
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 30
-BULLET.Spread = 0.2
+BULLET.Spread = 0.15
 BULLET.AffectedBySBGravity = true
 
 -- Damage

@@ -6,7 +6,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "7.62x51mm Burstfire Machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "7.62x51mm Machinegun."
+BULLET.Description = "Burstfire 7.62x51mm machinegun. Bursts fire faster than the standard version, with more accuracy."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -28,7 +28,7 @@ BULLET.EmptyMagSound = {"weapons/pistol/pistol_empty.wav"}
 BULLET.Speed = 125
 --BULLET.Gravity = 0.1
 BULLET.RecoilForce = 30
-BULLET.Spread = 0.2
+BULLET.Spread = 0.15
 BULLET.AffectedBySBGravity = true
 
 -- Damage
@@ -42,7 +42,7 @@ BULLET.PlayerDamage = nil
 BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.15
+BULLET.Reloadtime = 0.1
 BULLET.Ammo = 3
 BULLET.AmmoReloadtime = .5
 

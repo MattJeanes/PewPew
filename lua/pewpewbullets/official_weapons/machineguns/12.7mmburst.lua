@@ -6,7 +6,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "12.7mm Burstfire machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "12.7mm Burstfire machinegun."
+BULLET.Description = "Burstfire 12.7mm machinegun. Bursts fire faster than the standard version, with more accuracy.."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -26,7 +26,7 @@ BULLET.ExplosionEffect = "mghit"
 BULLET.Speed = 100
 --BULLET.Gravity = 0.15
 BULLET.RecoilForce = 50
-BULLET.Spread = 0.4
+BULLET.Spread = 0.25
 BULLET.AffectedBySBGravity = true
 
 -- Damage

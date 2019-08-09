@@ -6,7 +6,7 @@ BULLET.Version = 2
 -- General Information
 BULLET.Name = "7.62x51mm Machinegun"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "7.62x51mm Machinegun."
+BULLET.Description = "Rapid fire 7.62x51mm Machinegun."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -42,7 +42,7 @@ BULLET.PlayerDamage = nil
 BULLET.PlayerDamageRadius = nil
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 0.2
+BULLET.Reloadtime = 0.15
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
