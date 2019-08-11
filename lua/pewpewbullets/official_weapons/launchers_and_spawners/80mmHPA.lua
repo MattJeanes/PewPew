@@ -13,7 +13,7 @@ BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
 -- Appearance
-BULLET.Model = "models/props_phx/misc/potato.mdl"
+BULLET.Model = "models/Items/AR2_Grenade.mdl"
 BULLET.Material = "phoenix_storms/gear"
 BULLET.Color = nil
 BULLET.Trail = { StartSize = 4,
