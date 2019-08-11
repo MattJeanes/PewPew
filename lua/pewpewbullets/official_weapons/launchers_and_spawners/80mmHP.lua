@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "37mm Grenade Launcher"
+BULLET.Name = "80mm 'Hot Potato' Grenade Launcher"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "Fires a timed grenade."
+BULLET.Description = "Fires a timed grenade that explodes after a lengthy period of time."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -30,25 +30,25 @@ BULLET.ExplosionEffect = "HEATsplode"
 BULLET.EmptyMagSound = nil
 
 -- Movement
-BULLET.Speed = 60
+BULLET.Speed = 30
 BULLET.RecoilForce = 100
 BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 300
-BULLET.Radius = 300
+BULLET.Damage = 750
+BULLET.Radius = 750
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 175
-BULLET.PlayerDamageRadius = 350
+BULLET.PlayerDamage = 300
+BULLET.PlayerDamageRadius = 500
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 1.5
+BULLET.Reloadtime = 8
 BULLET.Ammo = 0
 BULLET.AmmoReloadtime = 0
 
 -- Other
-BULLET.Lifetime = {3,3}
+BULLET.Lifetime = {25,25}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 4000
 

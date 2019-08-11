@@ -6,9 +6,9 @@ local BULLET = {}
 BULLET.Version = 2
 
 -- General Information
-BULLET.Name = "37mm Grenade Launcher"
+BULLET.Name = "Cluster Grenade"
 BULLET.Author = "Hexwolf (Base by Divran)"
-BULLET.Description = "Fires a timed grenade."
+BULLET.Description = "Rapidly fires short a burst of 5 timed grenades with a short lifespan."
 BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
@@ -32,23 +32,23 @@ BULLET.EmptyMagSound = nil
 -- Movement
 BULLET.Speed = 60
 BULLET.RecoilForce = 100
-BULLET.Spread = 0
+BULLET.Spread = 3
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
 BULLET.Damage = 300
-BULLET.Radius = 300
+BULLET.Radius = 500
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 175
-BULLET.PlayerDamageRadius = 350
+BULLET.PlayerDamage = 100
+BULLET.PlayerDamageRadius = 425
 
 -- Reloading/Ammo
-BULLET.Reloadtime = 1.5
-BULLET.Ammo = 0
-BULLET.AmmoReloadtime = 0
+BULLET.Reloadtime = 0.02
+BULLET.Ammo = 5
+BULLET.AmmoReloadtime = 8
 
 -- Other
-BULLET.Lifetime = {3,3}
+BULLET.Lifetime = {1.5,1.5}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 4000
 

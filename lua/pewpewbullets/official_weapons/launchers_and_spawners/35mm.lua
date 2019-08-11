@@ -24,9 +24,9 @@ BULLET.Trail = { StartSize = 4,
 
 -- Effects / Sounds
 BULLET.FireSound = {"weapons/mortar/mortar_fire1.wav"}
-BULLET.ExplosionSound = nil -- the sound is included in the effect
+BULLET.ExplosionSound = {"weapons/explode1.wav","weapons/explode2.wav"} -- the sound is included in the effect
 BULLET.FireEffect = nil
-BULLET.ExplosionEffect = "explosion"
+BULLET.ExplosionEffect = "HEATsplode"
 BULLET.EmptyMagSound = nil
 
 -- Movement
@@ -36,11 +36,11 @@ BULLET.Spread = 0
 
 -- Damage
 BULLET.DamageType = "BlastDamage"
-BULLET.Damage = 125
-BULLET.Radius = 125
+BULLET.Damage = 225
+BULLET.Radius = 225
 BULLET.RangeDamageMul = 2.6
-BULLET.PlayerDamage = 50
-BULLET.PlayerDamageRadius = 100
+BULLET.PlayerDamage = 150
+BULLET.PlayerDamageRadius = 200
 
 -- Reloading/Ammo
 BULLET.Reloadtime = 1
