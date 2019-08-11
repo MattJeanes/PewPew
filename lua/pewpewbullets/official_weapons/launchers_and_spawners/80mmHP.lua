@@ -13,14 +13,14 @@ BULLET.AdminOnly = false
 BULLET.SuperAdminOnly = false
 
 -- Appearance
-BULLET.Model = "models/Items/AR2_Grenade.mdl"
+BULLET.Model = "models/props_phx/misc/potato.mdl"
 BULLET.Material = "phoenix_storms/gear"
 BULLET.Color = nil
 BULLET.Trail = { StartSize = 4,
 				 EndSize = 0,
 				 Length = 0.6,
 				 Texture = "trails/smoke.vmt",
-				 Color = Color( 200, 200, 200, 255 ) }
+				 Color = Color( 225, 0, 0, 255 ) }
 
 -- Effects / Sounds
 BULLET.FireSound = {"weapons/mortar/mortar_fire1.wav"}
