@@ -26,7 +26,7 @@ BULLET.Trail = { StartSize = 4,
 BULLET.FireSound = {"weapons/mortar/mortar_fire1.wav"}
 BULLET.ExplosionSound = {"weapons/explode1.wav","weapons/explode2.wav"} -- the sound is included in the effect
 BULLET.FireEffect = nil
-BULLET.ExplosionEffect = "HEATsplode"
+BULLET.ExplosionEffect = "pewpew_smokepuff"
 BULLET.EmptyMagSound = nil
 
 -- Movement
@@ -48,7 +48,7 @@ BULLET.Ammo = 5
 BULLET.AmmoReloadtime = 8
 
 -- Other
-BULLET.Lifetime = {1.5,1.5}
+BULLET.Lifetime = {1.25,1.25}
 BULLET.ExplodeAfterDeath = true
 BULLET.EnergyPerShot = 4000
 
