@@ -89,6 +89,14 @@ if (PLAYER) then
 	end
 end
 
+-- Helper function. Should be used any time damage is dealt to a player with util.BlastDamage or player:TakeDamage
+function pewpew:GetOwner(Attacker)
+	if Attacker:GetClass() == "pewpew_base_cannon" and IsValid(Attacker.Owner) then
+		return Attacker.Owner
+	end
+	return Attacker
+end
+
 -- Helper function. Should be used in place of util.BlastDamage in all pewpew weapons
 function pewpew:PlayerBlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
 	
@@ -110,7 +118,7 @@ function pewpew:PlayerBlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
 		end
 	end
 	
-	util.BlastDamage( Inflictor, Attacker, Pos, Radius, Damage )
+	util.BlastDamage( Inflictor, pewpew:GetOwner(Attacker), Pos, Radius, Damage )
 	
 	for k,v in ipairs( disablegod ) do
 		v:GodDisable()
@@ -123,7 +131,7 @@ function pewpew:PointDamage( TargetEntity, Damage, DamageDealer )
 	if (TargetEntity:IsPlayer()) or (TargetEntity:IsNPC()) then
 		if (DamageDealer and DamageDealer:IsValid()) then
 			if (self:CallHookBool("PewPew_ShouldDoPointDamage",TargetEntity,Damage,DamageDealer)) then
-				TargetEntity:TakeDamage( Damage, DamageDealer )
+				TargetEntity:TakeDamage( Damage, pewpew:GetOwner(DamageDealer) )
 			end
 		end
 	else
@@ -171,7 +179,7 @@ function pewpew:SliceDamage( StartPos, Direction, Damage, NumberOfSlices, MaxRan
 			else
 				if (self:CallHookBool("PewPew_ShouldDoSliceDamage",HitEnt,StartPos,Direction,Damage,NumberOfSlices,MaxRange,ReducedDamagePerSlice,DamageDealer)) then
 					if (HitEnt:IsPlayer()) or (HitEnt:IsNPC()) then
-						HitEnt:TakeDamage( Damage, DamageDealer ) -- deal damage to players
+						HitEnt:TakeDamage( Damage, pewpew:GetOwner(DamageDealer) ) -- deal damage to players
 					elseif (self:CheckValid( HitEnt )) then
 						self:DealDamageBase( HitEnt, Damage, DamageDealer ) -- Deal damage to entities
 					end
