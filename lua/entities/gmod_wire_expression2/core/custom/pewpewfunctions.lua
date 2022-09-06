@@ -293,14 +293,14 @@ __e2setcost(1)
 -- Positions & stuff
 e2function vector pewBulletPos( id )
 	local bullet = getByUniqueID( id )
-	if not bullet then return {0,0,0} end
-	return bullet.Pos or {0,0,0}
+	if not bullet then return Vector(0, 0, 0) end
+	return bullet.Pos or Vector(0, 0, 0)
 end
 
 e2function vector pewBulletVel( id )
 	local bullet = getByUniqueID( id )
-	if not bullet then return {0,0,0} end
-	return bullet.Vel or {0,0,0}
+	if not bullet then return Vector(0, 0, 0) end
+	return bullet.Vel or Vector(0, 0, 0)
 end
 
 e2function entity pewBulletOwner( id )
